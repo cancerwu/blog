@@ -8,6 +8,18 @@ spring:
     username: root
     password: 123456qqQQ.
     driver-class-name: com.mysql.jdbc.Driver
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    password: kdrozgxcnlfjbdfg
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    username: 917708203@qq.com
 
 mybatis:
   type-aliases-package: com.ndsc.blog.entity
