@@ -1,0 +1,23 @@
+# application.yml
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://47.94.152.107:3306/blog?useUnicode=true&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC
+    username: root
+    password: 123456qqQQ.
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  type-aliases-package: com.ndsc.blog.entity
+  mapper-locations: classpath:mapping/*Mapper.xml
+
+
+
+#showSql
+logging:
+  level:
+    com:
+      example:
+        mapper : debug
