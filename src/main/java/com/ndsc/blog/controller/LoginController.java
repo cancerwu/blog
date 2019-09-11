@@ -46,6 +46,14 @@ public class LoginController {
         System.out.println(userId);
         return userId;
     }
+    @RequestMapping("/outline")
+    public int outline(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("userName",null);
+        System.out.println("下线成功");
+        return 0;
+
+    }
 
 
 }
