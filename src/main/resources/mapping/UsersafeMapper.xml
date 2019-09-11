@@ -16,6 +16,27 @@
     user_id, user_name, password, user_email, user_tel, user_status, user_money, user_integral, 
     user_role
   </sql>
+
+
+
+  <select id="sameTel" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(*) from usersafe where user_tel = #{userTel}
+  </select>
+  <select id="sameName" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(*) from usersafe where user_name =#{userName}
+  </select>
+  <insert id="insert" parameterType="com.ndsc.blog.entity.Usersafe" >
+    insert into usersafe (user_name, user_tel,
+      password, user_email
+      )
+    values (#{userName,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}
+      )
+  </insert>
+
+
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -26,16 +47,7 @@
     delete from usersafe
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ndsc.blog.entity.Usersafe" >
-    insert into usersafe (user_id, user_name, password, 
-      user_email, user_tel, user_status, 
-      user_money, user_integral, user_role
-      )
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{userEmail,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}, 
-      #{userMoney,jdbcType=INTEGER}, #{userIntegral,jdbcType=INTEGER}, #{userRole,jdbcType=INTEGER}
-      )
-  </insert>
+
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Usersafe" >
     insert into usersafe
     <trim prefix="(" suffix=")" suffixOverrides="," >
