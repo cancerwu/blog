@@ -30,4 +30,10 @@ public class RegisterServiceImpl implements RegisterService {
     public int checkSameName(String userName) {
         return usersafeMapper.sameName(userName);
     }
+
+    @Override
+    public int checkSameEmail(String userEmail) {
+        return usersafeMapper.sameEmail(userEmail);
+    }
+
 }

@@ -8,4 +8,5 @@ public interface RegisterService {
     public int checkSamePhone(String userTel);
 
     public int checkSameName(String userName);
+    public int checkSameEmail(String userEmail);
 }

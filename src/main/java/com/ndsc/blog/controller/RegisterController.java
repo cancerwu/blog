@@ -28,4 +28,8 @@ public class RegisterController {
     public int checkSameName(String userName){
         return registerService.checkSameName(userName);
     }
+    @RequestMapping("/checkSameEmail")
+    public int checkSameEmail(String userEmail){
+        return registerService.checkSameEmail(userEmail);
+    }
 }

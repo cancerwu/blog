@@ -25,6 +25,9 @@
   <select id="sameName" resultType="java.lang.Integer" parameterType="java.lang.String">
     select count(*) from usersafe where user_name =#{userName}
   </select>
+  <select id="sameEmail" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(*) from usersafe where user_email =#{userEmail}
+  </select>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Usersafe" >
     insert into usersafe (user_name, user_tel,
       password, user_email
