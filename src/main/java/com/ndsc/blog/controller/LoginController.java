@@ -26,7 +26,7 @@ public class LoginController {
 
         String resultUserName = loginService.selectByLogin(userinput,password);
         session.setAttribute("userName",resultUserName);
-        System.out.println("---------"+session.getAttribute("userName"));
+        System.out.println("---------"+session.getAttribute("userName")+"登陆成功");
         return resultUserName;
     }
 
@@ -34,6 +34,7 @@ public class LoginController {
     public String getLoginUserName(HttpServletRequest request){
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
+        System.out.println(session.getAttribute("userName")+"在线");
         return userName;
     }
 
