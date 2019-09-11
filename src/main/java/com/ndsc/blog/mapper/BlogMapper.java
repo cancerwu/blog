@@ -3,13 +3,13 @@ package com.ndsc.blog.mapper;
 import com.ndsc.blog.entity.Blog;
 
 public interface BlogMapper {
-    int deleteByPrimaryKey(Integer blog_id);
+    int deleteByPrimaryKey(Integer blogId);
 
     int insert(Blog record);
 
     int insertSelective(Blog record);
 
-    Blog selectByPrimaryKey(Integer blog_id);
+    Blog selectByPrimaryKey(Integer blogId);
 
     int updateByPrimaryKeySelective(Blog record);
 

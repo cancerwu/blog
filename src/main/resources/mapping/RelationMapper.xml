@@ -2,29 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ndsc.blog.mapper.RelationMapper" >
   <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Relation" >
-    <result column="bloger_id" property="bloger_id" jdbcType="INTEGER" />
-    <result column="fans_id" property="fans_id" jdbcType="INTEGER" />
+    <result column="bloger_id" property="blogerId" jdbcType="INTEGER" />
+    <result column="fans_id" property="fansId" jdbcType="INTEGER" />
   </resultMap>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Relation" >
     insert into relation (bloger_id, fans_id)
-    values (#{bloger_id,jdbcType=INTEGER}, #{fans_id,jdbcType=INTEGER})
+    values (#{blogerId,jdbcType=INTEGER}, #{fansId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Relation" >
     insert into relation
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="bloger_id != null" >
+      <if test="blogerId != null" >
         bloger_id,
       </if>
-      <if test="fans_id != null" >
+      <if test="fansId != null" >
         fans_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="bloger_id != null" >
-        #{bloger_id,jdbcType=INTEGER},
+      <if test="blogerId != null" >
+        #{blogerId,jdbcType=INTEGER},
       </if>
-      <if test="fans_id != null" >
-        #{fans_id,jdbcType=INTEGER},
+      <if test="fansId != null" >
+        #{fansId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>

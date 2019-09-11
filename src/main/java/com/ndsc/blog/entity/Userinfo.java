@@ -3,73 +3,73 @@ package com.ndsc.blog.entity;
 import java.util.Date;
 
 public class Userinfo {
-    private Integer userinfo_id;
+    private Integer userinfoId;
 
-    private String real_name;
+    private String realName;
 
-    private String user_sex;
+    private String userSex;
 
-    private Date user_birthday;
+    private Date userBirthday;
 
-    private String user_pic;
+    private String userPic;
 
-    private Date user_create_time;
+    private Date userCreateTime;
 
-    private Integer user_id;
+    private Integer userId;
 
-    public Integer getUserinfo_id() {
-        return userinfo_id;
+    public Integer getUserinfoId() {
+        return userinfoId;
     }
 
-    public void setUserinfo_id(Integer userinfo_id) {
-        this.userinfo_id = userinfo_id;
+    public void setUserinfoId(Integer userinfoId) {
+        this.userinfoId = userinfoId;
     }
 
-    public String getReal_name() {
-        return real_name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setReal_name(String real_name) {
-        this.real_name = real_name == null ? null : real_name.trim();
+    public void setRealName(String realName) {
+        this.realName = realName == null ? null : realName.trim();
     }
 
-    public String getUser_sex() {
-        return user_sex;
+    public String getUserSex() {
+        return userSex;
     }
 
-    public void setUser_sex(String user_sex) {
-        this.user_sex = user_sex == null ? null : user_sex.trim();
+    public void setUserSex(String userSex) {
+        this.userSex = userSex == null ? null : userSex.trim();
     }
 
-    public Date getUser_birthday() {
-        return user_birthday;
+    public Date getUserBirthday() {
+        return userBirthday;
     }
 
-    public void setUser_birthday(Date user_birthday) {
-        this.user_birthday = user_birthday;
+    public void setUserBirthday(Date userBirthday) {
+        this.userBirthday = userBirthday;
     }
 
-    public String getUser_pic() {
-        return user_pic;
+    public String getUserPic() {
+        return userPic;
     }
 
-    public void setUser_pic(String user_pic) {
-        this.user_pic = user_pic == null ? null : user_pic.trim();
+    public void setUserPic(String userPic) {
+        this.userPic = userPic == null ? null : userPic.trim();
     }
 
-    public Date getUser_create_time() {
-        return user_create_time;
+    public Date getUserCreateTime() {
+        return userCreateTime;
     }
 
-    public void setUser_create_time(Date user_create_time) {
-        this.user_create_time = user_create_time;
+    public void setUserCreateTime(Date userCreateTime) {
+        this.userCreateTime = userCreateTime;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

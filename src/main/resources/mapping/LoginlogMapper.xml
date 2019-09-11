@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ndsc.blog.mapper.LoginlogMapper" >
   <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Loginlog" >
-    <id column="loginlog_id" property="loginlog_id" jdbcType="INTEGER" />
-    <result column="user_id" property="user_id" jdbcType="INTEGER" />
-    <result column="login_time" property="login_time" jdbcType="TIMESTAMP" />
-    <result column="login_ip" property="login_ip" jdbcType="VARCHAR" />
-    <result column="login_address" property="login_address" jdbcType="VARCHAR" />
+    <id column="loginlog_id" property="loginlogId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="login_address" property="loginAddress" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     loginlog_id, user_id, login_time, login_ip, login_address
@@ -15,79 +15,79 @@
     select 
     <include refid="Base_Column_List" />
     from loginlog
-    where loginlog_id = #{loginlog_id,jdbcType=INTEGER}
+    where loginlog_id = #{loginlogId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from loginlog
-    where loginlog_id = #{loginlog_id,jdbcType=INTEGER}
+    where loginlog_id = #{loginlogId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Loginlog" >
     insert into loginlog (loginlog_id, user_id, login_time, 
       login_ip, login_address)
-    values (#{loginlog_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{login_time,jdbcType=TIMESTAMP}, 
-      #{login_ip,jdbcType=VARCHAR}, #{login_address,jdbcType=VARCHAR})
+    values (#{loginlogId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{loginIp,jdbcType=VARCHAR}, #{loginAddress,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Loginlog" >
     insert into loginlog
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="loginlog_id != null" >
+      <if test="loginlogId != null" >
         loginlog_id,
       </if>
-      <if test="user_id != null" >
+      <if test="userId != null" >
         user_id,
       </if>
-      <if test="login_time != null" >
+      <if test="loginTime != null" >
         login_time,
       </if>
-      <if test="login_ip != null" >
+      <if test="loginIp != null" >
         login_ip,
       </if>
-      <if test="login_address != null" >
+      <if test="loginAddress != null" >
         login_address,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="loginlog_id != null" >
-        #{loginlog_id,jdbcType=INTEGER},
+      <if test="loginlogId != null" >
+        #{loginlogId,jdbcType=INTEGER},
       </if>
-      <if test="user_id != null" >
-        #{user_id,jdbcType=INTEGER},
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="login_time != null" >
-        #{login_time,jdbcType=TIMESTAMP},
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="login_ip != null" >
-        #{login_ip,jdbcType=VARCHAR},
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
       </if>
-      <if test="login_address != null" >
-        #{login_address,jdbcType=VARCHAR},
+      <if test="loginAddress != null" >
+        #{loginAddress,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ndsc.blog.entity.Loginlog" >
     update loginlog
     <set >
-      <if test="user_id != null" >
-        user_id = #{user_id,jdbcType=INTEGER},
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="login_time != null" >
-        login_time = #{login_time,jdbcType=TIMESTAMP},
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="login_ip != null" >
-        login_ip = #{login_ip,jdbcType=VARCHAR},
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
       </if>
-      <if test="login_address != null" >
-        login_address = #{login_address,jdbcType=VARCHAR},
+      <if test="loginAddress != null" >
+        login_address = #{loginAddress,jdbcType=VARCHAR},
       </if>
     </set>
-    where loginlog_id = #{loginlog_id,jdbcType=INTEGER}
+    where loginlog_id = #{loginlogId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ndsc.blog.entity.Loginlog" >
     update loginlog
-    set user_id = #{user_id,jdbcType=INTEGER},
-      login_time = #{login_time,jdbcType=TIMESTAMP},
-      login_ip = #{login_ip,jdbcType=VARCHAR},
-      login_address = #{login_address,jdbcType=VARCHAR}
-    where loginlog_id = #{loginlog_id,jdbcType=INTEGER}
+    set user_id = #{userId,jdbcType=INTEGER},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      login_address = #{loginAddress,jdbcType=VARCHAR}
+    where loginlog_id = #{loginlogId,jdbcType=INTEGER}
   </update>
 </mapper>

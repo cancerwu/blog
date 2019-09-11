@@ -1,23 +1,23 @@
 package com.ndsc.blog.entity;
 
 public class Relation {
-    private Integer bloger_id;
+    private Integer blogerId;
 
-    private Integer fans_id;
+    private Integer fansId;
 
-    public Integer getBloger_id() {
-        return bloger_id;
+    public Integer getBlogerId() {
+        return blogerId;
     }
 
-    public void setBloger_id(Integer bloger_id) {
-        this.bloger_id = bloger_id;
+    public void setBlogerId(Integer blogerId) {
+        this.blogerId = blogerId;
     }
 
-    public Integer getFans_id() {
-        return fans_id;
+    public Integer getFansId() {
+        return fansId;
     }
 
-    public void setFans_id(Integer fans_id) {
-        this.fans_id = fans_id;
+    public void setFansId(Integer fansId) {
+        this.fansId = fansId;
     }
 }

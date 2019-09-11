@@ -3,53 +3,53 @@ package com.ndsc.blog.entity;
 import java.util.Date;
 
 public class Loginlog {
-    private Integer loginlog_id;
+    private Integer loginlogId;
 
-    private Integer user_id;
+    private Integer userId;
 
-    private Date login_time;
+    private Date loginTime;
 
-    private String login_ip;
+    private String loginIp;
 
-    private String login_address;
+    private String loginAddress;
 
-    public Integer getLoginlog_id() {
-        return loginlog_id;
+    public Integer getLoginlogId() {
+        return loginlogId;
     }
 
-    public void setLoginlog_id(Integer loginlog_id) {
-        this.loginlog_id = loginlog_id;
+    public void setLoginlogId(Integer loginlogId) {
+        this.loginlogId = loginlogId;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Date getLogin_time() {
-        return login_time;
+    public Date getLoginTime() {
+        return loginTime;
     }
 
-    public void setLogin_time(Date login_time) {
-        this.login_time = login_time;
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
     }
 
-    public String getLogin_ip() {
-        return login_ip;
+    public String getLoginIp() {
+        return loginIp;
     }
 
-    public void setLogin_ip(String login_ip) {
-        this.login_ip = login_ip == null ? null : login_ip.trim();
+    public void setLoginIp(String loginIp) {
+        this.loginIp = loginIp == null ? null : loginIp.trim();
     }
 
-    public String getLogin_address() {
-        return login_address;
+    public String getLoginAddress() {
+        return loginAddress;
     }
 
-    public void setLogin_address(String login_address) {
-        this.login_address = login_address == null ? null : login_address.trim();
+    public void setLoginAddress(String loginAddress) {
+        this.loginAddress = loginAddress == null ? null : loginAddress.trim();
     }
 }

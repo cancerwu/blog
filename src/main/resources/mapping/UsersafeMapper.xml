@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ndsc.blog.mapper.UsersafeMapper" >
   <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Usersafe" >
-    <id column="user_id" property="user_id" jdbcType="INTEGER" />
-    <result column="user_name" property="user_name" jdbcType="VARCHAR" />
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="user_email" property="user_email" jdbcType="VARCHAR" />
-    <result column="user_tel" property="user_tel" jdbcType="VARCHAR" />
-    <result column="user_status" property="user_status" jdbcType="INTEGER" />
-    <result column="user_money" property="user_money" jdbcType="INTEGER" />
-    <result column="user_integral" property="user_integral" jdbcType="INTEGER" />
-    <result column="user_role" property="user_role" jdbcType="INTEGER" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
+    <result column="user_status" property="userStatus" jdbcType="INTEGER" />
+    <result column="user_money" property="userMoney" jdbcType="INTEGER" />
+    <result column="user_integral" property="userIntegral" jdbcType="INTEGER" />
+    <result column="user_role" property="userRole" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     user_id, user_name, password, user_email, user_tel, user_status, user_money, user_integral, 
@@ -20,123 +20,123 @@
     select 
     <include refid="Base_Column_List" />
     from usersafe
-    where user_id = #{user_id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from usersafe
-    where user_id = #{user_id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Usersafe" >
     insert into usersafe (user_id, user_name, password, 
       user_email, user_tel, user_status, 
       user_money, user_integral, user_role
       )
-    values (#{user_id,jdbcType=INTEGER}, #{user_name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{user_email,jdbcType=VARCHAR}, #{user_tel,jdbcType=VARCHAR}, #{user_status,jdbcType=INTEGER}, 
-      #{user_money,jdbcType=INTEGER}, #{user_integral,jdbcType=INTEGER}, #{user_role,jdbcType=INTEGER}
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{userEmail,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}, 
+      #{userMoney,jdbcType=INTEGER}, #{userIntegral,jdbcType=INTEGER}, #{userRole,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Usersafe" >
     insert into usersafe
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="user_id != null" >
+      <if test="userId != null" >
         user_id,
       </if>
-      <if test="user_name != null" >
+      <if test="userName != null" >
         user_name,
       </if>
       <if test="password != null" >
         password,
       </if>
-      <if test="user_email != null" >
+      <if test="userEmail != null" >
         user_email,
       </if>
-      <if test="user_tel != null" >
+      <if test="userTel != null" >
         user_tel,
       </if>
-      <if test="user_status != null" >
+      <if test="userStatus != null" >
         user_status,
       </if>
-      <if test="user_money != null" >
+      <if test="userMoney != null" >
         user_money,
       </if>
-      <if test="user_integral != null" >
+      <if test="userIntegral != null" >
         user_integral,
       </if>
-      <if test="user_role != null" >
+      <if test="userRole != null" >
         user_role,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="user_id != null" >
-        #{user_id,jdbcType=INTEGER},
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="user_name != null" >
-        #{user_name,jdbcType=VARCHAR},
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="user_email != null" >
-        #{user_email,jdbcType=VARCHAR},
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
       </if>
-      <if test="user_tel != null" >
-        #{user_tel,jdbcType=VARCHAR},
+      <if test="userTel != null" >
+        #{userTel,jdbcType=VARCHAR},
       </if>
-      <if test="user_status != null" >
-        #{user_status,jdbcType=INTEGER},
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=INTEGER},
       </if>
-      <if test="user_money != null" >
-        #{user_money,jdbcType=INTEGER},
+      <if test="userMoney != null" >
+        #{userMoney,jdbcType=INTEGER},
       </if>
-      <if test="user_integral != null" >
-        #{user_integral,jdbcType=INTEGER},
+      <if test="userIntegral != null" >
+        #{userIntegral,jdbcType=INTEGER},
       </if>
-      <if test="user_role != null" >
-        #{user_role,jdbcType=INTEGER},
+      <if test="userRole != null" >
+        #{userRole,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ndsc.blog.entity.Usersafe" >
     update usersafe
     <set >
-      <if test="user_name != null" >
-        user_name = #{user_name,jdbcType=VARCHAR},
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="user_email != null" >
-        user_email = #{user_email,jdbcType=VARCHAR},
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
       </if>
-      <if test="user_tel != null" >
-        user_tel = #{user_tel,jdbcType=VARCHAR},
+      <if test="userTel != null" >
+        user_tel = #{userTel,jdbcType=VARCHAR},
       </if>
-      <if test="user_status != null" >
-        user_status = #{user_status,jdbcType=INTEGER},
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=INTEGER},
       </if>
-      <if test="user_money != null" >
-        user_money = #{user_money,jdbcType=INTEGER},
+      <if test="userMoney != null" >
+        user_money = #{userMoney,jdbcType=INTEGER},
       </if>
-      <if test="user_integral != null" >
-        user_integral = #{user_integral,jdbcType=INTEGER},
+      <if test="userIntegral != null" >
+        user_integral = #{userIntegral,jdbcType=INTEGER},
       </if>
-      <if test="user_role != null" >
-        user_role = #{user_role,jdbcType=INTEGER},
+      <if test="userRole != null" >
+        user_role = #{userRole,jdbcType=INTEGER},
       </if>
     </set>
-    where user_id = #{user_id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ndsc.blog.entity.Usersafe" >
     update usersafe
-    set user_name = #{user_name,jdbcType=VARCHAR},
+    set user_name = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      user_email = #{user_email,jdbcType=VARCHAR},
-      user_tel = #{user_tel,jdbcType=VARCHAR},
-      user_status = #{user_status,jdbcType=INTEGER},
-      user_money = #{user_money,jdbcType=INTEGER},
-      user_integral = #{user_integral,jdbcType=INTEGER},
-      user_role = #{user_role,jdbcType=INTEGER}
-    where user_id = #{user_id,jdbcType=INTEGER}
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=INTEGER},
+      user_money = #{userMoney,jdbcType=INTEGER},
+      user_integral = #{userIntegral,jdbcType=INTEGER},
+      user_role = #{userRole,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

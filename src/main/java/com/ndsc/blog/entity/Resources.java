@@ -3,53 +3,53 @@ package com.ndsc.blog.entity;
 import java.util.Date;
 
 public class Resources {
-    private Integer resources_id;
+    private Integer resourcesId;
 
-    private String resources_name;
+    private String resourcesName;
 
-    private String resources_address;
+    private String resourcesAddress;
 
-    private Integer uploader_id;
+    private Integer uploaderId;
 
-    private Date resources_create_time;
+    private Date resourcesCreateTime;
 
-    public Integer getResources_id() {
-        return resources_id;
+    public Integer getResourcesId() {
+        return resourcesId;
     }
 
-    public void setResources_id(Integer resources_id) {
-        this.resources_id = resources_id;
+    public void setResourcesId(Integer resourcesId) {
+        this.resourcesId = resourcesId;
     }
 
-    public String getResources_name() {
-        return resources_name;
+    public String getResourcesName() {
+        return resourcesName;
     }
 
-    public void setResources_name(String resources_name) {
-        this.resources_name = resources_name == null ? null : resources_name.trim();
+    public void setResourcesName(String resourcesName) {
+        this.resourcesName = resourcesName == null ? null : resourcesName.trim();
     }
 
-    public String getResources_address() {
-        return resources_address;
+    public String getResourcesAddress() {
+        return resourcesAddress;
     }
 
-    public void setResources_address(String resources_address) {
-        this.resources_address = resources_address == null ? null : resources_address.trim();
+    public void setResourcesAddress(String resourcesAddress) {
+        this.resourcesAddress = resourcesAddress == null ? null : resourcesAddress.trim();
     }
 
-    public Integer getUploader_id() {
-        return uploader_id;
+    public Integer getUploaderId() {
+        return uploaderId;
     }
 
-    public void setUploader_id(Integer uploader_id) {
-        this.uploader_id = uploader_id;
+    public void setUploaderId(Integer uploaderId) {
+        this.uploaderId = uploaderId;
     }
 
-    public Date getResources_create_time() {
-        return resources_create_time;
+    public Date getResourcesCreateTime() {
+        return resourcesCreateTime;
     }
 
-    public void setResources_create_time(Date resources_create_time) {
-        this.resources_create_time = resources_create_time;
+    public void setResourcesCreateTime(Date resourcesCreateTime) {
+        this.resourcesCreateTime = resourcesCreateTime;
     }
 }

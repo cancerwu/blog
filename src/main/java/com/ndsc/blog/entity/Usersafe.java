@@ -1,38 +1,38 @@
 package com.ndsc.blog.entity;
 
 public class Usersafe {
-    private Integer user_id;
+    private Integer userId;
 
-    private String user_name;
+    private String userName;
 
     private String password;
 
-    private String user_email;
+    private String userEmail;
 
-    private String user_tel;
+    private String userTel;
 
-    private Integer user_status;
+    private Integer userStatus;
 
-    private Integer user_money;
+    private Integer userMoney;
 
-    private Integer user_integral;
+    private Integer userIntegral;
 
-    private Integer user_role;
+    private Integer userRole;
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name == null ? null : user_name.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getPassword() {
@@ -43,51 +43,51 @@ public class Usersafe {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getUser_email() {
-        return user_email;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUser_email(String user_email) {
-        this.user_email = user_email == null ? null : user_email.trim();
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail == null ? null : userEmail.trim();
     }
 
-    public String getUser_tel() {
-        return user_tel;
+    public String getUserTel() {
+        return userTel;
     }
 
-    public void setUser_tel(String user_tel) {
-        this.user_tel = user_tel == null ? null : user_tel.trim();
+    public void setUserTel(String userTel) {
+        this.userTel = userTel == null ? null : userTel.trim();
     }
 
-    public Integer getUser_status() {
-        return user_status;
+    public Integer getUserStatus() {
+        return userStatus;
     }
 
-    public void setUser_status(Integer user_status) {
-        this.user_status = user_status;
+    public void setUserStatus(Integer userStatus) {
+        this.userStatus = userStatus;
     }
 
-    public Integer getUser_money() {
-        return user_money;
+    public Integer getUserMoney() {
+        return userMoney;
     }
 
-    public void setUser_money(Integer user_money) {
-        this.user_money = user_money;
+    public void setUserMoney(Integer userMoney) {
+        this.userMoney = userMoney;
     }
 
-    public Integer getUser_integral() {
-        return user_integral;
+    public Integer getUserIntegral() {
+        return userIntegral;
     }
 
-    public void setUser_integral(Integer user_integral) {
-        this.user_integral = user_integral;
+    public void setUserIntegral(Integer userIntegral) {
+        this.userIntegral = userIntegral;
     }
 
-    public Integer getUser_role() {
-        return user_role;
+    public Integer getUserRole() {
+        return userRole;
     }
 
-    public void setUser_role(Integer user_role) {
-        this.user_role = user_role;
+    public void setUserRole(Integer userRole) {
+        this.userRole = userRole;
     }
 }

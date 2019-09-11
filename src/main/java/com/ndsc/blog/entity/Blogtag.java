@@ -1,23 +1,23 @@
 package com.ndsc.blog.entity;
 
 public class Blogtag {
-    private Integer tag_id;
+    private Integer tagId;
 
-    private String tag_name;
+    private String tagName;
 
-    public Integer getTag_id() {
-        return tag_id;
+    public Integer getTagId() {
+        return tagId;
     }
 
-    public void setTag_id(Integer tag_id) {
-        this.tag_id = tag_id;
+    public void setTagId(Integer tagId) {
+        this.tagId = tagId;
     }
 
-    public String getTag_name() {
-        return tag_name;
+    public String getTagName() {
+        return tagName;
     }
 
-    public void setTag_name(String tag_name) {
-        this.tag_name = tag_name == null ? null : tag_name.trim();
+    public void setTagName(String tagName) {
+        this.tagName = tagName == null ? null : tagName.trim();
     }
 }

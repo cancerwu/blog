@@ -3,13 +3,13 @@ package com.ndsc.blog.mapper;
 import com.ndsc.blog.entity.Loginlog;
 
 public interface LoginlogMapper {
-    int deleteByPrimaryKey(Integer loginlog_id);
+    int deleteByPrimaryKey(Integer loginlogId);
 
     int insert(Loginlog record);
 
     int insertSelective(Loginlog record);
 
-    Loginlog selectByPrimaryKey(Integer loginlog_id);
+    Loginlog selectByPrimaryKey(Integer loginlogId);
 
     int updateByPrimaryKeySelective(Loginlog record);
 

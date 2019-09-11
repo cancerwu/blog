@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ndsc.blog.mapper.ResourcesMapper" >
   <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Resources" >
-    <id column="resources_id" property="resources_id" jdbcType="INTEGER" />
-    <result column="resources_name" property="resources_name" jdbcType="VARCHAR" />
-    <result column="resources_address" property="resources_address" jdbcType="VARCHAR" />
-    <result column="uploader_id" property="uploader_id" jdbcType="INTEGER" />
-    <result column="resources_create_time" property="resources_create_time" jdbcType="TIMESTAMP" />
+    <id column="resources_id" property="resourcesId" jdbcType="INTEGER" />
+    <result column="resources_name" property="resourcesName" jdbcType="VARCHAR" />
+    <result column="resources_address" property="resourcesAddress" jdbcType="VARCHAR" />
+    <result column="uploader_id" property="uploaderId" jdbcType="INTEGER" />
+    <result column="resources_create_time" property="resourcesCreateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     resources_id, resources_name, resources_address, uploader_id, resources_create_time
@@ -15,79 +15,79 @@
     select 
     <include refid="Base_Column_List" />
     from resources
-    where resources_id = #{resources_id,jdbcType=INTEGER}
+    where resources_id = #{resourcesId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from resources
-    where resources_id = #{resources_id,jdbcType=INTEGER}
+    where resources_id = #{resourcesId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Resources" >
     insert into resources (resources_id, resources_name, resources_address, 
       uploader_id, resources_create_time)
-    values (#{resources_id,jdbcType=INTEGER}, #{resources_name,jdbcType=VARCHAR}, #{resources_address,jdbcType=VARCHAR}, 
-      #{uploader_id,jdbcType=INTEGER}, #{resources_create_time,jdbcType=TIMESTAMP})
+    values (#{resourcesId,jdbcType=INTEGER}, #{resourcesName,jdbcType=VARCHAR}, #{resourcesAddress,jdbcType=VARCHAR}, 
+      #{uploaderId,jdbcType=INTEGER}, #{resourcesCreateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Resources" >
     insert into resources
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="resources_id != null" >
+      <if test="resourcesId != null" >
         resources_id,
       </if>
-      <if test="resources_name != null" >
+      <if test="resourcesName != null" >
         resources_name,
       </if>
-      <if test="resources_address != null" >
+      <if test="resourcesAddress != null" >
         resources_address,
       </if>
-      <if test="uploader_id != null" >
+      <if test="uploaderId != null" >
         uploader_id,
       </if>
-      <if test="resources_create_time != null" >
+      <if test="resourcesCreateTime != null" >
         resources_create_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="resources_id != null" >
-        #{resources_id,jdbcType=INTEGER},
+      <if test="resourcesId != null" >
+        #{resourcesId,jdbcType=INTEGER},
       </if>
-      <if test="resources_name != null" >
-        #{resources_name,jdbcType=VARCHAR},
+      <if test="resourcesName != null" >
+        #{resourcesName,jdbcType=VARCHAR},
       </if>
-      <if test="resources_address != null" >
-        #{resources_address,jdbcType=VARCHAR},
+      <if test="resourcesAddress != null" >
+        #{resourcesAddress,jdbcType=VARCHAR},
       </if>
-      <if test="uploader_id != null" >
-        #{uploader_id,jdbcType=INTEGER},
+      <if test="uploaderId != null" >
+        #{uploaderId,jdbcType=INTEGER},
       </if>
-      <if test="resources_create_time != null" >
-        #{resources_create_time,jdbcType=TIMESTAMP},
+      <if test="resourcesCreateTime != null" >
+        #{resourcesCreateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ndsc.blog.entity.Resources" >
     update resources
     <set >
-      <if test="resources_name != null" >
-        resources_name = #{resources_name,jdbcType=VARCHAR},
+      <if test="resourcesName != null" >
+        resources_name = #{resourcesName,jdbcType=VARCHAR},
       </if>
-      <if test="resources_address != null" >
-        resources_address = #{resources_address,jdbcType=VARCHAR},
+      <if test="resourcesAddress != null" >
+        resources_address = #{resourcesAddress,jdbcType=VARCHAR},
       </if>
-      <if test="uploader_id != null" >
-        uploader_id = #{uploader_id,jdbcType=INTEGER},
+      <if test="uploaderId != null" >
+        uploader_id = #{uploaderId,jdbcType=INTEGER},
       </if>
-      <if test="resources_create_time != null" >
-        resources_create_time = #{resources_create_time,jdbcType=TIMESTAMP},
+      <if test="resourcesCreateTime != null" >
+        resources_create_time = #{resourcesCreateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where resources_id = #{resources_id,jdbcType=INTEGER}
+    where resources_id = #{resourcesId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ndsc.blog.entity.Resources" >
     update resources
-    set resources_name = #{resources_name,jdbcType=VARCHAR},
-      resources_address = #{resources_address,jdbcType=VARCHAR},
-      uploader_id = #{uploader_id,jdbcType=INTEGER},
-      resources_create_time = #{resources_create_time,jdbcType=TIMESTAMP}
-    where resources_id = #{resources_id,jdbcType=INTEGER}
+    set resources_name = #{resourcesName,jdbcType=VARCHAR},
+      resources_address = #{resourcesAddress,jdbcType=VARCHAR},
+      uploader_id = #{uploaderId,jdbcType=INTEGER},
+      resources_create_time = #{resourcesCreateTime,jdbcType=TIMESTAMP}
+    where resources_id = #{resourcesId,jdbcType=INTEGER}
   </update>
 </mapper>

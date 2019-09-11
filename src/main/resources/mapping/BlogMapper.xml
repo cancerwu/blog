@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ndsc.blog.mapper.BlogMapper" >
   <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Blog" >
-    <id column="blog_id" property="blog_id" jdbcType="INTEGER" />
-    <result column="blog_title" property="blog_title" jdbcType="VARCHAR" />
-    <result column="blog_create_time" property="blog_create_time" jdbcType="TIMESTAMP" />
-    <result column="blog_pub_type" property="blog_pub_type" jdbcType="INTEGER" />
-    <result column="blog_read_num" property="blog_read_num" jdbcType="INTEGER" />
-    <result column="user_id" property="user_id" jdbcType="INTEGER" />
+    <id column="blog_id" property="blogId" jdbcType="INTEGER" />
+    <result column="blog_title" property="blogTitle" jdbcType="VARCHAR" />
+    <result column="blog_create_time" property="blogCreateTime" jdbcType="TIMESTAMP" />
+    <result column="blog_pub_type" property="blogPubType" jdbcType="INTEGER" />
+    <result column="blog_read_num" property="blogReadNum" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BaseResultMap" >
-    <result column="blog_content" property="blog_content" jdbcType="LONGVARCHAR" />
+    <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     blog_id, blog_title, blog_create_time, blog_pub_type, blog_read_num, user_id
@@ -24,110 +24,110 @@
     ,
     <include refid="Blob_Column_List" />
     from blog
-    where blog_id = #{blog_id,jdbcType=INTEGER}
+    where blog_id = #{blogId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from blog
-    where blog_id = #{blog_id,jdbcType=INTEGER}
+    where blog_id = #{blogId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Blog" >
     insert into blog (blog_id, blog_title, blog_create_time, 
       blog_pub_type, blog_read_num, user_id, 
       blog_content)
-    values (#{blog_id,jdbcType=INTEGER}, #{blog_title,jdbcType=VARCHAR}, #{blog_create_time,jdbcType=TIMESTAMP}, 
-      #{blog_pub_type,jdbcType=INTEGER}, #{blog_read_num,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, 
-      #{blog_content,jdbcType=LONGVARCHAR})
+    values (#{blogId,jdbcType=INTEGER}, #{blogTitle,jdbcType=VARCHAR}, #{blogCreateTime,jdbcType=TIMESTAMP}, 
+      #{blogPubType,jdbcType=INTEGER}, #{blogReadNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{blogContent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Blog" >
     insert into blog
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="blog_id != null" >
+      <if test="blogId != null" >
         blog_id,
       </if>
-      <if test="blog_title != null" >
+      <if test="blogTitle != null" >
         blog_title,
       </if>
-      <if test="blog_create_time != null" >
+      <if test="blogCreateTime != null" >
         blog_create_time,
       </if>
-      <if test="blog_pub_type != null" >
+      <if test="blogPubType != null" >
         blog_pub_type,
       </if>
-      <if test="blog_read_num != null" >
+      <if test="blogReadNum != null" >
         blog_read_num,
       </if>
-      <if test="user_id != null" >
+      <if test="userId != null" >
         user_id,
       </if>
-      <if test="blog_content != null" >
+      <if test="blogContent != null" >
         blog_content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="blog_id != null" >
-        #{blog_id,jdbcType=INTEGER},
+      <if test="blogId != null" >
+        #{blogId,jdbcType=INTEGER},
       </if>
-      <if test="blog_title != null" >
-        #{blog_title,jdbcType=VARCHAR},
+      <if test="blogTitle != null" >
+        #{blogTitle,jdbcType=VARCHAR},
       </if>
-      <if test="blog_create_time != null" >
-        #{blog_create_time,jdbcType=TIMESTAMP},
+      <if test="blogCreateTime != null" >
+        #{blogCreateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="blog_pub_type != null" >
-        #{blog_pub_type,jdbcType=INTEGER},
+      <if test="blogPubType != null" >
+        #{blogPubType,jdbcType=INTEGER},
       </if>
-      <if test="blog_read_num != null" >
-        #{blog_read_num,jdbcType=INTEGER},
+      <if test="blogReadNum != null" >
+        #{blogReadNum,jdbcType=INTEGER},
       </if>
-      <if test="user_id != null" >
-        #{user_id,jdbcType=INTEGER},
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="blog_content != null" >
-        #{blog_content,jdbcType=LONGVARCHAR},
+      <if test="blogContent != null" >
+        #{blogContent,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ndsc.blog.entity.Blog" >
     update blog
     <set >
-      <if test="blog_title != null" >
-        blog_title = #{blog_title,jdbcType=VARCHAR},
+      <if test="blogTitle != null" >
+        blog_title = #{blogTitle,jdbcType=VARCHAR},
       </if>
-      <if test="blog_create_time != null" >
-        blog_create_time = #{blog_create_time,jdbcType=TIMESTAMP},
+      <if test="blogCreateTime != null" >
+        blog_create_time = #{blogCreateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="blog_pub_type != null" >
-        blog_pub_type = #{blog_pub_type,jdbcType=INTEGER},
+      <if test="blogPubType != null" >
+        blog_pub_type = #{blogPubType,jdbcType=INTEGER},
       </if>
-      <if test="blog_read_num != null" >
-        blog_read_num = #{blog_read_num,jdbcType=INTEGER},
+      <if test="blogReadNum != null" >
+        blog_read_num = #{blogReadNum,jdbcType=INTEGER},
       </if>
-      <if test="user_id != null" >
-        user_id = #{user_id,jdbcType=INTEGER},
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="blog_content != null" >
-        blog_content = #{blog_content,jdbcType=LONGVARCHAR},
+      <if test="blogContent != null" >
+        blog_content = #{blogContent,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where blog_id = #{blog_id,jdbcType=INTEGER}
+    where blog_id = #{blogId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ndsc.blog.entity.Blog" >
     update blog
-    set blog_title = #{blog_title,jdbcType=VARCHAR},
-      blog_create_time = #{blog_create_time,jdbcType=TIMESTAMP},
-      blog_pub_type = #{blog_pub_type,jdbcType=INTEGER},
-      blog_read_num = #{blog_read_num,jdbcType=INTEGER},
-      user_id = #{user_id,jdbcType=INTEGER},
-      blog_content = #{blog_content,jdbcType=LONGVARCHAR}
-    where blog_id = #{blog_id,jdbcType=INTEGER}
+    set blog_title = #{blogTitle,jdbcType=VARCHAR},
+      blog_create_time = #{blogCreateTime,jdbcType=TIMESTAMP},
+      blog_pub_type = #{blogPubType,jdbcType=INTEGER},
+      blog_read_num = #{blogReadNum,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      blog_content = #{blogContent,jdbcType=LONGVARCHAR}
+    where blog_id = #{blogId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ndsc.blog.entity.Blog" >
     update blog
-    set blog_title = #{blog_title,jdbcType=VARCHAR},
-      blog_create_time = #{blog_create_time,jdbcType=TIMESTAMP},
-      blog_pub_type = #{blog_pub_type,jdbcType=INTEGER},
-      blog_read_num = #{blog_read_num,jdbcType=INTEGER},
-      user_id = #{user_id,jdbcType=INTEGER}
-    where blog_id = #{blog_id,jdbcType=INTEGER}
+    set blog_title = #{blogTitle,jdbcType=VARCHAR},
+      blog_create_time = #{blogCreateTime,jdbcType=TIMESTAMP},
+      blog_pub_type = #{blogPubType,jdbcType=INTEGER},
+      blog_read_num = #{blogReadNum,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER}
+    where blog_id = #{blogId,jdbcType=INTEGER}
   </update>
 </mapper>

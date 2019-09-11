@@ -2,29 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ndsc.blog.mapper.TagMapper" >
   <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Tag" >
-    <result column="tag_id" property="tag_id" jdbcType="INTEGER" />
-    <result column="blog_id" property="blog_id" jdbcType="INTEGER" />
+    <result column="tag_id" property="tagId" jdbcType="INTEGER" />
+    <result column="blog_id" property="blogId" jdbcType="INTEGER" />
   </resultMap>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Tag" >
     insert into tag (tag_id, blog_id)
-    values (#{tag_id,jdbcType=INTEGER}, #{blog_id,jdbcType=INTEGER})
+    values (#{tagId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Tag" >
     insert into tag
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="tag_id != null" >
+      <if test="tagId != null" >
         tag_id,
       </if>
-      <if test="blog_id != null" >
+      <if test="blogId != null" >
         blog_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="tag_id != null" >
-        #{tag_id,jdbcType=INTEGER},
+      <if test="tagId != null" >
+        #{tagId,jdbcType=INTEGER},
       </if>
-      <if test="blog_id != null" >
-        #{blog_id,jdbcType=INTEGER},
+      <if test="blogId != null" >
+        #{blogId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>

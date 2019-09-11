@@ -3,73 +3,73 @@ package com.ndsc.blog.entity;
 import java.util.Date;
 
 public class Blog {
-    private Integer blog_id;
+    private Integer blogId;
 
-    private String blog_title;
+    private String blogTitle;
 
-    private Date blog_create_time;
+    private Date blogCreateTime;
 
-    private Integer blog_pub_type;
+    private Integer blogPubType;
 
-    private Integer blog_read_num;
+    private Integer blogReadNum;
 
-    private Integer user_id;
+    private Integer userId;
 
-    private String blog_content;
+    private String blogContent;
 
-    public Integer getBlog_id() {
-        return blog_id;
+    public Integer getBlogId() {
+        return blogId;
     }
 
-    public void setBlog_id(Integer blog_id) {
-        this.blog_id = blog_id;
+    public void setBlogId(Integer blogId) {
+        this.blogId = blogId;
     }
 
-    public String getBlog_title() {
-        return blog_title;
+    public String getBlogTitle() {
+        return blogTitle;
     }
 
-    public void setBlog_title(String blog_title) {
-        this.blog_title = blog_title == null ? null : blog_title.trim();
+    public void setBlogTitle(String blogTitle) {
+        this.blogTitle = blogTitle == null ? null : blogTitle.trim();
     }
 
-    public Date getBlog_create_time() {
-        return blog_create_time;
+    public Date getBlogCreateTime() {
+        return blogCreateTime;
     }
 
-    public void setBlog_create_time(Date blog_create_time) {
-        this.blog_create_time = blog_create_time;
+    public void setBlogCreateTime(Date blogCreateTime) {
+        this.blogCreateTime = blogCreateTime;
     }
 
-    public Integer getBlog_pub_type() {
-        return blog_pub_type;
+    public Integer getBlogPubType() {
+        return blogPubType;
     }
 
-    public void setBlog_pub_type(Integer blog_pub_type) {
-        this.blog_pub_type = blog_pub_type;
+    public void setBlogPubType(Integer blogPubType) {
+        this.blogPubType = blogPubType;
     }
 
-    public Integer getBlog_read_num() {
-        return blog_read_num;
+    public Integer getBlogReadNum() {
+        return blogReadNum;
     }
 
-    public void setBlog_read_num(Integer blog_read_num) {
-        this.blog_read_num = blog_read_num;
+    public void setBlogReadNum(Integer blogReadNum) {
+        this.blogReadNum = blogReadNum;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getBlog_content() {
-        return blog_content;
+    public String getBlogContent() {
+        return blogContent;
     }
 
-    public void setBlog_content(String blog_content) {
-        this.blog_content = blog_content == null ? null : blog_content.trim();
+    public void setBlogContent(String blogContent) {
+        this.blogContent = blogContent == null ? null : blogContent.trim();
     }
 }

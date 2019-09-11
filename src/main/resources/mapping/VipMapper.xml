@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ndsc.blog.mapper.VipMapper" >
   <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Vip" >
-    <id column="vip_id" property="vip_id" jdbcType="INTEGER" />
-    <result column="vip_name" property="vip_name" jdbcType="VARCHAR" />
-    <result column="vip_price" property="vip_price" jdbcType="INTEGER" />
-    <result column="vip_description" property="vip_description" jdbcType="VARCHAR" />
+    <id column="vip_id" property="vipId" jdbcType="INTEGER" />
+    <result column="vip_name" property="vipName" jdbcType="VARCHAR" />
+    <result column="vip_price" property="vipPrice" jdbcType="INTEGER" />
+    <result column="vip_description" property="vipDescription" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     vip_id, vip_name, vip_price, vip_description
@@ -14,69 +14,69 @@
     select 
     <include refid="Base_Column_List" />
     from vip
-    where vip_id = #{vip_id,jdbcType=INTEGER}
+    where vip_id = #{vipId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from vip
-    where vip_id = #{vip_id,jdbcType=INTEGER}
+    where vip_id = #{vipId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Vip" >
     insert into vip (vip_id, vip_name, vip_price, 
       vip_description)
-    values (#{vip_id,jdbcType=INTEGER}, #{vip_name,jdbcType=VARCHAR}, #{vip_price,jdbcType=INTEGER}, 
-      #{vip_description,jdbcType=VARCHAR})
+    values (#{vipId,jdbcType=INTEGER}, #{vipName,jdbcType=VARCHAR}, #{vipPrice,jdbcType=INTEGER}, 
+      #{vipDescription,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Vip" >
     insert into vip
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="vip_id != null" >
+      <if test="vipId != null" >
         vip_id,
       </if>
-      <if test="vip_name != null" >
+      <if test="vipName != null" >
         vip_name,
       </if>
-      <if test="vip_price != null" >
+      <if test="vipPrice != null" >
         vip_price,
       </if>
-      <if test="vip_description != null" >
+      <if test="vipDescription != null" >
         vip_description,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="vip_id != null" >
-        #{vip_id,jdbcType=INTEGER},
+      <if test="vipId != null" >
+        #{vipId,jdbcType=INTEGER},
       </if>
-      <if test="vip_name != null" >
-        #{vip_name,jdbcType=VARCHAR},
+      <if test="vipName != null" >
+        #{vipName,jdbcType=VARCHAR},
       </if>
-      <if test="vip_price != null" >
-        #{vip_price,jdbcType=INTEGER},
+      <if test="vipPrice != null" >
+        #{vipPrice,jdbcType=INTEGER},
       </if>
-      <if test="vip_description != null" >
-        #{vip_description,jdbcType=VARCHAR},
+      <if test="vipDescription != null" >
+        #{vipDescription,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ndsc.blog.entity.Vip" >
     update vip
     <set >
-      <if test="vip_name != null" >
-        vip_name = #{vip_name,jdbcType=VARCHAR},
+      <if test="vipName != null" >
+        vip_name = #{vipName,jdbcType=VARCHAR},
       </if>
-      <if test="vip_price != null" >
-        vip_price = #{vip_price,jdbcType=INTEGER},
+      <if test="vipPrice != null" >
+        vip_price = #{vipPrice,jdbcType=INTEGER},
       </if>
-      <if test="vip_description != null" >
-        vip_description = #{vip_description,jdbcType=VARCHAR},
+      <if test="vipDescription != null" >
+        vip_description = #{vipDescription,jdbcType=VARCHAR},
       </if>
     </set>
-    where vip_id = #{vip_id,jdbcType=INTEGER}
+    where vip_id = #{vipId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ndsc.blog.entity.Vip" >
     update vip
-    set vip_name = #{vip_name,jdbcType=VARCHAR},
-      vip_price = #{vip_price,jdbcType=INTEGER},
-      vip_description = #{vip_description,jdbcType=VARCHAR}
-    where vip_id = #{vip_id,jdbcType=INTEGER}
+    set vip_name = #{vipName,jdbcType=VARCHAR},
+      vip_price = #{vipPrice,jdbcType=INTEGER},
+      vip_description = #{vipDescription,jdbcType=VARCHAR}
+    where vip_id = #{vipId,jdbcType=INTEGER}
   </update>
 </mapper>

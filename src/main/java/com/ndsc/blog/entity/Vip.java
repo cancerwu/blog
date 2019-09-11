@@ -1,43 +1,43 @@
 package com.ndsc.blog.entity;
 
 public class Vip {
-    private Integer vip_id;
+    private Integer vipId;
 
-    private String vip_name;
+    private String vipName;
 
-    private Integer vip_price;
+    private Integer vipPrice;
 
-    private String vip_description;
+    private String vipDescription;
 
-    public Integer getVip_id() {
-        return vip_id;
+    public Integer getVipId() {
+        return vipId;
     }
 
-    public void setVip_id(Integer vip_id) {
-        this.vip_id = vip_id;
+    public void setVipId(Integer vipId) {
+        this.vipId = vipId;
     }
 
-    public String getVip_name() {
-        return vip_name;
+    public String getVipName() {
+        return vipName;
     }
 
-    public void setVip_name(String vip_name) {
-        this.vip_name = vip_name == null ? null : vip_name.trim();
+    public void setVipName(String vipName) {
+        this.vipName = vipName == null ? null : vipName.trim();
     }
 
-    public Integer getVip_price() {
-        return vip_price;
+    public Integer getVipPrice() {
+        return vipPrice;
     }
 
-    public void setVip_price(Integer vip_price) {
-        this.vip_price = vip_price;
+    public void setVipPrice(Integer vipPrice) {
+        this.vipPrice = vipPrice;
     }
 
-    public String getVip_description() {
-        return vip_description;
+    public String getVipDescription() {
+        return vipDescription;
     }
 
-    public void setVip_description(String vip_description) {
-        this.vip_description = vip_description == null ? null : vip_description.trim();
+    public void setVipDescription(String vipDescription) {
+        this.vipDescription = vipDescription == null ? null : vipDescription.trim();
     }
 }

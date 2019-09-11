@@ -3,13 +3,13 @@ package com.ndsc.blog.mapper;
 import com.ndsc.blog.entity.Usersafe;
 
 public interface UsersafeMapper {
-    int deleteByPrimaryKey(Integer user_id);
+    int deleteByPrimaryKey(Integer userId);
 
     int insert(Usersafe record);
 
     int insertSelective(Usersafe record);
 
-    Usersafe selectByPrimaryKey(Integer user_id);
+    Usersafe selectByPrimaryKey(Integer userId);
 
     int updateByPrimaryKeySelective(Usersafe record);
 
