@@ -7,7 +7,7 @@ spring:
     url: jdbc:mysql://47.94.152.107:3306/blog?useUnicode=true&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC
     username: root
     password: 123456qqQQ.
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   mail:
     default-encoding: UTF-8
     host: smtp.qq.com
