@@ -4,7 +4,11 @@ import com.alipay.api.*;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.*;
 import com.ndsc.blog.config.AlipayConfig;
+import com.ndsc.blog.entity.Order;
 import com.ndsc.blog.entity.Vip;
+import com.ndsc.blog.service.LoginService;
+import com.ndsc.blog.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +26,13 @@ import java.util.Map;
  */
 @RestController
 public class VipController {
+
+    @Autowired
+    OrderService orderService;
+    @Autowired
+    LoginService loginService;
+
+    Order order = new Order();
 
     @RequestMapping("/pay")
     public String pay(Vip vip, String orderNo, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, AlipayApiException {
@@ -43,6 +54,10 @@ public class VipController {
         String subject = new String(vip.getVipName().getBytes("ISO-8859-1"), "UTF-8");
         //商品描述，可空
         String body = new String(vip.getVipDescription().getBytes("ISO-8859-1"), "UTF-8");
+
+        order.setProductName(subject);
+        order.setOrderTotal(Integer.parseInt(total_amount));
+//        order.setUserId(new LoginController().getUserId(request));
 
         alipayRequest.setBizContent("{\"out_trade_no\":\"" + out_trade_no + "\","
                 + "\"total_amount\":\"" + total_amount + "\","
@@ -66,7 +81,7 @@ public class VipController {
     }
 
     @RequestMapping("/return_url")
-    public void returnUrl(HttpServletRequest request) throws AlipayApiException, UnsupportedEncodingException {
+    public String returnUrl(HttpServletRequest request) throws AlipayApiException, UnsupportedEncodingException {
         //获取支付宝GET过来反馈信息
         Map<String, String> params = new HashMap<String, String>();
         Map<String, String[]> requestParams = request.getParameterMap();
@@ -97,9 +112,20 @@ public class VipController {
             String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
 
             System.out.println("trade_no:" + trade_no + "<br/>out_trade_no:" + out_trade_no + "<br/>total_amount:" + total_amount);
+
+            //插入订单表
+            orderService.insertOrder(order);
+            //修改用户角色
+//            loginService.becomeVip(new LoginController().getUserId(request));
         } else {
             System.out.println("验签失败");
         }
+
+        //支付完成后跳转到购买页
+        return "<a id=\"ak\" href='paySuccess.html'>跳转</a>\n" +
+                "<script>\n" +
+                "    document.getElementById(\"ak\").click();\n" +
+                "</script>";
         //——请在这里编写您的程序（以上代码仅作参考）——
     }
 

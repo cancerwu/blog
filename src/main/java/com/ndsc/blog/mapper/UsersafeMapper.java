@@ -20,13 +20,19 @@ public interface UsersafeMapper {
 
     int updateByPrimaryKey(Usersafe record);
 
+    int becomeVip(Integer userId);
+
     int sameTel(String userTel);
+
     int sameName(String userName);
+
     int sameEmail(String userEmail);
-    String selectByUserName(String userinput,String userPassword);
 
-    String selectByUserTel(String userinput,String userPassword);
+    String selectByUserName(String userinput, String userPassword);
 
-    String selectByUserEmail(String userinput,String userPassword);
+    String selectByUserTel(String userinput, String userPassword);
+
+    String selectByUserEmail(String userinput, String userPassword);
+
     int selectUserId(String userName);
 }

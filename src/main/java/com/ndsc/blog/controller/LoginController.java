@@ -21,36 +21,37 @@ public class LoginController {
     UsersafeMapper usersafeMapper;
 
     @PostMapping("/login")
-    public String selectByLogin(String userinput, String password, HttpServletRequest request){
+    public String selectByLogin(String userinput, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
 
-        String resultUserName = loginService.selectByLogin(userinput,password);
-        session.setAttribute("userName",resultUserName);
-        System.out.println("---------"+session.getAttribute("userName")+"登陆成功");
+        String resultUserName = loginService.selectByLogin(userinput, password);
+        session.setAttribute("userName", resultUserName);
+        System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
         return resultUserName;
     }
 
     @RequestMapping("/getLoginUserName")
-    public String getLoginUserName(HttpServletRequest request){
+    public String getLoginUserName(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
-        System.out.println(session.getAttribute("userName")+"在线");
+        System.out.println(session.getAttribute("userName") + "在线");
         return userName;
     }
 
     @RequestMapping("/getUserId")
-    public int getUserId(HttpServletRequest request){
+    public int getUserId(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
         System.out.println(userName);
-        int userId =usersafeMapper.selectUserId(userName);
+        int userId = usersafeMapper.selectUserId(userName);
         System.out.println(userId);
         return userId;
     }
+
     @RequestMapping("/outline")
-    public int outline(HttpServletRequest request){
+    public int outline(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        session.setAttribute("userName",null);
+        session.setAttribute("userName", null);
         System.out.println("下线成功");
         return 0;
 

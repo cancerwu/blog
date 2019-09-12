@@ -50,4 +50,9 @@ public class LoginServiceImpl implements LoginService{
         }
         return result;
     }
+
+    @Override
+    public int becomeVip(Integer userId) {
+        return usersafeMapper.becomeVip(userId);
+    }
 }

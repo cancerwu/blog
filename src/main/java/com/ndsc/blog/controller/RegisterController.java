@@ -14,22 +14,25 @@ public class RegisterController {
     @Resource
     @Autowired
     private RegisterService registerService;
+
     @RequestMapping("/register")
-    public int insertUser(Usersafe usersafe){
+    public int insertUser(Usersafe usersafe) {
         registerService.insertUser(usersafe);
         return 0;
     }
+
     @RequestMapping("/checkSamePhone")
-    public int checkSamePhone(String userTel){
+    public int checkSamePhone(String userTel) {
         return registerService.checkSamePhone(userTel);
     }
 
     @RequestMapping("/checkSameName")
-    public int checkSameName(String userName){
+    public int checkSameName(String userName) {
         return registerService.checkSameName(userName);
     }
+
     @RequestMapping("/checkSameEmail")
-    public int checkSameEmail(String userEmail){
+    public int checkSameEmail(String userEmail) {
         return registerService.checkSameEmail(userEmail);
     }
 }

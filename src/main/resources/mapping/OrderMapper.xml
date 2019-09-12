@@ -8,12 +8,14 @@
     <result column="order_total" property="orderTotal" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
+
   <insert id="insert" parameterType="com.ndsc.blog.entity.Order" >
     insert into orderss (order_id, product_name, order_time, 
       order_total, user_id)
     values (#{orderId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, 
       #{orderTotal,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
   </insert>
+
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Order" >
     insert into orderss
     <trim prefix="(" suffix=")" suffixOverrides="," >

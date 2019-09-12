@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class test {
     @Autowired
     BlogMapper blogMapper;
+
     @RequestMapping("/test")
-    public Blog test(int id){
+    public Blog test(int id) {
         return blogMapper.selectByPrimaryKey(id);
     }
 

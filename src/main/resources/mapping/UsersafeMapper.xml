@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ndsc.blog.mapper.UsersafeMapper" >
-  <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Usersafe" >
-    <id column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
-    <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
-    <result column="user_status" property="userStatus" jdbcType="INTEGER" />
-    <result column="user_money" property="userMoney" jdbcType="INTEGER" />
-    <result column="user_integral" property="userIntegral" jdbcType="INTEGER" />
-    <result column="user_role" property="userRole" jdbcType="INTEGER" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.ndsc.blog.mapper.UsersafeMapper">
+    <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Usersafe">
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="user_tel" property="userTel" jdbcType="VARCHAR"/>
+        <result column="user_status" property="userStatus" jdbcType="INTEGER"/>
+        <result column="user_money" property="userMoney" jdbcType="INTEGER"/>
+        <result column="user_integral" property="userIntegral" jdbcType="INTEGER"/>
+        <result column="user_role" property="userRole" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
     user_id, user_name, password, user_email, user_tel, user_status, user_money, user_integral, 
     user_role
   </sql>
 
 
-
-  <select id="sameTel" resultType="java.lang.Integer" parameterType="java.lang.String">
+    <select id="sameTel" resultType="java.lang.Integer" parameterType="java.lang.String">
     select count(*) from usersafe where user_tel = #{userTel}
   </select>
-  <select id="sameName" resultType="java.lang.Integer" parameterType="java.lang.String">
+    <select id="sameName" resultType="java.lang.Integer" parameterType="java.lang.String">
     select count(*) from usersafe where user_name =#{userName}
   </select>
-  <select id="sameEmail" resultType="java.lang.Integer" parameterType="java.lang.String">
+    <select id="sameEmail" resultType="java.lang.Integer" parameterType="java.lang.String">
     select count(*) from usersafe where user_email =#{userEmail}
   </select>
-  <insert id="insert" parameterType="com.ndsc.blog.entity.Usersafe" >
+    <insert id="insert" parameterType="com.ndsc.blog.entity.Usersafe">
     insert into usersafe (user_name, user_tel,
       password, user_email
       )
@@ -37,133 +37,134 @@
       )
   </insert>
 
-  <select id="selectByUserName" resultType="java.lang.String" parameterType="java.lang.String" >
+    <select id="selectByUserName" resultType="java.lang.String" parameterType="java.lang.String">
     select user_name
     from usersafe
     where user_name = #{userinput,jdbcType=VARCHAR} and password = #{userPassword,jdbcType=VARCHAR}
   </select>
-  <select id="selectByUserEmail" resultType="java.lang.String">
+    <select id="selectByUserEmail" resultType="java.lang.String">
     select user_name
     from usersafe
     where user_email = #{userinput,jdbcType=VARCHAR} and password = #{userPassword,jdbcType=VARCHAR}
   </select>
 
-  <select id="selectByUserTel" resultType="java.lang.String">
+    <select id="selectByUserTel" resultType="java.lang.String">
     select user_name
     from usersafe
     where user_tel = #{userinput,jdbcType=VARCHAR} and password = #{userPassword,jdbcType=VARCHAR}
   </select>
 
 
-  <select id="selectUserId" resultType="java.lang.Integer" parameterType="java.lang.String">
+    <select id="selectUserId" resultType="java.lang.Integer" parameterType="java.lang.String">
     select user_id from usersafe where user_name = #{userName,jdbcType=VARCHAR}
   </select>
 
 
-
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from usersafe
-    where user_id = #{userId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from usersafe
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from usersafe
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Usersafe" >
-    insert into usersafe
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="userName != null" >
-        user_name,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="userEmail != null" >
-        user_email,
-      </if>
-      <if test="userTel != null" >
-        user_tel,
-      </if>
-      <if test="userStatus != null" >
-        user_status,
-      </if>
-      <if test="userMoney != null" >
-        user_money,
-      </if>
-      <if test="userIntegral != null" >
-        user_integral,
-      </if>
-      <if test="userRole != null" >
-        user_role,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="userEmail != null" >
-        #{userEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="userTel != null" >
-        #{userTel,jdbcType=VARCHAR},
-      </if>
-      <if test="userStatus != null" >
-        #{userStatus,jdbcType=INTEGER},
-      </if>
-      <if test="userMoney != null" >
-        #{userMoney,jdbcType=INTEGER},
-      </if>
-      <if test="userIntegral != null" >
-        #{userIntegral,jdbcType=INTEGER},
-      </if>
-      <if test="userRole != null" >
-        #{userRole,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ndsc.blog.entity.Usersafe" >
-    update usersafe
-    <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="userEmail != null" >
-        user_email = #{userEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="userTel != null" >
-        user_tel = #{userTel,jdbcType=VARCHAR},
-      </if>
-      <if test="userStatus != null" >
-        user_status = #{userStatus,jdbcType=INTEGER},
-      </if>
-      <if test="userMoney != null" >
-        user_money = #{userMoney,jdbcType=INTEGER},
-      </if>
-      <if test="userIntegral != null" >
-        user_integral = #{userIntegral,jdbcType=INTEGER},
-      </if>
-      <if test="userRole != null" >
-        user_role = #{userRole,jdbcType=INTEGER},
-      </if>
-    </set>
-    where user_id = #{userId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ndsc.blog.entity.Usersafe" >
+    <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Usersafe">
+        insert into usersafe
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="userEmail != null">
+                user_email,
+            </if>
+            <if test="userTel != null">
+                user_tel,
+            </if>
+            <if test="userStatus != null">
+                user_status,
+            </if>
+            <if test="userMoney != null">
+                user_money,
+            </if>
+            <if test="userIntegral != null">
+                user_integral,
+            </if>
+            <if test="userRole != null">
+                user_role,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null">
+                #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userTel != null">
+                #{userTel,jdbcType=VARCHAR},
+            </if>
+            <if test="userStatus != null">
+                #{userStatus,jdbcType=INTEGER},
+            </if>
+            <if test="userMoney != null">
+                #{userMoney,jdbcType=INTEGER},
+            </if>
+            <if test="userIntegral != null">
+                #{userIntegral,jdbcType=INTEGER},
+            </if>
+            <if test="userRole != null">
+                #{userRole,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.ndsc.blog.entity.Usersafe">
+        update usersafe
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null">
+                user_email = #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userTel != null">
+                user_tel = #{userTel,jdbcType=VARCHAR},
+            </if>
+            <if test="userStatus != null">
+                user_status = #{userStatus,jdbcType=INTEGER},
+            </if>
+            <if test="userMoney != null">
+                user_money = #{userMoney,jdbcType=INTEGER},
+            </if>
+            <if test="userIntegral != null">
+                user_integral = #{userIntegral,jdbcType=INTEGER},
+            </if>
+            <if test="userRole != null">
+                user_role = #{userRole,jdbcType=INTEGER},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.ndsc.blog.entity.Usersafe">
     update usersafe
     set user_name = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -175,4 +176,11 @@
       user_role = #{userRole,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+  <update id="becomeVip" parameterType="java.lang.Integer">
+    update usersafe
+    set user_role = 3
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
 </mapper>
