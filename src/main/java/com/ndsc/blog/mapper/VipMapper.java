@@ -1,7 +1,11 @@
 package com.ndsc.blog.mapper;
 
 import com.ndsc.blog.entity.Vip;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface VipMapper {
     int deleteByPrimaryKey(Integer vipId);
 
@@ -10,6 +14,8 @@ public interface VipMapper {
     int insertSelective(Vip record);
 
     Vip selectByPrimaryKey(Integer vipId);
+
+    List<Vip> selectAll();
 
     int updateByPrimaryKeySelective(Vip record);
 

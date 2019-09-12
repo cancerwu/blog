@@ -1,56 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ndsc.blog.mapper.OrderMapper" >
-  <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Order" >
-    <result column="order_id" property="orderId" jdbcType="INTEGER" />
-    <result column="product_name" property="productName" jdbcType="VARCHAR" />
-    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
-    <result column="order_total" property="orderTotal" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
-  </resultMap>
+<mapper namespace="com.ndsc.blog.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Order">
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="order_time" property="orderTime" jdbcType="TIMESTAMP"/>
+        <result column="order_total" property="orderTotal" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+    </resultMap>
 
-  <insert id="insert" parameterType="com.ndsc.blog.entity.Order" >
+    <insert id="insert" parameterType="com.ndsc.blog.entity.Order">
     insert into orderss (order_id, product_name, order_time, 
       order_total, user_id)
     values (#{orderId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, 
       #{orderTotal,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
   </insert>
 
-  <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Order" >
-    insert into orderss
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="orderId != null" >
-        order_id,
-      </if>
-      <if test="productName != null" >
-        product_name,
-      </if>
-      <if test="orderTime != null" >
-        order_time,
-      </if>
-      <if test="orderTotal != null" >
-        order_total,
-      </if>
-      <if test="userId != null" >
-        user_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="orderId != null" >
-        #{orderId,jdbcType=INTEGER},
-      </if>
-      <if test="productName != null" >
-        #{productName,jdbcType=VARCHAR},
-      </if>
-      <if test="orderTime != null" >
-        #{orderTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="orderTotal != null" >
-        #{orderTotal,jdbcType=INTEGER},
-      </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+    <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Order">
+        insert into orderss
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                order_id,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="orderTime != null">
+                order_time,
+            </if>
+            <if test="orderTotal != null">
+                order_total,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderTotal != null">
+                #{orderTotal,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectOrdersByUserId" parameterType="java.lang.Integer" resultType="com.ndsc.blog.entity.Order">
+    select *
+    from orderss
+    where user_id = #{userId}
+    order by order_time desc
+  </select>
+
 </mapper>

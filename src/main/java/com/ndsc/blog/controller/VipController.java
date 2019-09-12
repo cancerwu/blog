@@ -8,6 +8,7 @@ import com.ndsc.blog.entity.Order;
 import com.ndsc.blog.entity.Vip;
 import com.ndsc.blog.service.LoginService;
 import com.ndsc.blog.service.OrderService;
+import com.ndsc.blog.service.VipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +33,8 @@ public class VipController {
     OrderService orderService;
     @Autowired
     LoginService loginService;
+    @Autowired
+    VipService vipService;
 
     Order order = new Order();
 
@@ -127,6 +131,11 @@ public class VipController {
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";
         //——请在这里编写您的程序（以上代码仅作参考）——
+    }
+
+    @RequestMapping("/getAllVip")
+    public List<Vip> selectAll() {
+        return vipService.selectAll();
     }
 
 }
