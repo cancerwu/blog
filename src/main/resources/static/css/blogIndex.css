@@ -1,12 +1,13 @@
 body{
     width: 100%;
-    margin: 10px 0px 0px 0px;
-
+    margin: 0px 0px 0px 0px;
 }
+
 a{
     text-decoration: none;
     color: black;
 }
+
 a:hover{
     text-decoration:none;
     color: red;
@@ -14,6 +15,7 @@ a:hover{
 
 .top{
     width: 100%;
+    box-shadow: 0 0 10px 0px #cccccc;
 }
 
 .w{
@@ -91,21 +93,20 @@ li{
     border-radius: 12px;
     border: 2px solid red;
 }
-button{
-
-}
 
 .write{
-    width: 98px;
-    height: 38px;
+    width: 80px;
+    height: 30px;
     float: left;
+    margin-top: 4px;
     background-color: red;
     color: white;
-    line-height: 38px;
+    line-height: 30px;
     text-align: center;
     border:1px solid #ccc;
     border-radius: 12px;
 }
+
 .write a{
     color: white;
 }
@@ -133,7 +134,7 @@ button{
 
 .leftlabel{
     position: fixed;
-    margin-left: 40px;
+    margin-left: 60px;
     margin-top: 50px;
     width: 100px;
     height: 600px;
