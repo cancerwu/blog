@@ -1,7 +1,12 @@
 package com.ndsc.blog.mapper;
 
 import com.ndsc.blog.entity.Blog;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Mapper
+
+@Repository
 public interface BlogMapper {
     int deleteByPrimaryKey(Integer blogId);
 
