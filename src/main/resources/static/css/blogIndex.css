@@ -132,6 +132,18 @@ li{
     /*background-color: #f10215;*/
 }
 
+.right{
+    width: 340px;
+    height: 800px;
+    background-color: #f10215;
+    float: right;
+}
+
+.left{
+    width: 820px;
+    float: left;
+}
+
 .leftlabel{
     position: fixed;
     margin-left: 60px;
@@ -178,7 +190,7 @@ li{
 }
 /*以下轮播图部分*/
 #ad{
-    width: 1180px;
+    width: 820px;
     height: 300px;
     position: relative;
 
@@ -237,7 +249,7 @@ li{
 #rightTurn:hover{
     cursor: pointer;
 }
-/*.adpart2{
+.adpart2{
     width: 400px;
     height: 300px;
     margin-left: 20px;
@@ -245,25 +257,80 @@ li{
     background-image: url("../images/blogIndex/ad2.jpg");
 }
 
-.adpart3{
-    width: 340px;
-    height: 300px;
-    margin-left: 20px;
-    float: left;
-    background-color: #00db00;
-}*/
+
 /*以上是轮播图部分*/
+
 .blog{
-    width: 1180px;
-    height: 1200px;
+    width: 820px;
+
     margin-top: 20px;
-    /*background-color: blue;*/
+    float: left;
 }
 
 .blog li{
-    width: 1180px;
+    width: 820px;
     height: 200px;
 
     border:1px dashed #000
+}
+.blogtitle{
+    width: 500px;
+    height: 40px;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 1000;
+    line-height: 40px;
+    font-size: 30px;
+}
+
+.bloginfo{
+    width: 820px;
+    height: 150px;
+
+}
+
+.blogcontent{
+    width: 800px;
+    height: 40px;
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 20px;
+    line-height: 40px;
+    font-size: 15px;
+
+}
+
+.blogauthor{
+    width: 800px;
+    height: 90px;
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 20px;
+    line-height: 90px;
+
+}
+
+.authorpic{
+    width: 70px;
+    height: 70px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #00db00;
+    float: left;
+}
+
+.authorname{
+    width: 300px;
+    height: 90px;
+    margin-left: 30px;
+    float: left;
+}
+
+.blogreadnum{
+    width: 200px;
+    height: 90px;
+    text-align: center;
+    float: right;
 }
 
