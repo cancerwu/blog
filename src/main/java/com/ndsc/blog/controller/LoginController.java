@@ -3,6 +3,7 @@ package com.ndsc.blog.controller;
 import com.ndsc.blog.entity.Usersafe;
 import com.ndsc.blog.mapper.UsersafeMapper;
 import com.ndsc.blog.service.LoginService;
+import com.ndsc.blog.service.Md5Encryption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,11 +21,13 @@ public class LoginController {
 
     @Autowired
     UsersafeMapper usersafeMapper;
+    @Autowired
+    Md5Encryption md5Encryption;
 
     @PostMapping("/login")
     public Usersafe selectByLogin(String userinput, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
-
+         password=md5Encryption.encrype(password);
         String resultUserName = loginService.selectByLogin(userinput, password);
         session.setAttribute("userName", resultUserName);
         int userId = usersafeMapper.selectUserId(resultUserName);
