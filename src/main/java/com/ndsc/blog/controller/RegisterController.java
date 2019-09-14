@@ -19,14 +19,21 @@ public class RegisterController {
     Md5Encryption md5Encryption;
 
     @RequestMapping("/register")
-    public int insertUser(Usersafe usersafe) {
+    public int register(Usersafe usersafe) {
 //        String pwd=usersafe.getPassword();
 //        pwd=md5Encryption.encrype(pwd);
 //        usersafe.setPassword(pwd);
         usersafe.setPassword(md5Encryption.encrype(usersafe.getPassword()));
         registerService.insertUser(usersafe);
+        System.out.println("zhuce chenggong ");
         return 0;
     }
+//@RequestMapping("/insertUser")
+//public int insertUser(Usersafe usersafe){
+//    usersafe.setPassword(md5Encryption.encrype(usersafe.getPassword()));
+//    registerService.insertUser(usersafe);
+//    return 0;
+//}
 
     @RequestMapping("/checkSamePhone")
     public int checkSamePhone(String userTel) {

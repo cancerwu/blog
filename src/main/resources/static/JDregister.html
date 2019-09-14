@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link href="css/JDregister.css" rel="stylesheet">
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/jquery.validate.regex.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="js/register.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="w">
+            <a href="index.html" class="logo"></a>
+            <div class="logo-title">欢迎注册</div>
+            <div class="have-account">
+                已有账号？
+                <a href="login.html">请登录&gt;</a>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <div class="w">
+            <div class="progress-bar">
+                <div class="pro-step ">
+                    <span class="step-index">1</span>
+                    <p class="step-desc">验证手机号</p>
+                </div>
+                <div class="pro-line1">·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·></div>
+                <div class="pro-step pro-step2 ">
+                    <span class="step-index">2</span>
+                    <p class="step-desc">填写账号信息</p>
+                </div>
+                <div class="pro-line2">·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·></div>
+                <div class="pro-step pro-step3 ">
+                    <span class="step-index">3</span>
+                    <p class="step-desc">注册成功</p>
+                </div>
+            </div>
+            <form id="userregister">
+                <div class="main">
+                    <div class="step step1" id="phone">
+                        <div class="userphone">
+                            <div class="phoneleft">中国0086</div>
+                            <div class="phoneright">
+                                <input type="text" id="phoneinput" name="tel" value="建议使用常用手机号" />
+                            </div>
+                        </div>
+                        <button class="checkphone" type="button" name="checkphone">点击按钮进行验证</button>
+                        <button type="button" class="nextstep" name="next">下一步</button>
+                    </div>
+                    <div class="mainbottom">
+                        <a href="//reg.jd.com/b/regPage?source=buser" class="reg-other-item reg-other-person" clstag="pageclick|keycount|reg_puser_201804031|4">
+                            <i class="reg-ohter-icon1"></i>企业用户注册</a>
+                        <a href="//reg.jd.com/p/regPage?source=IBG&amp;ReturnUrl=http%3A//hk.jd.com/" class="reg-other-item reg-other-inter" clstag="pageclick|keycount|reg_puser_201804031|5">
+                            <i class="reg-ohter-icon2"></i>海外用户注册</a>
+                    </div>
+                </div>
+                <div class="main2">
+                    <div class="userinfo">
+                        <div class="infotitle">用&nbsp;户&nbsp;名</div>
+                        <div class="infoinput">
+                            <input type="text" id="username" name="name" value="请输入您的用户名" />
+                        </div>
+                    </div>
+                    <div class="userinfo">
+                        <div class="infotitle">设&nbsp;置&nbsp;密&nbsp;码</div>
+                        <div class="infoinput">
+                            <input type="text" id="userpassword" name="password" value="请输入您的密码" />
+                        </div>
+                    </div>
+                    <div class="userinfo">
+                        <div class="infotitle">确&nbsp;认&nbsp;密&nbsp;码</div>
+                        <div class="infoinput">
+                            <input type="text" id="secpassword" name="secpassword" value="请确认您的密码" />
+                        </div>
+                    </div>
+                    <div class="userinfo">
+                        <div class="infotitle">邮&nbsp;箱</div>
+                        <div class="infoinput">
+                            <input type="text" id="useremail"  name="email" value="请输入您的邮箱" />
+                        </div>
+                    </div>
+                    <div style="font-size: 13px">
+                        <input type="checkbox" style="vertical-align:middle" name="agree"><span style="vertical-align:middle">我已阅读并同意《京东用户注册协议》</span>
+                    </div>
+                    <input type="submit" class="nextstep" name="register" value="立即注册">
+                </div>
+            </form>
+            <div class="main3">
+                <div class="finishinfo">
+                    <div class="gou"></div>
+                    <div class="congratulation">恭喜您完成注册！</div>
+                    <div class="finish"><span>完善账号安全，</span><a href="#"> 开启实名认证> </a></div>
+                </div>
+                <a href="login.html"><input type="button" class="nextstep toindex" name="toindex" value="立即登录"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="w">
+            <div class="links">
+                    <a rel="nofollow" target="_blank" href="//www.jd.com/intro/about.aspx"> 关于我们</a>|
+                    <a rel="nofollow" target="_blank" href="//www.jd.com/contact/">联系我们</a>|
+                    <a rel="nofollow" target="_blank" href="//zhaopin.jd.com/">人才招聘</a>|
+                    <a rel="nofollow" target="_blank" href="//www.jd.com/contact/joinin.aspx">商家入驻</a>|
+                    <a rel="no  follow" target="_blank" href="//www.jd.com/intro/service.aspx">广告服务</a>|
+                    <a rel="nofollow" target="_blank" href="//app.jd.com/">手机京东</a>|
+                    <a target="_blank" href="//club.jd.com/links.aspx">友情链接</a>|
+                    <a target="_blank" href="//media.jd.com">销售联盟</a>|
+                    <a href="//club.jd.com/" target="_blank">京东社区</a>|
+                    <a href="//gongyi.jd.com" target="_blank">京东公益</a>|
+                    <a target="_blank" href="//en.jd.com/" clstag="pageclick|keycount|20150112ABD|9">English Site</a>
+            </div>
+            <div class="copyright">
+                Copyright©2004-2019&nbsp;&nbsp;京东JD.com&nbsp;版权所有
+            </div>
+        </div>
+    </div>
+</body>
+</html>
