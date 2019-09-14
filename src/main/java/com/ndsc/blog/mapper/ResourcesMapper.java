@@ -1,7 +1,9 @@
 package com.ndsc.blog.mapper;
 
 import com.ndsc.blog.entity.Resources;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ResourcesMapper {
     int deleteByPrimaryKey(Integer resourcesId);
 
