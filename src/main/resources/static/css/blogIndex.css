@@ -176,7 +176,7 @@ li{
     text-align: center;
     border:1px solid #ccc;
 }
-/*轮播图部分*/
+/*以下轮播图部分*/
 #ad{
     width: 1180px;
     height: 300px;
@@ -252,7 +252,7 @@ li{
     float: left;
     background-color: #00db00;
 }*/
-
+/*以上是轮播图部分*/
 .blog{
     width: 1180px;
     height: 1200px;
