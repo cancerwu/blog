@@ -187,7 +187,7 @@ li{
     width: 400px;
     height: 300px;
     float: left;
-    margin-left: 100px;
+    /*margin-left: 100px;*/
     position: relative;
 }
 #adpart1 img{
@@ -200,7 +200,7 @@ li{
     bottom: -6px;
     width:100px;
     height: 30px; 
-    left:250px;
+    left: 150px;
 }
 #click ul{
     margin: 0;
@@ -222,7 +222,7 @@ li{
 #turn{
     position: absolute;
     top: 128px;
-    left: 101px;
+    left: 1px;
     width: 398px;
 }
 #leftTurn{
