@@ -16,6 +16,15 @@ public class Blog {
     private Integer userId;
 
     private String blogContent;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Integer getBlogId() {
         return blogId;
