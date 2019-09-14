@@ -1,5 +1,6 @@
 package com.ndsc.blog.controller;
 
+import com.ndsc.blog.entity.Usersafe;
 import com.ndsc.blog.mapper.UsersafeMapper;
 import com.ndsc.blog.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,15 @@ public class LoginController {
     UsersafeMapper usersafeMapper;
 
     @PostMapping("/login")
-    public String selectByLogin(String userinput, String password, HttpServletRequest request) {
+    public Usersafe selectByLogin(String userinput, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
 
         String resultUserName = loginService.selectByLogin(userinput, password);
         session.setAttribute("userName", resultUserName);
+        int userId = usersafeMapper.selectUserId(resultUserName);
+        Usersafe usersafe=usersafeMapper.selectByPrimaryKey(userId);
         System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
-        return resultUserName;
+        return usersafe;
     }
 
     @RequestMapping("/getLoginUserName")
