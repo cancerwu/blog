@@ -22,12 +22,16 @@ public class WebConfigurer implements WebMvcConfigurer {
         loginRegistry.excludePathPatterns("/login.html","/login","/getLoginUserName","/solr/search");
         loginRegistry.excludePathPatterns("/blogIndex.html");
         loginRegistry.excludePathPatterns("/paySuccess.html","/insertUser","/checkSamePhone","/checkSameName","/getCheckCode","/checkSameEmail");
+        loginRegistry.excludePathPatterns("/login.html", "/login", "/index.html", "/getLoginUserName");
+        loginRegistry.excludePathPatterns("/JDregister.html", "/insertUser", "/checkSamePhone", "/checkSameName", "/getCheckCode", "/checkSameEmail");
         loginRegistry.excludePathPatterns("/css/*");
         loginRegistry.excludePathPatterns("/js/*");
         loginRegistry.excludePathPatterns("/images/*");
         loginRegistry.excludePathPatterns("/images/blogIndex/*");
-
-
         loginRegistry.excludePathPatterns("/pay","/return_url");
+        loginRegistry.excludePathPatterns("/images/JDregister/*");
+        loginRegistry.excludePathPatterns("/css/cart/*");
+        loginRegistry.excludePathPatterns("/cart.html");
+        loginRegistry.excludePathPatterns("/pay", "/return_url", "/upload.html", "/uploadResource", "/uploadSuccess.html", "/paySuccess.html");
     }
 }

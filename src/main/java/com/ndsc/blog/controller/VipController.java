@@ -129,7 +129,7 @@ public class VipController {
         return "<a id=\"ak\" href='paySuccess.html'>跳转</a>\n" +
                 "<script>\n" +
                 "    document.getElementById(\"ak\").click();\n" +
-                "</script>";
+                "</script>" ;
         //——请在这里编写您的程序（以上代码仅作参考）——
     }
 
