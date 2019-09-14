@@ -12,6 +12,7 @@
   <resultMap id="ResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BaseResultMap" >
     <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     blog_id, blog_title, blog_create_time, blog_pub_type, blog_read_num, user_id
   </sql>
@@ -19,7 +20,7 @@
     blog_content
   </sql>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />

@@ -1,6 +1,7 @@
 package com.ndsc.blog.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Userinfo {
     private Integer userinfoId;
@@ -16,6 +17,18 @@ public class Userinfo {
     private Date userCreateTime;
 
     private Integer userId;
+
+    //**********************************
+    private List<Blog> blogList;
+
+    public List<Blog> getBlogList() {
+        return blogList;
+    }
+
+    public void setBlogList(List<Blog> blogList) {
+        this.blogList = blogList;
+    }
+    //**********************************
 
     public Integer getUserinfoId() {
         return userinfoId;

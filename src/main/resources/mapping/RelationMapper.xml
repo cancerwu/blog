@@ -5,6 +5,33 @@
     <result column="bloger_id" property="blogerId" jdbcType="INTEGER" />
     <result column="fans_id" property="fansId" jdbcType="INTEGER" />
   </resultMap>
+  <!--***********************************-->
+  <resultMap id="RelationBaseResultMap" type="com.ndsc.blog.entity.Relation" >
+    <result column="bloger_id" property="blogerId" jdbcType="INTEGER" />
+    <result column="fans_id" property="fansId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="UserinfoBaseResultMap" type="com.ndsc.blog.entity.Userinfo" >
+    <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_birthday" property="userBirthday" jdbcType="TIMESTAMP" />
+    <result column="user_pic" property="userPic" jdbcType="VARCHAR" />
+    <result column="user_create_time" property="userCreateTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insertRelation" parameterType="com.ndsc.blog.entity.Relation">
+    insert into relation(bloger_id, fans_id) values (#{blogerId,jdbcType=INTEGER}, #{fansId,jdbcType=INTEGER})
+  </insert>
+  <select id="selectRelationUser" parameterType="java.lang.Integer" resultMap="UserinfoBaseResultMap">
+    select u.* from relation r,userinfo u where r.fans_id = #{fansId} and r.bloger_id = u.user_id
+  </select>
+  <delete id="deleteRelation" parameterType="com.ndsc.blog.entity.Relation">
+    delete from relation where fans_id= #{fansId,jdbcType=INTEGER} and bloger_id = #{blogerId,jdbcType=INTEGER}
+  </delete>
+  <select id="selectFans" parameterType="java.lang.Integer" resultMap="UserinfoBaseResultMap">
+    select u.* from relation r,userinfo u where r.bloger_id = #{blogerId} and r.fans_id = u.user_id
+  </select>
+  <!--***********************************-->
   <insert id="insert" parameterType="com.ndsc.blog.entity.Relation" >
     insert into relation (bloger_id, fans_id)
     values (#{blogerId,jdbcType=INTEGER}, #{fansId,jdbcType=INTEGER})

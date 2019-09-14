@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ndsc.blog.mapper.CollectMapper" >
+    <resultMap id="CollectBaseResultMap" type="com.ndsc.blog.entity.Collect" >
+        <result column="collection_id" property="collectionId" jdbcType="INTEGER" />
+        <result column="blog_id" property="blogId" jdbcType="INTEGER" />
+    </resultMap>
+    <resultMap id="BlogBaseResultMap" type="com.ndsc.blog.entity.Blog" >
+        <id column="blog_id" property="blogId" jdbcType="INTEGER" />
+        <result column="blog_title" property="blogTitle" jdbcType="VARCHAR" />
+        <result column="blog_create_time" property="blogCreateTime" jdbcType="TIMESTAMP" />
+        <result column="blog_pub_type" property="blogPubType" jdbcType="INTEGER" />
+        <result column="blog_read_num" property="blogReadNum" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+    </resultMap>
+    <resultMap id="BlogResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BlogBaseResultMap" >
+        <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR" />
+    </resultMap>
+    <insert id="insertCollection" parameterType="com.ndsc.blog.entity.Collect">
+        insert into collection(collection_id,blog_id) values (#{collectionId},#{blogId})
+    </insert>
+    <select id="selectCollectionBlog" parameterType="java.lang.Integer" resultMap="BlogResultMapWithBLOBs">
+        select b.* from collection c,blog b where c.collection_id = #{collectionId} and c.blog_id = b.blog_id
+    </select>
+    <delete id="deleteCollection" parameterType="com.ndsc.blog.entity.Collect">
+        delete from collection where collection_id = #{collectionId} and blog_id = #{blogId}
+    </delete>
+</mapper>
