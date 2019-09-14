@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 @Mapper
-
 @Repository
 public interface UsersafeMapper {
     int deleteByPrimaryKey(Integer userId);
@@ -35,4 +34,7 @@ public interface UsersafeMapper {
     String selectByUserEmail(String userinput, String userPassword);
 
     int selectUserId(String userName);
+
+    //*********************************
+    int updateUsersafe(Usersafe usersafe);
 }

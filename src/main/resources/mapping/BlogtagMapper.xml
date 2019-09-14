@@ -5,6 +5,22 @@
     <id column="tag_id" property="tagId" jdbcType="INTEGER" />
     <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
   </resultMap>
+  <!--***********************-->
+  <resultMap id="BlogBaseResultMap" type="com.ndsc.blog.entity.Blog" >
+    <id column="blog_id" property="blogId" jdbcType="INTEGER" />
+    <result column="blog_title" property="blogTitle" jdbcType="VARCHAR" />
+    <result column="blog_create_time" property="blogCreateTime" jdbcType="TIMESTAMP" />
+    <result column="blog_pub_type" property="blogPubType" jdbcType="INTEGER" />
+    <result column="blog_read_num" property="blogReadNum" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="BlogResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BlogBaseResultMap" >
+    <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <select id="selectByBlogtagGetBlog" resultMap="BlogResultMapWithBLOBs" parameterType="java.lang.String">
+    select b.* from blog b,tag t where t.tag_id = (select tag_id from blogtag where tag_name = #{tagName}) and t.blog_id = b.blog_id
+  </select>
+  <!--************************-->
   <sql id="Base_Column_List" >
     tag_id, tag_name
   </sql>

@@ -18,6 +18,24 @@
     user_role
   </sql>
 
+    <!--******************************************-->
+    <update id="updateUsersafe" parameterType="com.ndsc.blog.entity.Usersafe">
+        update usersafe
+        <set >
+            <if test="password != null" >
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null" >
+                user_email = #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userTel != null" >
+                user_tel = #{userTel,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+    <!--******************************************-->
+
 
     <select id="sameTel" resultType="java.lang.Integer" parameterType="java.lang.String">
     select count(*) from usersafe where user_tel = #{userTel}
