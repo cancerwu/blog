@@ -2,9 +2,8 @@ body{
     width: 100%;
     margin: 0px 0px 0px 0px;
 }
-div{
 
-}
+
 a{
     text-decoration: none;
     color: black;
@@ -176,6 +175,13 @@ li{
     padding-left: 30px;
 }
 
+.headpic{
+    width: 150px;
+    height: 400px;
+
+    float: left;
+}
+
 .noheadpic{
     width: 820px;
     height: 400px;
@@ -234,13 +240,35 @@ ul li{
     padding-left: 20px;
     float: right;
 }
+.updateinfo span{
+    color: deepskyblue;
 
-.headpic{
-    width: 150px;
-    height: 400px;
-
-    float: left;
 }
+.updateinfo span:hover{
+    color: red;
+    cursor:pointer
+}
+
+
+
+.modifyinfo{
+    display: none;
+    width: 500px;
+    height: 380px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    margin-top: -30px;
+    background-color: white;
+    border: 10px solid black;
+    border-radius: 10%;
+}
+
+
+
+
+
 
 
 .bottom-pub-footer{width:100%; min-width: 1200px;font-size: 14px;background-color:#fff;margin-top: 10px; overflow:hidden;border-top: 1px solid #f0f0f0}
@@ -483,4 +511,3 @@ ul li{
     background-color: #e0e0e0;
     vertical-align: sub
 }
-
