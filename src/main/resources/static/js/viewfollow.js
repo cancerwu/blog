@@ -2,7 +2,7 @@ $(function () {
 
 
     $.ajax({
-        url: "/getMyFans",
+        url: "/getMyRelationUserinfo",
         type: "post",
         dataType: "json",
         success: function (data) {
@@ -15,49 +15,60 @@ $(function () {
             //     "                <div class=\"re_ad\">" + data[0].province + data[0].city + data[0].district + data[0].address_name + "</div>\n" +
             //
             //     "            </div>")
-            for (var i = 0; i < data.length; i++) {
-                var $div1 = ("<div class=\"fansdateil\">\n" +
-                    "<div class=\"fansimages\">\n" +
-                    "<div class=\"fansimages1\">"+
-                    "</div>\n" +
-                    "</div>\n" +
-                    "<div class=\"fansname\">\n" +
-                    "<div class=\"fansname1\">"+data[i].realName+"</div>\n" +
-                    "</div>\n" +
-                    "<div class=\"delfans\">\n"+
-                    "<input type=\"button\" value=\"取消关注\">\n"+
-                    "</div>"+
-                    "</div>")
-                $("div[class='fansmain']").append($div1);
-            }
-        }
-    });
-    $(function () {
-        $("input[value='取消关注']").click(function () {
             $.ajax({
                 url:"/getUserId",
                 type: "post",
                 dataType: "json",
                 success: function (data1) {
-                    alert(data1);
+                    // alert(data1);
                     var useronlineId = data1;
-                    $.ajax({
-                        url: "/removeRelation",
-                        type: "post",
-                        data: {'blogerId': useronlineId, 'fansId': data[i].userId},
-                        dataType: "json",
-                        success: function (data) {
-                            alert(data);
-                            if (data) {
-                                location.href = "viewfollow.html";
-                            } else {
-                                alert("取消关注失败");
-                            }
-                        }
-                    })
+                    for (var i = 0; i < data.length; i++) {
+                        // var u="/removeRelation"+"?"+"blogerId="+data1+"&"+"fansId"+"="+data[i].userId;
+                        var $div1 = ("<div class=\"fansdateil\">\n" +
+                            "<div class=\"fansimages\">\n" +
+                            "<div class=\"fansimages1\">"+
+                            "</div>\n" +
+                            "</div>\n" +
+                            "<div class=\"fansname\">\n" +
+                            "<div class=\"fansname1\">"+
+                            "<a href='#'>"+data[i].realName+"</a>"+
+                            "</div>\n" +
+                            "</div>\n" +
+                            "<div class=\"delfans\">\n"+
+                            "<input type=\"button\" value=\"取消关注\">\n"+
+                            // "<a href="+u+">"+"取消关注"+"</a>"+
+                            "</div>"+
+                            "</div>")
+                        var id=data[i].userId;
+                        id = parseInt(id);
+                        data1=parseInt(data1);
+
+                        $("div[class='fansmain']").append($div1);
+
+                            $("input[value='取消关注']").click(function () {
+                                $.ajax({
+                                    url :"/removeRelation",
+                                    type:"post",
+                                    dataType:"json",
+
+                                    data:{"blogerId":data1,"fansId":id},
+
+                                    success :function (data2) {
+
+                                            location.href="viewfollow.html";
+
+
+                                    }
+
+                                })
+
+                            })
+
+                    }
                 }
             });
-        })
-    })
+        }
+    });
+
 })
 

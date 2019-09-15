@@ -22,7 +22,9 @@ $(function () {
                     "</div>\n" +
                     "</div>\n" +
                     "<div class=\"fansname\">\n" +
-                    "<div class=\"fansname1\">"+data[i].realName+"</div>\n" +
+                    "<div class=\"fansname1\">"+
+                    "<a href='#'>"+data[i].realName+"</a>"+
+                    "</div>\n" +
                     "</div>\n" +
                     "</div>")
                 $("div[class='fansmain']").append($div1);

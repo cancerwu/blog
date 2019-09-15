@@ -45,9 +45,16 @@ public class BlogController {
     public List<Userinfo> getRelationUserinfo(int fansId){
         return blogService.selectRelationUser(fansId);
     }
+    @RequestMapping("/getMyRelationUserinfo")
+    public List<Userinfo> getMyRelationUserinfo(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int userId = usersafeMapper.selectUserId(userName);
+        return blogService.selectRelationUser(userId);
+    }
 
     @RequestMapping("/removeRelation")
-    public int removeRelation(@RequestBody Relation relation){
+    public int removeRelation( Relation relation){
         return blogService.deleteRelation(relation);
     }
 
