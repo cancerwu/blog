@@ -24,7 +24,7 @@ public class LoginController {
     @Autowired
     Md5Encryption md5Encryption;
 
-    @PostMapping("/login")
+    @RequestMapping("/login")
     public Usersafe selectByLogin(String userinput, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
          password=md5Encryption.encrype(password);

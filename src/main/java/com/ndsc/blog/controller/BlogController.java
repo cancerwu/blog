@@ -1,6 +1,7 @@
 package com.ndsc.blog.controller;
 
 import com.ndsc.blog.entity.*;
+import com.ndsc.blog.mapper.UsersafeMapper;
 import com.ndsc.blog.service.BlogService;
 import com.ndsc.blog.service.Md5Encryption;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -19,6 +22,9 @@ public class BlogController {
 
     @Autowired
     Md5Encryption md5Encryption;
+
+    @Autowired
+    UsersafeMapper usersafeMapper;
 
     @RequestMapping("/getUserinfo")
     public Userinfo getUserinfo(int userId){
@@ -50,6 +56,13 @@ public class BlogController {
         return blogService.selectFans(blogerId);
     }
 
+    @RequestMapping("/getMyFans")//获得当前登录用户的粉丝
+    public List<Userinfo> getMyFans(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int userId = usersafeMapper.selectUserId(userName);
+        return blogService.selectFans(userId);
+    }
     @RequestMapping("/updateUsersafe")
     public int updateUsersafe(@RequestBody Usersafe usersafe){
         usersafe.setPassword(md5Encryption.encrype(usersafe.getPassword()));
