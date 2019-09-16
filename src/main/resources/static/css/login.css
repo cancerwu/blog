@@ -1,6 +1,6 @@
 /*主块*/
 #main{
-	width: 1300px;
+	width: 100%;
 	height: 600px;
 	background-image: url(../images/login_background.jpg);
 	position: relative;
@@ -123,4 +123,10 @@ ul{
 }
 #download:hover{
 	cursor: pointer;
+}
+#bottom{
+    width: 100%;
+}
+#bottom img{
+    width: 100%;
 }
