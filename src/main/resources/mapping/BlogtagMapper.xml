@@ -16,9 +16,19 @@
   </resultMap>
   <resultMap id="BlogResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BlogBaseResultMap" >
     <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR" />
+    <association property="userinfo" resultMap="UserinfoBaseResultMap" />
+  </resultMap>
+  <resultMap id="UserinfoBaseResultMap" type="com.ndsc.blog.entity.Userinfo" >
+    <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_birthday" property="userBirthday" jdbcType="TIMESTAMP" />
+    <result column="user_pic" property="userPic" jdbcType="VARCHAR" />
+    <result column="user_create_time" property="userCreateTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
   <select id="selectByBlogtagGetBlog" resultMap="BlogResultMapWithBLOBs" parameterType="java.lang.String">
-    select b.* from blog b,tag t where t.tag_id = (select tag_id from blogtag where tag_name = #{tagName}) and t.blog_id = b.blog_id
+    select b.*,u.* from blog b,tag t,userinfo u where t.tag_id = (select tag_id from blogtag where tag_name = #{tagName}) and t.blog_id = b.blog_id and b.user_id = u.user_id
   </select>
   <!--************************-->
   <sql id="Base_Column_List" >
