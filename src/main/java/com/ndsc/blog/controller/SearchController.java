@@ -15,8 +15,8 @@ public class SearchController {
     SearchService searchService;
 
     @RequestMapping("/solr/get")
-    public Blog selectById(int id){
-        return searchService.getBlogById(id);
+    public Blog selectById(Integer blogId){
+        return searchService.getBlogById(blogId);
     }
     @RequestMapping("/solr/search")
     public List<Blog> search(String keyword){

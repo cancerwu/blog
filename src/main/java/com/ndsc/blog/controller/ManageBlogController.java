@@ -22,16 +22,10 @@ import java.util.Map;
 public class ManageBlogController {
     @Autowired
     ManageBlogService manageBlogService;
-    @RequestMapping("/solr/save")
-    public  String save(@RequestBody Blog blog){
+    @RequestMapping("/solr/addblog")
+    public  int save(Blog blog){
         int ret =manageBlogService.addBlog(blog);
-        if (ret==0)
-        {
-            return "success save!";
-        }
-        else {
-            return "error";
-        }
+        return ret;
     }
     @RequestMapping("/searchUserBlogs")
     public List<Blog> searchUserBlogs(int userId){

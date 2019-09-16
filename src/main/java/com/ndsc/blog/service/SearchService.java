@@ -7,5 +7,5 @@ import java.util.List;
 public interface SearchService {
 
     public List<Blog> searchBlog(String keyword);
-    public Blog getBlogById(int id);
+    public Blog getBlogById(Integer id);
 }

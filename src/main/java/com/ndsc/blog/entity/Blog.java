@@ -23,9 +23,21 @@ public class Blog {
     private Integer userId;
 
     private String blogContent;
+
+    private Userinfo userinfo;
+
     @Id
     @Indexed
     private String id;
+
+    public Userinfo getUserinfo() {
+        return userinfo;
+    }
+
+    public void setUserinfo(Userinfo userinfo) {
+        this.userinfo = userinfo;
+    }
+
 
     public String getId() {
         return id;

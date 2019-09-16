@@ -9,9 +9,25 @@
     <link rel="stylesheet" href="layui/css/layui.css">
 </head>
 <body>
-<textarea id="demo" style="display: none;"></textarea>
+
 <script>
     layui.use('layedit', function(){
+
+        var test ="2";
+        $.ajax({
+            url:"/solr/get",
+            async:false,
+            type:"get",
+            data:{
+                'blogId':1
+            },
+            dataType:"json",
+            success:function (data) {
+                test = data.blogContent;
+            }
+        })
+
+        $("body").append("<textarea id=\"demo\" style=\"display: none;\">"+test+"</textarea>");
         var layedit = layui.layedit;
         layedit.set({
             uploadImage: {
@@ -20,9 +36,31 @@
             }
         });
          var index = layedit.build('demo'); //建立编辑器
-        $("button").click(function () {
-            console.log(layedit.getContent(index));
-        })
+
+
+
+
+
+
+        // //点击发送博客
+        // $("button").click(function () {
+        //     console.log(layedit.getContent(index));
+        //     $.ajax({
+        //         url:"/solr/addblog",
+        //         type:"post",
+        //         data:{
+        //             'blogTitle':"ajax测",
+        //             'blogContent':layedit.getContent(index),
+        //             'blogPubType':1,
+        //             'userId':1
+        //         },
+        //         dataType:"text",
+        //         success:function (data) {
+        //             alert("data");
+        //         }
+        //
+        //     })
+        // })
     });
 </script>
 <button type="button" class="layui-btn">一个标准的按钮</button>
