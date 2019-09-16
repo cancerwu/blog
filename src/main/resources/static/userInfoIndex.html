@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/userInfoIndex.css" rel="stylesheet">
+    <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/indexBottom.css" rel="stylesheet">
+
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/vue.min.js"></script>
     <script src="js/jquery.validate.regex.js"></script>
@@ -39,8 +41,12 @@
                 </a>
             </div>
             <div class="login">
-                <li><a href="blogIndex.html">登录</a></li>
-                <li><a href="blogIndex.html">注册</a></li>
+                <!--                <li><a href="blogIndex.html">登录</a></li>-->
+                <!--                <li><a href="blogIndex.html">注册</a></li>-->
+                <li><a href="#">消息</a></li>
+                <a href="userInfoIndex.html">
+                    <div class="loginheadpic"></div>
+                </a>
             </div>
         </div>
     </div>
@@ -52,7 +58,7 @@
                 <a href="blogIndex.html"><li>我关注的人</li></a>
                 <a href="blogIndex.html"><li>我的粉丝</li></a>
                 <a href="blogIndex.html"><li>我的主页</li></a>
-                <a href="blogIndex.html"><li>账号设置</li></a>
+                <a href="updateSafeInfo.html"><li>账号设置</li></a>
             </div>
             <div class="showinfo">
                 <div class="infotitle">
@@ -60,15 +66,20 @@
                 </div>
                 <div class="manyinfo">
                     <div class="headpic">
-
+                        <div class="pic">
+                            <img src="images/headpic.jpg">
+                        </div>
+                        <div class="changepic">
+                            <span>修改头像</span>
+                        </div>
                     </div>
                     <div class="noheadpic">
                         <div class="idinfo">
-                            <li>用户ID：1</li>
-                                <ul>
-                                    <li>粉丝数：1</li>
-                                    <li>关注数：1</li>
-                                </ul>
+                                <li>用户名：<span>DENGCW</span></li>
+                            <ul>
+                                <li>粉丝数：<span>1</span></li>
+                                <li>关注数：<span>1</span></li>
+                            </ul>
                         </div>
                         <div class="intoblog">
                             <a href="blogIndex.html">个人主页></a>
@@ -77,16 +88,22 @@
                             <div class="updateinfo">
                                 <span>修改资料></span>
                             </div>
-                            <li>真实姓名：</li>
-                            <li>性别：</li>
-                            <li>生日：</li>
-                            <li>职业：</li>
-                            <li>简介：</li>
+                            <li>真实姓名：<span>DCW</span></li>
+                            <li>性别：<span>男</span></li>
+                            <li>生日：<span>1997-12-5</span></li>
+                            <li>职业：<span>学生</span></li>
+                            <li>地区：<span>福建省 厦门市 集美区</span></li>
+                            <li>简介：<span></span></li>
                         </div>
                     </div>
                 </div>
                 <div class="modifyinfo">
-
+                    <form id="changeinfo">
+                        <li>真实姓名：<input name="realname" type="text" value=""></li>
+                        <li>性别：<input name="sex" type="radio" value="男">男&nbsp;&nbsp;&nbsp;<input name="sex" type="radio" value="女">女</li>
+                        <li>生日：<input name="birthday" type="date" value=""></li>
+                        <div class="submitchange"><input type="submit" value="确认修改"></div>
+                    </form>
                 </div>
             </div>
         </div>

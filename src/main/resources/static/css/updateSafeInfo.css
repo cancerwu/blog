@@ -13,10 +13,13 @@
 }
 
 .leftlabel li:hover{
+    color: white;
     background-color: #e2231a;
 }
-.leftlabel a:hover{
-    color: white;
+
+.leftlabel span:hover{
+
+    cursor:pointer
 }
 .leftlabel li{
     width: 158px;
@@ -43,10 +46,10 @@
 }
 
 .safestatus{
+    display: block;
     width: 970px;
     height: 400px;
     padding-left: 30px;
-
 }
 .safestatus li{
     width: 940px;
@@ -64,6 +67,63 @@
 .status1{
     color: #00db00;
 }
+
+.changepassword{
+    display: none;
+    width: 970px;
+    height: 400px;
+    padding-left: 30px;
+
+}
+.inputinfo{
+    width: 500px;
+    height: 50px;
+    margin: auto;
+    text-align: center;
+    line-height: 50px;
+}
+.inputinfo input{
+    margin-top: 10px;
+    border:1px solid #ccc;
+    size: 40px;
+    margin-left: 10px;
+    outline:none;
+    color: #cccccc;
+}
+
+.changesubmit{
+    width: 500px;
+    height: 50px;
+    margin: auto;
+    text-align: center;
+    line-height: 50px;
+}
+
+.changesubmit input{
+    margin: auto;
+}
+
+.changetel{
+    display: none;
+    width: 970px;
+    height: 400px;
+    padding-left: 30px;
+}
+.changeEmail{
+    display: none;
+    width: 970px;
+    height: 400px;
+    padding-left: 30px;
+}
+
+
+
+
+
+
+
+
+
 .manyinfo{
     width: 970px;
     height: 400px;
@@ -143,8 +203,6 @@ ul li{
     color: red;
     cursor:pointer
 }
-
-
 
 .modifyinfo{
     display: none;

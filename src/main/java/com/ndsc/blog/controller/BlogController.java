@@ -5,15 +5,19 @@ import com.ndsc.blog.mapper.UsersafeMapper;
 import com.ndsc.blog.service.BlogService;
 import com.ndsc.blog.service.Md5Encryption;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
-
+@Component
 @RestController
 public class BlogController {
 
@@ -45,11 +49,19 @@ public class BlogController {
     public List<Userinfo> getRelationUserinfo(int fansId){
         return blogService.selectRelationUser(fansId);
     }
+    @RequestMapping("/getMyRelationUserinfo")
+    public List<Userinfo> getMyRelationUserinfo(HttpServletRequest request){
 
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int userId = usersafeMapper.selectUserId(userName);
+        return blogService.selectRelationUser(userId);
+    }
     @RequestMapping("/removeRelation")
-    public int removeRelation(@RequestBody Relation relation){
+    public int removeRelation( Relation relation){
         return blogService.deleteRelation(relation);
     }
+
 
     @RequestMapping("/getFans")
     public List<Userinfo> getFans(int blogerId){
