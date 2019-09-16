@@ -13,17 +13,7 @@ import java.util.List;
 public class SearchController {
     @Autowired
     SearchService searchService;
-    @RequestMapping("/solr/save")
-    public  String save(@RequestBody Blog blog){
-        int ret =searchService.addBlog(blog);
-        if (ret==0)
-        {
-            return "success save!";
-        }
-        else {
-            return "error";
-        }
-    }
+
     @RequestMapping("/solr/get")
     public Blog selectById(int id){
         return searchService.getBlogById(id);

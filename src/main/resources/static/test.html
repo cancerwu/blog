@@ -3,9 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="js/jquery-3.4.1.js"></script>
+
+    <script src="layui/layui.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
 </head>
 <body>
-<textarea><h2><em>千万全王</em></h2></textarea>
+<textarea id="demo" style="display: none;"></textarea>
+<script>
+    layui.use('layedit', function(){
+        var layedit = layui.layedit;
+        layedit.set({
+            uploadImage: {
+                url: '/uploadimage' //接口url
+                ,type: 'post' //默认post
+            }
+        });
+         var index = layedit.build('demo'); //建立编辑器
+        $("button").click(function () {
+            console.log(layedit.getContent(index));
+        })
+    });
+</script>
+<button type="button" class="layui-btn">一个标准的按钮</button>
 
+<script>
+
+</script>
 </body>
 </html>

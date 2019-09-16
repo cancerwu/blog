@@ -1,10 +1,17 @@
 package com.ndsc.blog.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.solr.core.mapping.Indexed;
+import org.springframework.data.solr.core.mapping.SolrDocument;
+
 import java.util.Date;
 
+@SolrDocument(solrCoreName = "blog")
 public class Blog {
-    private Integer blogId;
 
+    @Indexed
+    private Integer blogId;
+    @Indexed
     private String blogTitle;
 
     private Date blogCreateTime;
@@ -16,6 +23,8 @@ public class Blog {
     private Integer userId;
 
     private String blogContent;
+    @Id
+    @Indexed
     private String id;
 
     public String getId() {
