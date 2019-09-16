@@ -52,8 +52,37 @@
 .headpic{
     width: 150px;
     height: 400px;
-
     float: left;
+}
+
+.pic{
+    width: 100px;
+    height: 100px;
+    margin-top: 30px;
+    margin-left: 25px;
+
+}
+.pic img{
+    width: 100%;
+    height: 100%;
+}
+
+.changepic{
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+    margin-left: 25px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.changepic span{
+    color: deepskyblue;
+}
+.changepic span:hover{
+    color: red;
+    cursor:pointer
 }
 
 .noheadpic{
