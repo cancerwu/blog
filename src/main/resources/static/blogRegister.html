@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link href="css/blogRegister.css" rel="stylesheet">
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/jquery.validate.regex.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="js/register.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="w">
+            <a href="blogIndex.html" class="logo">
+                <img src="images/blogIndex/logo.png">
+            </a>
+            <div class="logo-title">欢迎注册</div>
+            <div class="have-account">
+                已有账号？
+                <a href="login.html">请登录&gt;</a>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <div class="w">
+            <div class="progress-bar">
+                <div class="pro-step ">
+                    <span class="step-index">1</span>
+                    <p class="step-desc">验证手机号</p>
+                </div>
+                <div class="pro-line1">·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·></div>
+                <div class="pro-step pro-step2 ">
+                    <span class="step-index">2</span>
+                    <p class="step-desc">填写账号信息</p>
+                </div>
+                <div class="pro-line2">·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·&nbsp·></div>
+                <div class="pro-step pro-step3 ">
+                    <span class="step-index">3</span>
+                    <p class="step-desc">注册成功</p>
+                </div>
+            </div>
+            <form id="userregister">
+                <div class="main">
+                    <div class="step step1" id="phone">
+                        <div class="userphone">
+                            <div class="phoneleft">中国0086</div>
+                            <div class="phoneright">
+                                <input type="text" id="phoneinput" name="tel" value="建议使用常用手机号" />
+                                <button id="getnote" value="">获取验证码</button>
+                            </div>
+                        </div>
+                        <input class="checkvcode" type="text" id="vcodeinput" name="vcode" value="请输入短信验证码" />
+                        <button class="checkphone" type="button" name="checkphone">点击按钮进行验证</button>
+                        <button type="button" class="nextstep" name="next">下一步</button>
+                    </div>
+                </div>
+                <div class="main2">
+                    <div class="userinfo">
+                        <div class="infotitle">用&nbsp;户&nbsp;名</div>
+                        <div class="infoinput">
+                            <input type="text" id="username" name="name" value="请输入您的用户名" />
+                        </div>
+                    </div>
+                    <div class="userinfo">
+                        <div class="infotitle">设&nbsp;置&nbsp;密&nbsp;码</div>
+                        <div class="infoinput">
+                            <input type="text" id="userpassword" name="password" value="请输入您的密码" />
+                        </div>
+                    </div>
+                    <div class="userinfo">
+                        <div class="infotitle">确&nbsp;认&nbsp;密&nbsp;码</div>
+                        <div class="infoinput">
+                            <input type="text" id="secpassword" name="secpassword" value="请确认您的密码" />
+                        </div>
+                    </div>
+                    <div class="userinfo">
+                        <div class="infotitle">邮&nbsp;箱</div>
+                        <div class="infoinput">
+                            <input type="text" id="useremail"  name="email" value="请输入您的邮箱" />
+                        </div>
+                    </div>
+                    <div style="font-size: 13px">
+                        <input type="checkbox" style="vertical-align:middle" name="agree"><span style="vertical-align:middle">我已阅读并同意《京东用户注册协议》</span>
+                    </div>
+                    <input type="submit" class="nextstep" name="register" value="立即注册">
+                </div>
+            </form>
+            <div class="main3">
+                <div class="finishinfo">
+                    <div class="gou"></div>
+                    <div class="congratulation">恭喜您完成注册！</div>
+                    <div class="finish"><span>完善账号安全，</span><a href="test.html"> 开启实名认证> </a></div>
+                </div>
+                <a href="JDIndex.html"><input type="button" class="nextstep toindex" name="toindex" value="去首页"></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
