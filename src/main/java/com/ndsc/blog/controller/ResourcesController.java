@@ -1,8 +1,11 @@
 package com.ndsc.blog.controller;
 
 import com.ndsc.blog.entity.Resources;
+import com.ndsc.blog.entity.Userinfo;
 import com.ndsc.blog.service.ResourcesService;
+import com.ndsc.blog.service.UserInfoService;
 import com.ndsc.blog.util.FileUpload;
+import com.ndsc.blog.util.faceUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,11 +25,14 @@ import java.io.*;
 public class ResourcesController {
     @Autowired
     ResourcesService resourcesService;
+    @Autowired
+    UserInfoService userInfoService;
 
+    //上传文件
     @RequestMapping("upload")
     public String uploadResource(Resources resources, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
-        //resources.setUploaderId(new LoginController().getUserId(request));
+        resources.setUploaderId(new LoginController().getUserId(request));
         try {
             resources.setResourcesAddress(new FileUpload().upload(request, file));
         } catch (Exception e) {
@@ -38,12 +44,29 @@ public class ResourcesController {
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";
     }
+    //上传头像
+    @RequestMapping("uploadFace")
+    public String uploadFace(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
+        int id = new LoginController().getUserId(request);
+        Userinfo userinfo = userInfoService.selectByUserId(id);
+        try {
+            userinfo.setUserPic(new faceUpload().upload(request, file));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        userInfoService.updateByPrimaryKeySelective(userinfo);
+        return "<a id=\"ak\" href='uploadSuccess.html'>跳转</a>\n" +
+                "<script>\n" +
+                "    document.getElementById(\"ak\").click();\n" +
+                "</script>";
+    }
 
     @RequestMapping("download")
     public String downloadResource(String fileName, HttpServletRequest request, HttpServletResponse response) {
         //文件路径
         String serverPath = request.getSession().getServletContext().getRealPath("/") + "upload";
-        File file = new File(serverPath,fileName);
+        File file = new File(serverPath, fileName);
         if (file.exists()) {
             response.setContentType("application/force-download");// 设置强制下载不打开            
             response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
