@@ -24,6 +24,8 @@
 }
 .vipImg img:hover{
 	transform: scale(1.1);
+	border: 4px solid red;
+	border-radius: 20px;
 }
 .vipText{
 	width: 100%;
