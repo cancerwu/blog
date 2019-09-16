@@ -44,7 +44,7 @@ public class ResourcesController {
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";
     }
-    //上传头像
+    //上传头像的
     @RequestMapping("uploadFace")
     public String uploadFace(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
