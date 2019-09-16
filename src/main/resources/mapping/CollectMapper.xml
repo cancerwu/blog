@@ -15,12 +15,22 @@
     </resultMap>
     <resultMap id="BlogResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BlogBaseResultMap" >
         <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR" />
+        <association property="userinfo" resultMap="UserinfoBaseResultMap" />
+    </resultMap>
+    <resultMap id="UserinfoBaseResultMap" type="com.ndsc.blog.entity.Userinfo" >
+        <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER" />
+        <result column="real_name" property="realName" jdbcType="VARCHAR" />
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+        <result column="user_birthday" property="userBirthday" jdbcType="TIMESTAMP" />
+        <result column="user_pic" property="userPic" jdbcType="VARCHAR" />
+        <result column="user_create_time" property="userCreateTime" jdbcType="TIMESTAMP" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
     </resultMap>
     <insert id="insertCollection" parameterType="com.ndsc.blog.entity.Collect">
         insert into collection(collection_id,blog_id) values (#{collectionId},#{blogId})
     </insert>
     <select id="selectCollectionBlog" parameterType="java.lang.Integer" resultMap="BlogResultMapWithBLOBs">
-        select b.* from collection c,blog b where c.collection_id = #{collectionId} and c.blog_id = b.blog_id
+        select b.*,u.* from collection c,blog b,userinfo u where c.collection_id = #{collectionId} and c.blog_id = b.blog_id and b.user_id = u.user_id
     </select>
     <delete id="deleteCollection" parameterType="com.ndsc.blog.entity.Collect">
         delete from collection where collection_id = #{collectionId} and blog_id = #{blogId}
