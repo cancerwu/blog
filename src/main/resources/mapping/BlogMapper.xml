@@ -12,6 +12,14 @@
   <resultMap id="ResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BaseResultMap" >
     <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <resultMap id="UserBlogMap" type="com.ndsc.blog.entity.Blog"  >
+    <id column="blog_id" property="blogId" jdbcType="INTEGER" />
+    <result column="blog_title" property="blogTitle" jdbcType="VARCHAR" />
+    <result column="blog_create_time" property="blogCreateTime" jdbcType="TIMESTAMP" />
+    <result column="blog_pub_type" property="blogPubType" jdbcType="INTEGER" />
+    <result column="blog_read_num" property="blogReadNum" jdbcType="INTEGER" />
+    <result column="blog_content" property="blogContent" jdbcType="INTEGER" />
+  </resultMap>
 
   <sql id="Base_Column_List" >
     blog_id, blog_title, blog_create_time, blog_pub_type, blog_read_num, user_id
@@ -19,6 +27,13 @@
   <sql id="Blob_Column_List" >
     blog_content
   </sql>
+  <select id="searchUserBlog" resultMap="UserBlogMap" parameterType="java.lang.Integer">
+    select
+    blog_id,blog_title,blog_create_time,blog_content,blog_pub_type,blog_read_num
+    from blog
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
@@ -32,12 +47,8 @@
     where blog_id = #{blogId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Blog" >
-    insert into blog (blog_id, blog_title, blog_create_time, 
-      blog_pub_type, blog_read_num, user_id, 
-      blog_content)
-    values (#{blogId,jdbcType=INTEGER}, #{blogTitle,jdbcType=VARCHAR}, #{blogCreateTime,jdbcType=TIMESTAMP}, 
-      #{blogPubType,jdbcType=INTEGER}, #{blogReadNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{blogContent,jdbcType=LONGVARCHAR})
+    insert into blog (blog_title, blog_pub_type, blog_read_num, user_id, blog_content)
+    values (#{blogTitle,jdbcType=VARCHAR}, #{blogPubType,jdbcType=INTEGER}, #{blogReadNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{blogContent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Blog" >
     insert into blog

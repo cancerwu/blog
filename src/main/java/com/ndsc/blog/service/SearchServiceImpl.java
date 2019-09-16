@@ -21,17 +21,7 @@ public class SearchServiceImpl implements SearchService {
     private SolrTemplate solrTemplate;
     @Autowired
     private BlogMapper blogMapper;
-    @Override
-    public int addBlog(Blog blog) {
-        //像数据库插入数据
-        blogMapper.insertSelective(blog);
-        //维护solr
-        UpdateResponse updateResponse =solrTemplate.saveBean("blog", blog, Duration.ZERO);
-        solrTemplate.commit("blog");
 
-
-        return updateResponse.getStatus();
-    }
 
     @Override
     public List<Blog> searchBlog(String keyword) {
@@ -43,19 +33,18 @@ public class SearchServiceImpl implements SearchService {
         query.setOffset(0l);
         query.setRows(10);
         //设置排序规则
-         Sort sort=new Sort(Sort.Direction.ASC, "blogCreateTime");
+         Sort sort=new Sort(Sort.Direction.ASC, "id");
         query.addSort(sort);
         //查询
         ScoredPage<Blog> pages =solrTemplate.queryForPage("blog", query, Blog.class);
         System.out.println("pages.getTotal="+pages.getTotalElements());
         List<Blog> content=pages.getContent();
-
       System.out.println("sousuo chenggong ");
         return content;
     }
 
     @Override
-    public Blog getBlogById(int id) {
-        return blogMapper.selectByPrimaryKey(id);
+    public Blog getBlogById(int blogid) {
+        return blogMapper.selectByPrimaryKey(blogid);
     }
 }
