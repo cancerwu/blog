@@ -124,3 +124,12 @@ li{
     margin-left: 20px;
     line-height: 40px;
 }
+
+.loginheadpic{
+    width: 36px;
+    height: 36px;
+    float: right;
+    margin-top: 2px;
+    margin-right: 40px;
+    background-image: url("../images/headpic.jpg");
+}

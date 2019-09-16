@@ -34,7 +34,7 @@
                 <div class="searchtext">
                     <input type="text" id="searchtext" value="搜索框">
                 </div>
-                <input type="submit" class="searchbutton" value="搜索">
+                <input type="submit" onclick="return hhh()" class="searchbutton" value="搜索">
             </form>
             <div class="write">
                 <a href="#">
@@ -42,8 +42,12 @@
                 </a>
             </div>
             <div class="login">
-                <li><a href="#">登录</a></li>
-                <li><a href="#">注册</a></li>
+                <!--                <li><a href="blogIndex.html">登录</a></li>-->
+                <!--                <li><a href="blogIndex.html">注册</a></li>-->
+                <li><a href="#">消息</a></li>
+                <a href="userInfoIndex.html">
+                    <div class="loginheadpic"></div>
+                </a>
             </div>
         </div>
     </div>
@@ -82,13 +86,13 @@
                 <div class="changepassword">
                     <form id="changePas">
                         <div class="inputinfo">
-                            输入旧密码：&nbsp;<input id="oldpas" type="text" value="请输入旧密码">
+                            输入旧密码：&nbsp;<input name="oldpas"  type="text" value="请输入旧密码">
                         </div>
                         <div class="inputinfo">
-                            输入新密码：&nbsp;<input id="newpas" type="text" value="请输入新密码">
+                            输入新密码：&nbsp;<input name="newpas" type="text" value="请输入新密码">
                         </div>
                         <div class="inputinfo">
-                            确认新密码：&nbsp;<input id="againpas" type="text" value="请确认新密码">
+                            确认新密码：&nbsp;<input name="againpas" type="text" value="请确认新密码">
                         </div>
                         <div class="changesubmit">
                             <input type="submit" value="确认修改">
@@ -99,10 +103,10 @@
                 <div class="changetel">
                     <form id="changeTel">
                         <div class="inputinfo">
-                            输入旧手机号：&nbsp;<input id="oldtel" type="text" value="请输入旧手机号">
+                            输入旧手机号：&nbsp;<input name="oldtel" type="text" value="请输入旧手机号">
                         </div>
                         <div class="inputinfo">
-                            输入新手机号：&nbsp;<input id="newtel" type="text" value="请输入新手机号">
+                            输入新手机号：&nbsp;<input name="newtel" type="text" value="请输入新手机号">
                         </div>
                         <div class="changesubmit">
                             <input type="submit" value="确认修改">
@@ -112,19 +116,17 @@
                 <div class="changeEmail">
                     <form id="changeEmail">
                         <div class="inputinfo">
-                            输入旧邮箱：&nbsp;<input id="oldEmail" type="text" value="请输入旧邮箱">
+                            输入旧邮箱：&nbsp;<input name="oldEmail" type="text" value="请输入旧邮箱">
                         </div>
                         <div class="inputinfo">
-                            输入新邮箱：&nbsp;<input id="newEmail" type="text" value="请输入新邮箱">
+                            输入新邮箱：&nbsp;<input name="newEmail" type="text" value="请输入新邮箱">
                         </div>
                         <div class="changesubmit">
                             <input type="submit" value="确认修改">
                         </div>
                     </form>
                 </div>
-
             </div>
-
         </div>
     </div>
 
