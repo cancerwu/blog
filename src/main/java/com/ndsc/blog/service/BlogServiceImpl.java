@@ -92,6 +92,22 @@ public class BlogServiceImpl implements BlogService {
     }
     //****************************
 
+    @Override
+    public int selectFansCount(Integer blogerId) {
+        return relationMapper.selectFansCount(blogerId);
+    }
+
+    @Override
+    public int selectBlogerCount(Integer fansId) {
+        return relationMapper.selectBlogerCount(fansId);
+    }
+
+    @Override
+    public int selectCollectionCount(Integer collectionId) {
+        return collectMapper.selectCollectionCount(collectionId);
+    }
+    //****************************
+
 
 
 }

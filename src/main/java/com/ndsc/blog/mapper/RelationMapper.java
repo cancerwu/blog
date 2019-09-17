@@ -23,4 +23,8 @@ public interface RelationMapper {
 
     List<Userinfo> selectFans(Integer blogerId);
     //**********************
+    //**********************
+    int selectFansCount(Integer blogerId);
+
+    int selectBlogerCount(Integer fansId);
 }

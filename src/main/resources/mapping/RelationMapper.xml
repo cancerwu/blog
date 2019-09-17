@@ -31,6 +31,12 @@
   <select id="selectFans" parameterType="java.lang.Integer" resultMap="UserinfoBaseResultMap">
     select u.* from relation r,userinfo u where r.bloger_id = #{blogerId} and r.fans_id = u.user_id
   </select>
+  <select id="selectFansCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select count(*) from relation where bloger_id = #{blogerId}
+  </select>
+  <select id="selectBlogerCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select count(*) from relation where fans_id = #{fansId}
+  </select>
   <!--***********************************-->
   <insert id="insert" parameterType="com.ndsc.blog.entity.Relation" >
     insert into relation (bloger_id, fans_id)
