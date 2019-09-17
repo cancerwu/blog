@@ -31,6 +31,16 @@
     top: 80px;
     background-image: url(../images/login_chose.png);
 }
+#login button{
+    color: #4696af;
+    background-color: #eff0f2;
+    width: 150px;
+    height: 28px;
+    border: none;
+}
+#login button:hover{
+    cursor: pointer;
+}
 #login span{
 	display: block;
     margin-top: 30px;
@@ -63,6 +73,16 @@ ul{
 }
 #login_chose2{
 	width: 100px;
+    height: 30px;
+    background-color: #E6E1FA;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    margin: 20px;
+    margin-left: 178px;
+}
+#login_chose3{
+    width: 100px;
     height: 30px;
     background-color: #E6E1FA;
     border-radius: 20px;

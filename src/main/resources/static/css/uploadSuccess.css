@@ -1,0 +1,30 @@
+#paySucceed{
+	height: 500px;
+	width: 50%;
+	margin: auto;
+	position: relative;
+}
+#paySucceed img{
+	width: 50%;
+    height: 56%;
+    position: absolute;
+    left: 22%;
+    top: 13%;
+}
+#paySucceed span{
+	display: block;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #3d3d3d;
+    text-align: center;
+    line-height: 30px;
+    position: absolute;
+    left: 34%;
+    bottom: 13%;
+}
+#paySucceed h1{
+	position: absolute;
+    left: 33%;
+    bottom: 0%;
+}
