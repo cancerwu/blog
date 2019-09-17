@@ -5,6 +5,8 @@ import com.ndsc.blog.mapper.ResourcesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author 扶明方
  * @Date 2019/9/12 21:10
@@ -18,5 +20,10 @@ public class ResourcesServiceImpl implements ResourcesService {
     @Override
     public int uploadResource(Resources resources) {
         return resourcesMapper.insertSelective(resources);
+    }
+
+    @Override
+    public List<Resources> getAllResources() {
+        return resourcesMapper.getAllResources();
     }
 }
