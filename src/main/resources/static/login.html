@@ -13,6 +13,14 @@
             $("#login_chose2").click(function () {
                 $("#register").fadeIn(500);
             })
+            $("#eLogin").click(function () {
+                $("#login_check").hide();
+                $("#register").fadeIn(500);
+            })
+            $("#uLogin").click(function () {
+                $("#register").hide();
+                $("#login_check").fadeIn(500);
+            })
         })
     </script>
 </head>
@@ -22,11 +30,11 @@
         <a href="#"><img src="images/login_choujiang.jpg"></a>
     </div>
     <div id="login">
-        <span>注册登录</span>
+        <span>登录</span>
         <div id="login_chose">
             <ul>
                 <li id="login_chose1">账号登录</li>
-                <li id="login_chose2">账号注册</li>
+                <li id="login_chose2">邮箱登录</li>
             </ul>
         </div>
         <div id="login_check" style="display: none;">
@@ -37,19 +45,25 @@
                     <li>
                         <button>登录</button>
                     </li>
+                    <li>
+                        <button id="eLogin">邮箱登录</button>
+                    </li>
                 </ul>
             </div>
         </div>
         <div id="register" style="display: none;">
             <div id="register_text">
                 <ul>
-                    <li>用户：<input type="text" name="users"></li>
-                    <li>密码：<input type="password" name="passes"></li>
-                    <li>确认：<input type="password" name="repasses"></li>
-                    <li>邮箱：<input type="text" name="passes"></li>
-                    <li>手机：<input type="text" name="passes"></li>
+                    <li>邮箱：<input type="text" name="eMail"></li>
                     <li>
-                        <button>注册</button>
+                        <button>点击获取验证码</button>
+                    </li>
+                    <li>验证码：<input type="text" name="passes"></li>
+                    <li>
+                        <button>登录</button>
+                    </li>
+                    <li>
+                        <button id="uLogin">账号登录</button>
                     </li>
                 </ul>
             </div>
