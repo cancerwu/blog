@@ -118,15 +118,39 @@ public class BlogController {
     public int selectFansCount(Integer blogerId){
         return blogService.selectFansCount(blogerId);
     }
+    @RequestMapping("/selectFansCount1")
+    public int selectFansCount1(HttpServletRequest request){
 
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int blogerId= usersafeMapper.selectUserId(userName);
+        System.out.println(blogerId);
+        return blogService.selectFansCount(blogerId);
+    }
     @RequestMapping("/selectBlogerCount")
     public int selectBlogerCount(Integer fansId){
         return blogService.selectBlogerCount(fansId);
     }
+    @RequestMapping("/selectBlogerCount1")
+    public int selectBlogerCount1(HttpServletRequest request){
 
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int fansId = usersafeMapper.selectUserId(userName);
+        System.out.println(fansId);
+        return blogService.selectBlogerCount(fansId);
+    }
     @RequestMapping("/selectCollectionCount")
     public int selectCollectionCount(Integer collectionId){
         return blogService.selectCollectionCount(collectionId);
     }
+    @RequestMapping("/selectCollectionCount1")
+    public int selectCollectionCount1(HttpServletRequest request){
 
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int collectionId = usersafeMapper.selectUserId(userName);
+        System.out.println(collectionId);
+        return blogService.selectCollectionCount(collectionId);
+    }
 }
