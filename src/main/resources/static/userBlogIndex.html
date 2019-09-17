@@ -59,18 +59,18 @@
                         <span>DCW</span>
                     </div>
                 </div>
-                <div class="someinfo">
+                <div class="someinfo"  id="vue_fourinfo">
                     <div class="fourinfo">
                         <li>博客</li>
-                        <li>1</li>
+                        <li>{{blogCount}}</li>
                     </div>
                     <div class="fourinfo">
                         <li>关注</li>
-                        <li>1</li>
+                        <li>{{blogerCount}}</li>
                     </div>
                     <div class="fourinfo">
                         <li>粉丝</li>
-                        <li>1</li>
+                        <li>{{fansCount}}</li>
                     </div>
                     <div class="fourinfo">
                         <li>评论</li>
@@ -84,14 +84,14 @@
                     <img src="images/blogIndex/leftbottom.png">
                 </div>
             </div>
-            <div class="blog" id="vueblog">
+            <div class="blog" id="vue_blog">
                 <li v-for="(b , index) in blogs">
                     <div class="blogtitle">
                         文章标题:{{b.blogTitle}}
                     </div>
                     <div class="bloginfo">
                         <div class="blogcontent">
-                            文章部分内容
+                            文章部分内容:{{b.blogContent}}
                         </div>
                         <div class="blogauthor">
                             <div class="authorpic">
@@ -101,49 +101,7 @@
                                 作者用户名:{{userinfo.realName}}
                             </div>
                             <div class="blogreadnum">
-                                博客阅读量 丨{{b.blogReadNum}} <a href="#">评论</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="blogtitle">
-                        文章标题
-                    </div>
-                    <div class="bloginfo">
-                        <div class="blogcontent">
-                            文章部分内容
-                        </div>
-                        <div class="blogauthor">
-                            <div class="authorpic">
-                                头像
-                            </div>
-                            <div class="authorname">
-                                作者用户名
-                            </div>
-                            <div class="blogreadnum">
-                                博客阅读量 丨 <a href="#">评论</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="blogtitle">
-                        文章标题
-                    </div>
-                    <div class="bloginfo">
-                        <div class="blogcontent">
-                            文章部分内容
-                        </div>
-                        <div class="blogauthor">
-                            <div class="authorpic">
-                                头像
-                            </div>
-                            <div class="authorname">
-                                作者用户名
-                            </div>
-                            <div class="blogreadnum">
-                                博客阅读量 丨 <a href="#">评论</a>
+                                博客阅读量 {{b.blogReadNum}} 丨<a href="#">评论</a>
                             </div>
                         </div>
                     </div>
@@ -154,45 +112,72 @@
 </body>
 <script>
     var userId = 0;
-    var vue_blog = new Vue({
-        el:"#vueblog",
+    var vueblog = new Vue({
+        el:"#vue_blog",
         data:{
             blogs:[],
             userinfo:{}
         }
     });
+    var vuefourinfo = new Vue({
+        el:"#vue_fourinfo",
+        data:{
+            blogCount:0,
+            blogerCount:0,
+            fansCount:0,
+        }
+    })
+
     $(function () {
-        alert("start")
         $.ajax({
             url:"http://localhost:8080/getUserId",
             type:"get",
             dataType:"json",
             success:function (data) {
                 userId = data;
-            }
-        });
-        $.ajax({
-            url:"http://localhost:8080/selectByUserinfoGetBlog",
-            type:"get",
-            data:{"userId":userId},
-            dataType:"json",
-            success:function (data) {
-                vue_blog.userinfo={
-                    realName:data.realName,
-                    userSex:data.userSex,
-                    userBirthday:data.userBirthday,
-                    userPic:data.userPic,
-                    userCreateTime:data.userCreateTime,
-                };
-                for(var i = 0 ; i<data.blogList.length;i++){
-                    vue_blog.blogs.push({
-                        blogTitle:data.blogList[i].blogTitle,
-                        blogCreateTime:data.blogList[i].blogCreateTime,
-                        blogPubType:data.blogList[i].blogPubType,
-                        blogReadNum:data.blogList[i].blogReadNum,
-                        blogContent:data.blogList[i].blogContent,
-                    })
-                }
+                $.ajax({
+                    url:"http://localhost:8080/selectByUserinfoGetBlog",
+                    type:"post",
+                    data:{"userId":userId},
+                    dataType:"json",
+                    success:function (data) {
+                        vueblog.userinfo={
+                            realName:data.realName,
+                            userSex:data.userSex,
+                            userBirthday:data.userBirthday,
+                            userPic:data.userPic,
+                            userCreateTime:data.userCreateTime,
+                        };
+                        vuefourinfo.blogCount = data.blogList.length;
+                        for(var i = 0 ; i<data.blogList.length;i++){
+                            vueblog.blogs.push({
+                                blogTitle:data.blogList[i].blogTitle,
+                                blogCreateTime:data.blogList[i].blogCreateTime,
+                                blogPubType:data.blogList[i].blogPubType,
+                                blogReadNum:data.blogList[i].blogReadNum,
+                                blogContent:data.blogList[i].blogContent,
+                            })
+                        }
+                    }
+                });
+                $.ajax({
+                    url:"http://localhost:8080/selectBlogerCount",
+                    type:"get",
+                    data:{"fansId":userId},
+                    dataType:"",
+                    success:function (data){
+                        vuefourinfo.blogerCount = data;
+                    }
+                });
+                $.ajax({
+                    url:"http://localhost:8080/selectFansCount",
+                    type:"get",
+                    data:{"blogerId":userId},
+                    dataType:"",
+                    success:function (data){
+                        vuefourinfo.fansCount = data;
+                    }
+                })
             }
         });
     })
