@@ -1,5 +1,39 @@
 $(function () {
+    $.ajax({
+        url: "/selectByBlogtagGetBlog",
+        type: "post",
+        dataType: "json",
+        data:{"tagName":"java"},
 
+        success: function (data) {
+
+
+            // var $li2=(" <div class=\"idinfo1\">" +
+            //     "<li>用户名：<span>"+data1+"</span></li>\n" +
+            //     "                            <ul>\n" +
+            //     "                                <li>粉丝数：<span>1</span></li>\n" +
+            //     "                                <li>关注数：<span>1</span></li>\n" +
+            //     "                            </ul>" +
+            //     "</div>");
+            // $("div[class='idinfo']").append($li2);
+            for (var i = 0; i < data.length; i++) {
+                alert(data[i].userinfo.realName);
+                var $div = ("<li>\n" +
+                    "                        <div class=\"blogtitle\">" + data[i].blogTitle + "</div>\n" +
+                    "                        <div class=\"bloginfo\">\n" +
+                    "                            <div class=\"blogcontent\">" + data[i].blogContent + "</div>\n" +
+                    "                            <div class=\"blogauthor\">\n" +
+                    "                                <div class=\"authorpic\">头像</div>\n" +
+                    "                                <div class=\"authorname\">" + data[i].userinfo.realName+ "</div>\n" +
+                    "                                <div class=\"blogreadnum\">" + data[i].blogReadNum+"<a href=\"#\">浏览</a></div>\n" +
+                    "                            </div>\n" +
+                    "                        </div>\n" +
+                    "                    </li>")
+                $("div[class='blog']").append($div);
+            }
+
+        }
+    })
     $("#searchtext").click(function () {
         var str = "搜索框"
         if($(this).val() == str) {

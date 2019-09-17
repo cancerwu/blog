@@ -16,11 +16,11 @@ public class SendSmsController {
     private SendSmsService sendSmsService;
     @RequestMapping("/getSmsCode")
     @ResponseBody
-    public String getCheckCode(String tel) {
+    public String getCheckCode(String userTel) {
         String code = String.valueOf(new Random().nextInt(899999) + 100000);
 
         try {
-            sendSmsService.sendSms(tel,code);
+            sendSmsService.sendSms(userTel,code);
         } catch (Exception e) {
             return "";
         }

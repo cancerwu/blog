@@ -6,6 +6,36 @@
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/vipBuy.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.js"></script>
+    <script>
+        $(function () {
+            $(".buyVip").click(function () {
+                var id = $(this).prev().prev().val();
+                $.ajax({
+                    url: "/pay",
+                    data: {"vipId": id, "orderNo": GetDateNow()},
+                    type: "post",
+                    dataType: "text",
+                    success: function (data) {
+                       location.href = "/pay?vipId=" + id + "&orderNo=" + GetDateNow();
+                    }
+                })
+            });
+
+            function GetDateNow() {
+                var vNow = new Date();
+                var sNow = "";
+                sNow += String(vNow.getFullYear());
+                sNow += String(vNow.getMonth() + 1);
+                sNow += String(vNow.getDate());
+                sNow += String(vNow.getHours());
+                sNow += String(vNow.getMinutes());
+                sNow += String(vNow.getSeconds());
+                sNow += String(vNow.getMilliseconds());
+                return sNow;
+            };
+        })
+
+    </script>
 </head>
 <body>
 <div class="top">
@@ -48,8 +78,9 @@
             <img src="images/vip1.png">
         </div>
         <div class="vipText">
-            <span>会员月卡:98元</span>
-            <a href="#"><img src="images/buy.png"></a>
+            <input type="hidden" value="1">
+            <span>VIP月卡:98元</span>
+            <a class="buyVip" href="#"><img src="images/buy.png"></a>
         </div>
     </div>
     <div class="vipChose">
@@ -57,8 +88,9 @@
             <img src="images/vip2.png">
         </div>
         <div class="vipText">
-            <span>会员年卡:198元</span>
-            <a href="#"><img src="images/buy.png"></a>
+            <input type="hidden" value="2">
+            <span>VIP年卡:298元</span>
+            <a class="buyVip" href="#"><img src="images/buy.png"></a>
         </div>
     </div>
     <div class="vipChose">
@@ -66,8 +98,9 @@
             <img src="images/vip3.png">
         </div>
         <div class="vipText">
-            <span>超级会员:298元</span>
-            <a href="#"><img src="images/buy.png"></a>
+            <input type="hidden" value="3">
+            <span>超级VIP年卡:388元</span>
+            <a class="buyVip" href="#"><img src="images/buy.png"></a>
         </div>
     </div>
     <div class="vipChose">
@@ -75,8 +108,9 @@
             <img src="images/vip4.png">
         </div>
         <div class="vipText">
-            <span>终极会员:398元</span>
-            <a href="#"><img src="images/buy.png"></a>
+            <input type="hidden" value="4">
+            <span>VIP两年卡:496元</span>
+            <a class="buyVip" href="#"><img src="images/buy.png"></a>
         </div>
     </div>
     <div class="vipChose">

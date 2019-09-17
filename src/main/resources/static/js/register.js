@@ -1,11 +1,15 @@
 
 $(function () {
     var phoneFlag = 0;
+    var checkFlag=0;
     var nameFlag = 0;
     var registerFlag = 0;
     var agreeFlag = 0;
+    var code=0;
     $("button[name='next']").click(function() {
-        if (phoneFlag == 1) {
+        if (code==$("#vcodeinput").val())
+        {checkFlag=1;
+        if (checkFlag==1) {
             $(".main").css("display", "none");
             $(".main2").css("display", "block");
             $(".pro-step .step-index").css("background-color", "white");
@@ -17,6 +21,13 @@ $(function () {
         } else {
             alert("请先通过手机号验证！");
         }
+
+        }
+        else{
+            alert("输入正确的手机验证码")
+        }
+
+
     });
 
     $("button[name='checkphone']").click(function () {
@@ -29,28 +40,58 @@ $(function () {
             phoneFlag = 0;
         }else{
             $.ajax({
-                url:"/checkSamePhone",
+                url:"/getSmsCode",
                 dataType:"text",
                 type:"post",
                 // async:false,
                 // contentType:"application/json;charset-UTF-8",
                 data:{"userTel":$("input[name='tel']").val(),},
                 success:function (data) {
-                    if(data>=1 ){
-                        alert("该手机号已被注册");
-                        phoneFlag = 0;
-                        $("button[name='checkphone']").css("border-color","red");
-                    }
-                    else{
-                        alert("手机号验证成功！");
-                        phoneFlag = 1;
-                        $("button[name='checkphone']").css("border-color","green");
-                    }
+                    code = data;
+
                 }
             })
+            // $.ajax({
+            //     url:"/checkSamePhone",
+            //     dataType:"text",
+            //     type:"post",
+            //     // async:false,
+            //     // contentType:"application/json;charset-UTF-8",
+            //     data:{"userTel":$("input[name='tel']").val(),},
+            //     success:function (data1) {
+            //
+            //         if(data1>=1 ){
+            //             alert("该手机号已被注册");
+            //             phoneFlag = 0;
+            //             $("button[name='checkphone']").css("border-color","red");
+            //         }
+            //         else{
+            //             alert("手机号验证成功！");
+            //             phoneFlag = 1;
+            //             $("button[name='checkphone']").css("border-color","green");
+            //
+            //         }
+            //     }
+            // })
         }
     });
+    $("button[name ='getcode']").click(function () {
+        $("button[name='getcode']").css("outline","none");
 
+            $.ajax({
+                url:"/getSmsCode",
+                dataType:"text",
+                type:"post",
+                // async:false,
+                // contentType:"application/json;charset-UTF-8",
+                data:{"userTel":$("input[name='tel']").val(),},
+                success:function (data) {
+                    code = data;
+
+                }
+            })
+
+    })
     $("#userregister").validate({
         errorPlacement: 'span',
         errorPlacement: function(error, element){
@@ -108,18 +149,17 @@ $(function () {
 
         submitHandler:function(form){
             $.ajax({
-                url:"/insertUser",
+                url:"/register",
                 type:"post",
                 datatype:"text",
                 data:{
                     "userName":$("input[name='name']").val(),
                     "userTel":$("input[name='tel']").val(),
-                    "userPassword":$("input[name='password']").val(),
+                    "password":$("input[name='password']").val(),
                     "userEmail":$("input[name='email']").val()
                 },
                 success:function () {
 
-                    alert("注册成功！");
                     $(".main2").css("display","none");
                     $(".main3").css("display","block");
                     $(".pro-step2 .step-index").css("background-color","white");

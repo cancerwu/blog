@@ -203,7 +203,7 @@ input{
     height: 30px;
     float: right;
 }
-.checkvcode{
+#vcodeinput{
     width: 398px;
     height: 54px;
     background-color: white;

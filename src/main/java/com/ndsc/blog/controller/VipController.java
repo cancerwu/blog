@@ -6,6 +6,7 @@ import com.alipay.api.request.*;
 import com.ndsc.blog.config.AlipayConfig;
 import com.ndsc.blog.entity.Order;
 import com.ndsc.blog.entity.Vip;
+import com.ndsc.blog.mapper.VipMapper;
 import com.ndsc.blog.service.LoginService;
 import com.ndsc.blog.service.OrderService;
 import com.ndsc.blog.service.VipService;
@@ -39,7 +40,7 @@ public class VipController {
     Order order = new Order();
 
     @RequestMapping("/pay")
-    public String pay(Vip vip, String orderNo, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, AlipayApiException {
+    public String pay(Integer vipId, String orderNo, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, AlipayApiException {
         //获得初始化的AlipayClient
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
 
@@ -47,17 +48,18 @@ public class VipController {
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
-
+        Vip vip = vipService.selectById(vipId);
+        System.out.println(vip);
         //生成订单号
 
         //商户订单号，商户网站订单系统中唯一订单号，必填
-        String out_trade_no = new String(orderNo.getBytes("ISO-8859-1"), "UTF-8");
+        String out_trade_no = new String(orderNo.getBytes(), "UTF-8");
         //付款金额，必填
-        String total_amount = new String(String.valueOf(vip.getVipPrice()).getBytes("ISO-8859-1"), "UTF-8");
+        String total_amount = new String(String.valueOf(vip.getVipPrice()).getBytes(), "UTF-8");
         //订单名称，必填
-        String subject = new String(vip.getVipName().getBytes("ISO-8859-1"), "UTF-8");
+        String subject = new String(vip.getVipName().getBytes(), "UTF-8");
         //商品描述，可空
-        String body = new String(vip.getVipDescription().getBytes("ISO-8859-1"), "UTF-8");
+        String body = new String(vip.getVipDescription().getBytes(), "UTF-8");
 
         order.setProductName(subject);
         order.setOrderTotal(Integer.parseInt(total_amount));
@@ -104,7 +106,7 @@ public class VipController {
 
         boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
 
-        //——请在这里编写您的程序（以下代码仅作参考）——
+        //——请在这里编写您的程序（以下代码仅作参考）123456——
         if (signVerified) {
             //商户订单号
             String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"), "UTF-8");
@@ -129,7 +131,7 @@ public class VipController {
         return "<a id=\"ak\" href='paySuccess.html'>跳转</a>\n" +
                 "<script>\n" +
                 "    document.getElementById(\"ak\").click();\n" +
-                "</script>" ;
+                "</script>";
         //——请在这里编写您的程序（以上代码仅作参考）——
     }
 

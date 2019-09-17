@@ -32,7 +32,7 @@ public class ResourcesController {
     @RequestMapping("upload")
     public String uploadResource(Resources resources, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
-        resources.setUploaderId(new LoginController().getUserId(request));
+//        resources.setUploaderId(new LoginController().getUserId(request));
         try {
             resources.setResourcesAddress(new FileUpload().upload(request, file));
         } catch (Exception e) {
