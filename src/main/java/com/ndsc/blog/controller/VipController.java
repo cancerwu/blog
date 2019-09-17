@@ -106,7 +106,7 @@ public class VipController {
 
         boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
 
-        //——请在这里编写您的程序（以下代码仅作参考）——
+        //——请在这里编写您的程序（以下代码仅作参考）1——
         if (signVerified) {
             //商户订单号
             String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"), "UTF-8");
