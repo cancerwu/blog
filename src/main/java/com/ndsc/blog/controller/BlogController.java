@@ -34,7 +34,15 @@ public class BlogController {
     public Userinfo getUserinfo(int userId){
         return blogService.selectUserId(userId);
     }
+    @RequestMapping("/getUserinfo1")
+    public Userinfo getUserinfo(HttpServletRequest request){
 
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int userId = usersafeMapper.selectUserId(userName);
+        System.out.println(userId);
+        return blogService.selectUserId(userId);
+    }
     @RequestMapping("/updateUserinfo")
     public int updateUserinfo(@RequestBody Userinfo userinfo){
         return blogService.updateUserinfo(userinfo);
