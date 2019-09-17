@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.List;
 
 /**
  * @Author 扶明方
@@ -44,6 +45,7 @@ public class ResourcesController {
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";
     }
+
     //上传头像的
     @RequestMapping("uploadFace")
     public String uploadFace(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws UnsupportedEncodingException {
@@ -103,5 +105,10 @@ public class ResourcesController {
             }
         }
         return "下载失败";
+    }
+
+    @RequestMapping("getAllResources")
+    public List<Resources> getAllResources() {
+        return resourcesService.getAllResources();
     }
 }
