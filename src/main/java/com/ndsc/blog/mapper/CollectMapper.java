@@ -15,4 +15,6 @@ public interface CollectMapper {
     List<Blog> selectCollectionBlog(Integer collectionId);
 
     int deleteCollection(Collect collection);
+
+    int selectCollectionCount(Integer collectionId);
 }

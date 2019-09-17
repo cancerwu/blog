@@ -114,4 +114,19 @@ public class BlogController {
         return blogService.deleteCollection(collection);
     }
 
+    @RequestMapping("/selectFansCount")
+    public int selectFansCount(Integer blogerId){
+        return blogService.selectFansCount(blogerId);
+    }
+
+    @RequestMapping("/selectBlogerCount")
+    public int selectBlogerCount(Integer fansId){
+        return blogService.selectBlogerCount(fansId);
+    }
+
+    @RequestMapping("/selectCollectionCount")
+    public int selectCollectionCount(Integer collectionId){
+        return blogService.selectCollectionCount(collectionId);
+    }
+
 }

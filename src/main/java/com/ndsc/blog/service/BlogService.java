@@ -34,5 +34,11 @@ public interface BlogService {
 
     int deleteCollection(com.ndsc.blog.entity.Collect collection);
 
+    int selectFansCount(Integer blogerId);
+
+    int selectBlogerCount(Integer fansId);
+
+    int selectCollectionCount(Integer collectionId);
+
 
 }

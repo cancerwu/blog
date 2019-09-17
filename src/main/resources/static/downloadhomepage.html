@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/downloadhomepage.css" rel="stylesheet">
+    <script src="js/jquery-3.4.1.js"></script>
+</head>
+<body>
+<div id="dhp_top">
+    <img src="images/downloadhomepageImg/csdnlogo.png" class="option">
+    <a class="option">首页</a>
+    <a class="option">博客</a>
+    <a class="option">学院</a>
+    <a class="option">下载</a>
+    <a class="option">论坛</a>
+
+    <a class="option">APP</a>
+    <a class="option">回答</a>
+    <a class="option">商城</a>
+    <a class="option">活动</a>
+    <a class="option">VIP</a>
+
+    <a class="option">专题</a>
+    <a class="option">招聘</a>
+    <a class="option">ITeye</a>
+    <a class="option">GitChat</a>
+    <a class="option">图文课</a>
+    <div id="dhp_top_input">
+        <input name="search" type="text">
+        <span id="dhp_top_input_span">搜索</span>
+    </div>
+    <a class="funct">
+        <img src="images/downloadhomepageImg/csdn-xie.png">
+        <span class="option">写博客</span>
+    </a>
+    <a class="funct">
+        <img src="images/downloadhomepageImg/message-icon.png">
+        <span class="option">消息</span>
+    </a>
+    <a class="funct">
+        <img src="images/downloadhomepageImg/pic.jpg">
+        <span class="option">*</span>
+    </a>
+</div>
+<div id="dhp_body">
+    <div id="dhp_body_option">
+        <span class="menu">代码资源</span>
+        <span class="menu">最新上传</span>
+        <div id="dhp_body_option_search">
+            <input name="localsearch" type="text">
+            <span id="dhp_body_option_search_span">搜索</span>
+        </div>
+    </div>
+    <div id="dhp_body_list">
+        <div class="blogs" v-for="( blog , index ) in blogs">
+            <div class="filetype"><img src="images/downloadhomepageImg/pdf.png"></div>
+            <a class="filename">施耐德ATNSX自动转换开关产品目录.pdf</a>
+            <div class="fileinfo">
+                <span>上传者：</span>
+                <em>meng</em>
+                <span>上传时间：</span>
+                <em>2019-09-17</em>
+            </div>
+            <strong>
+                <span>积分/C币：</span>
+                <em>5</em>
+            </strong>
+        </div>
+    </div>
+</div>
+</body>
+</html>
