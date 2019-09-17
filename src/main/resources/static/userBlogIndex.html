@@ -7,6 +7,8 @@
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/indexBottom.css" rel="stylesheet">
 </head>
+<script src="js/vue.min.js"></script>
+<script src="js/jquery-3.4.1.js"></script>
 <body>
     <div class="top">
     <div class="w">
@@ -82,10 +84,10 @@
                     <img src="images/blogIndex/leftbottom.png">
                 </div>
             </div>
-            <div class="blog">
-                <li>
+            <div class="blog" id="vueblog">
+                <li v-for="(b , index) in blogs">
                     <div class="blogtitle">
-                        文章标题
+                        文章标题:{{b.blogTitle}}
                     </div>
                     <div class="bloginfo">
                         <div class="blogcontent">
@@ -93,13 +95,13 @@
                         </div>
                         <div class="blogauthor">
                             <div class="authorpic">
-                                头像
+                                头像:{{userinfo.userPic}}
                             </div>
                             <div class="authorname">
-                                作者用户名
+                                作者用户名:{{userinfo.realName}}
                             </div>
                             <div class="blogreadnum">
-                                博客阅读量 丨 <a href="#">评论</a>
+                                博客阅读量 丨{{b.blogReadNum}} <a href="#">评论</a>
                             </div>
                         </div>
                     </div>
@@ -150,4 +152,49 @@
         </div>
     </div>
 </body>
+<script>
+    var userId = 0;
+    var vue_blog = new Vue({
+        el:"#vueblog",
+        data:{
+            blogs:[],
+            userinfo:{}
+        }
+    });
+    $(function () {
+        alert("start")
+        $.ajax({
+            url:"http://localhost:8080/getUserId",
+            type:"get",
+            dataType:"json",
+            success:function (data) {
+                userId = data;
+            }
+        });
+        $.ajax({
+            url:"http://localhost:8080/selectByUserinfoGetBlog",
+            type:"get",
+            data:{"userId":userId},
+            dataType:"json",
+            success:function (data) {
+                vue_blog.userinfo={
+                    realName:data.realName,
+                    userSex:data.userSex,
+                    userBirthday:data.userBirthday,
+                    userPic:data.userPic,
+                    userCreateTime:data.userCreateTime,
+                };
+                for(var i = 0 ; i<data.blogList.length;i++){
+                    vue_blog.blogs.push({
+                        blogTitle:data.blogList[i].blogTitle,
+                        blogCreateTime:data.blogList[i].blogCreateTime,
+                        blogPubType:data.blogList[i].blogPubType,
+                        blogReadNum:data.blogList[i].blogReadNum,
+                        blogContent:data.blogList[i].blogContent,
+                    })
+                }
+            }
+        });
+    })
+</script>
 </html>

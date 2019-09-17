@@ -36,7 +36,7 @@ public class BlogController {
     }
 
     @RequestMapping("/updateUserinfo")
-    public int updateUserinfo(@RequestBody Userinfo userinfo){
+    public int updateUserinfo(Userinfo userinfo){
         return blogService.updateUserinfo(userinfo);
     }
 
@@ -83,7 +83,8 @@ public class BlogController {
 
     @RequestMapping("/selectByUserinfoGetBlog")
     public Userinfo selectByUserinfoGetBlog(int userId){
-        return blogService.selectByUserinfoGetBlog(userId);
+        Userinfo userinfo = blogService.selectByUserinfoGetBlog(userId);
+        return userinfo;
     }
 
     @RequestMapping("/selectByBlogtagGetBlog")
