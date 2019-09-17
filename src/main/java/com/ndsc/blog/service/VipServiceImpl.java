@@ -21,4 +21,9 @@ public class VipServiceImpl implements VipService {
     public List<Vip> selectAll() {
         return vipMapper.selectAll();
     }
+
+    @Override
+    public Vip selectById(Integer vipId) {
+        return vipMapper.selectById(vipId);
+    }
 }

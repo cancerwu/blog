@@ -1,58 +1,68 @@
-#main{
-	width: 100%;
-	border: 1px solid lightgrey;
-	padding-left: 50px;
-	padding-right: 50px;
-	background-image: url(../images/login_background.jpg);
+#main {
+    width: 100%;
+    border: 1px solid lightgrey;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-image: url(../images/login_background.jpg);
 }
-.vipChose{
-	width: 300px;
-	height: 250px;
-	float: left;
+
+.vipChose {
+    width: 300px;
+    height: 250px;
+    float: left;
 }
-.vipImg{
-	width: 100%;
+
+.vipImg {
+    width: 100%;
     height: 60%;
     position: relative;
 }
-.vipImg img{
-	width: 90%;
-	height:90%;
-	position: absolute;
-	left: 5%;
+
+.vipImg img {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    left: 5%;
     top: 10%;
 }
-.vipImg img:hover{
-	/*transform: scale(1.1);*/
-	border: 4px solid red;
-	border-radius: 20px;
+
+.vipImg img:hover {
+    /*transform: scale(1.1);*/
+    border: 4px solid red;
+    border-radius: 20px;
 }
-.vipText{
-	width: 100%;
-	height:40%;
-	position: relative;
+
+.vipText {
+    width: 100%;
+    height: 40%;
+    position: relative;
 }
-.vipText span{
-	font-size: 20px;
+
+.vipText span {
+    font-size: 20px;
     color: #ca0c16;
     font-weight: bold;
     position: absolute;
     top: 7%;
     left: 26%;
 }
-.vipText img{
-	position: absolute;
+
+.vipText img {
+    position: absolute;
     top: 45%;
     left: 20%;
     height: 50%;
 }
-.vipText img:hover{
-	/*transform: scale(1.1);*/
-	transition: 2s;
+
+.vipText img:hover {
+    /*transform: scale(1.1);*/
+    transition: 2s;
 }
-#bottom{
+
+#bottom {
     width: 100%;
 }
-#bottom img{
+
+#bottom img {
     width: 100%;
 }

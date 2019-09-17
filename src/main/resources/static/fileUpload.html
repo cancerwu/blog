@@ -8,51 +8,57 @@
     <script src="js/jquery-3.4.1.js"></script>
 </head>
 <body>
-	<div class="top">
-        <div class="w">
-            <div class="logo"></div>
-            <div class="nav">
-                <li><a href="blogIndex.html">首页</a></li>
-                <li><a href="blogIndex.html">博客</a></li>
-                <li><a href="blogIndex.html">下载</a></li>
-                <li><a href="blogIndex.html">会员</a></li>
-                <li><a href="blogIndex.html">APP</a></li>
-                <li><a href="blogIndex.html">论坛</a></li>
-                <li><a href="blogIndex.html">商城</a></li>
-                <li><a href="blogIndex.html">问答</a></li>
-                <li><a href="blogIndex.html">课程</a></li>
-                <li><a href="blogIndex.html">客服</a></li>
+<div class="top">
+    <div class="w">
+        <div class="logo"></div>
+        <div class="nav">
+            <li><a href="blogIndex.html">首页</a></li>
+            <li><a href="blogIndex.html">博客</a></li>
+            <li><a href="blogIndex.html">下载</a></li>
+            <li><a href="blogIndex.html">会员</a></li>
+            <li><a href="blogIndex.html">APP</a></li>
+            <li><a href="blogIndex.html">论坛</a></li>
+            <li><a href="blogIndex.html">商城</a></li>
+            <li><a href="blogIndex.html">问答</a></li>
+            <li><a href="blogIndex.html">课程</a></li>
+            <li><a href="blogIndex.html">客服</a></li>
+        </div>
+        <form id="search">
+            <div class="searchtext">
+                <input type="text" id="searchtext" value="搜索框">
             </div>
-            <form id="search">
-                <div class="searchtext">
-                    <input type="text" id="searchtext" value="搜索框">
-                </div>
-                <input type="submit" class="searchbutton" value="搜索">
-            </form>
-            <div class="write">
-                <a href="#">
-                    写&nbsp;博&nbsp;客
-                </a>
-            </div>
-            <div class="login">
-                <li><a href="blogIndex.html">登录</a></li>
-                <li><a href="blogIndex.html">注册</a></li>
-            </div>
+            <input type="submit" class="searchbutton" value="搜索">
+        </form>
+        <div class="write">
+            <a href="#">
+                写&nbsp;博&nbsp;客
+            </a>
+        </div>
+        <div class="login">
+            <li><a href="blogIndex.html">登录</a></li>
+            <li><a href="blogIndex.html">注册</a></li>
         </div>
     </div>
-    <div id="main">
-    	<div id="upLoad">
-    		<span>上传资源</span>
-    	</div>
-    	<div id="upLoadFile">
-    		<input type="file" name="fileUpload">
-    	</div>
-    	<div id="submitFile">
-    		<button id="submit">提交</button>
-    	</div>
+</div>
+<div id="main">
+    <div id="upLoad">
+        <span>上传资源</span>
     </div>
-    <div id="bottom">
-		<img src="images/bottom.png">	
-	</div>
+
+    <form id="formId" action="/upload" method="post" enctype="multipart/form-data">
+        资源名称：<input type="text" name="resourcesName" placeholder="请输入资源名称">
+        <div id="upLoadFile">
+            文件：<input type="file" name="file">
+        </div>
+        <div id="submitFile">
+            <button id="submit">提交</button>
+        </div>
+    </form>
+
+</div>
+<div id="bottom">
+    <img src="images/bottom.png">
+</div>
+
 </body>
 </html>

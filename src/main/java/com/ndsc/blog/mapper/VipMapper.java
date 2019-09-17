@@ -17,6 +17,8 @@ public interface VipMapper {
 
     List<Vip> selectAll();
 
+    Vip selectById(Integer vipId);
+
     int updateByPrimaryKeySelective(Vip record);
 
     int updateByPrimaryKey(Vip record);
