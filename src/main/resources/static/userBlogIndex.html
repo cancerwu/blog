@@ -164,7 +164,7 @@
                     url:"http://localhost:8080/selectBlogerCount",
                     type:"get",
                     data:{"fansId":userId},
-                    dataType:"",
+                    dataType:"json",
                     success:function (data){
                         vuefourinfo.blogerCount = data;
                     }
@@ -173,7 +173,7 @@
                     url:"http://localhost:8080/selectFansCount",
                     type:"get",
                     data:{"blogerId":userId},
-                    dataType:"",
+                    dataType:"json",
                     success:function (data){
                         vuefourinfo.fansCount = data;
                     }
