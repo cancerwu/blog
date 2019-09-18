@@ -17,7 +17,9 @@
     user_id, user_name, password, user_email, user_tel, user_status, user_money, user_integral, 
     user_role
   </sql>
-
+    <select id="UsersafeMapper" resultType="java.lang.Integer">
+    select * from usersafe
+  </select>
     <!--******************************************-->
     <update id="updateUsersafe" parameterType="com.ndsc.blog.entity.Usersafe">
         update usersafe

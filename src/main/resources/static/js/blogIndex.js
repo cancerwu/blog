@@ -1,6 +1,6 @@
 $(function () {
-   $(".login").children().eq(2).css("display","none")
-   $(".login").children().eq(3).css("display","none")
+//    $(".login").children().eq(2).css("display","none")
+   // $(".login").children().eq(3).css("display","none")
 
     //$(".login").children().eq(2).css("display","block")
     //$(".login").children().eq(3).css("display","block")
@@ -9,34 +9,27 @@ $(function () {
 
 
 
-    $.ajax({
-        url: "/selectByBlogtagGetBlog",
-        type: "post",
-        dataType: "json",
-        data:{"tagName":"java"},
-                success: function (data) {
-                        $.ajax({
-                            url: "/getUserId",
-                            type: "post",
-                            dataType: "json",
-
-                    success: function (data1) {
-
+            $.ajax({
+                url: "/getUserId",
+                type: "post",
+                dataType: "json",
+                success: function (data1) {
+                    $.ajax({
+                    url: "/selectByBlogtagGetBlog",
+                    type: "post",
+                    dataType: "json",
+                    data:{"tagName":"java"},
+                    success: function (data) {
                     if (data1>0) {
                         $(".login").children().eq(2).css("display","block")
                         $(".login").children().eq(3).css("display","block")
                         $(".login").children().eq(0).css("display","none")
                         $(".login").children().eq(1).css("display","none")
-
-                        // $.cookie("userid",data1);
-                        // // $.cookie("userid");
                     }
                     else {
                         $(".login").children().eq(2).css("display","none")
                         $(".login").children().eq(3).css("display","none")
                     }
-
-
                     for (var i = 0; i < data.length; i++) {
                         // alert(data[i].userinfo.realName);
                         var $div = ("<li>\n" +
@@ -67,7 +60,6 @@ $(function () {
         alert("success")
         alert($(".leftlabel").children().eq(0).text())
     })
-
 
 
 })
