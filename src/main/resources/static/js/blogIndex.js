@@ -1,4 +1,13 @@
 $(function () {
+    $(".login").children().eq(2).css("display","none")
+    $(".login").children().eq(3).css("display","none")
+
+    // $(".login").children().eq(2).css("display","block")
+    // $(".login").children().eq(3).css("display","block")
+    // $(".login").children().eq(0).css("display","none")
+    // $(".login").children().eq(1).css("display","none")
+
+
     $.ajax({
         url: "/selectByBlogtagGetBlog",
         type: "post",
