@@ -31,5 +31,55 @@ $(function () {
             }
         })
     })
+    var userTel;
+    var code;
+    $("#pGetCode").click(function () {
+        userTel =$("#Tel").val();
+        var flag = 0;
+        var reg = /(1[3-9]\d{9}$)/;
+        if (!userTel){
+            alert("手机号不能为空!");
+        }else if(!reg.test(userTel)){
+            alert("不合法的手机号，请重新输入！")
+        }else{
+            $.ajax({
+                url :"/checkSamePhone",
+                type:"post",
+                dataType:"text",
+                data:{'userTel':userTel},
+                success:function (data) {
+                    flag = data;
+                    if (flag == 1){
+                        $.ajax({
+                            url :"/getSmsCode",
+                            type:"post",
+                            dataType:"text",
+                            data:{'userTel':userTel},
+                            success:function (data) {
+                                alert("已发送验证码至您的手机！")
+                                code = data;
+                            }
+                        })
+                    }
+                }
+            })
+        }
 
+    })
+    $("#pLogin").click(function () {
+       var pCode =$("#code").val();
+        if (pCode==code){
+            $.ajax({
+                url :"/phoneLogin",
+                type:"post",
+                dataType:"text",
+                data:{'userTel':userTel},
+                success:function (data) {
+                    window.location.href = "/blogIndex.html";
+                }
+            })
+        }else{
+            alert("验证码输入错误！");
+        }
+    })
 })
