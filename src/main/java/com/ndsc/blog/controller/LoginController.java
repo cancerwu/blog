@@ -34,6 +34,14 @@ public class LoginController {
         System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
         return resultUserName;
     }
+    @RequestMapping("/phoneLogin")
+    public String phoneLogin(String userTel, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String resultUserName = loginService.selectByPhone(userTel);
+        session.setAttribute("userName", resultUserName);
+        System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
+        return resultUserName;
+    }
 
     @RequestMapping("/getLoginUserName")
     public String getLoginUserName(HttpServletRequest request) {
