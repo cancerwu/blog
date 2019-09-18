@@ -26,4 +26,14 @@ public class BackstageImpl implements Backstage {
     public Usersafe selectUserByName(String userName) {
         return usersafeMapper.selectUserByName(userName);
     }
+
+    @Override
+    public int blockAcccount(int userId) {
+        return usersafeMapper.blockAcccount(userId);
+    }
+
+    @Override
+    public int countBlog() {
+        return usersafeMapper.countBlog();
+    }
 }

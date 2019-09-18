@@ -8,5 +8,7 @@ public interface Backstage {
    List<Usersafe>  selectAllUsers();
     Usersafe selectUserById(int userId);
     Usersafe selectUserByName(String userName);
+    int blockAcccount(int userId);
+    int countBlog();
 
 }
