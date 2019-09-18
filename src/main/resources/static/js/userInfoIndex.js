@@ -48,4 +48,7 @@ $(function () {
     $(".updateinfo span").click(function () {
         $(".modifyinfo").show()
     })
+    $(".backbutton").click(function () {
+        $(".modifyinfo").hide()
+    })
 })
