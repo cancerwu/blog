@@ -42,13 +42,17 @@
     from blog
     where blog_id = #{blogId,jdbcType=INTEGER}
   </select>
+
+    <update id="updateBlogReadNum" parameterType="java.lang.Integer">
+        update blog set blog_read_num = blog_read_num+1 where blog_id = #{blogId,jdbcType=INTEGER}
+    </update>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from blog
     where blog_id = #{blogId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Blog" >
-    insert into blog (blog_title, blog_pub_type, blog_read_num, user_id, blog_content)
-    values (#{blogTitle,jdbcType=VARCHAR}, #{blogPubType,jdbcType=INTEGER}, #{blogReadNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{blogContent,jdbcType=LONGVARCHAR})
+    insert into blog (blog_title, blog_pub_type, user_id, blog_content)
+    values (#{blogTitle,jdbcType=VARCHAR}, #{blogPubType,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{blogContent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Blog" >
     insert into blog
