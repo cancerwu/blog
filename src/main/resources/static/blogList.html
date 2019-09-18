@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/blogList.css" rel="stylesheet">
+    <link href="css/indexTop.css" rel="stylesheet">
+    <link href="css/indexBottom.css" rel="stylesheet">
+
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/jquery.validate.regex.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.js"></script>
+</head>
+<script>
+    $(function () {
+        var blogmsg = new Vue({
+            el: '#blog-list',
+            data: {
+                msgs: ''
+            },
+        })
+        $("#submit").click(function () {
+            console.log("click");
+            $.ajax({
+                url: '/solr/search',
+                data: {
+                    keyword: $("#searchtext").val()
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    blogmsg.msgs = data;
+                }
+            })
+        });
+        $.ajax({
+            url: "/getUserInfo",
+            dataType: "json",
+            success: function (data) {
+                $(".loginheadpic img").attr("src", "face/" + data.userPic);
+            }
+        });
+    });
+
+</script>
+<body>
+
+<div class="top">
+    <div class="w">
+        <div class="logo">
+            <img src="images/blogIndex/logo.png">
+        </div>
+        <div class="nav">
+            <li><a href="blogIndex.html">首页</a></li>
+            <li><a href="blogIndex.html">博客</a></li>
+            <li><a href="blogIndex.html">下载</a></li>
+            <li><a href="blogIndex.html">会员</a></li>
+            <li><a href="blogIndex.html">APP</a></li>
+            <li><a href="blogIndex.html">论坛</a></li>
+            <li><a href="blogIndex.html">商城</a></li>
+            <li><a href="blogIndex.html">问答</a></li>
+            <li><a href="blogIndex.html">课程</a></li>
+            <li><a href="blogIndex.html">客服</a></li>
+        </div>
+        <form id="search">
+            <div class="searchtext">
+                <input type="text" id="searchtext" value="搜索框">
+            </div>
+            <input type="button" id="submit" class="searchbutton" value="搜索">
+        </form>
+        <div class="write">
+            <a href="#">
+                写&nbsp;博&nbsp;客
+            </a>
+        </div>
+        <div class="login">
+            <!--                <li><a href="blogIndex.html">登录</a></li>-->
+            <!--                <li><a href="blogIndex.html">注册</a></li>-->
+            <li><a href="#">消息</a></li>
+            <a href="userInfoIndex.html">
+                <div class="loginheadpic">
+                    <img src="images/headpic.jpg">
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="w">
+        <div class="left">
+            <div class="search-result">搜索结果：</div>
+            <div id="blog-list" class="layui-card dingbu">
+                <div class="layui-card-body list-title" v-for="msg in msgs">
+                    {{msg.blogTitle}}
+                    <div class="author">作者：{{msg.userId}}<span class="time">发布时间：{{msg.id}}</span>
+                        <div class="readnum">{{msg.blog_read_num}}次阅读</div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="right">
+            <h3 class="feed_new_tit">
+                <span class="line"></span><span class="txt">今日推荐</span>
+            </h3>
+            <div class="feed_company csdn-tracking-statistics" data-dsm="post">
+                <ul class="company_list">
+                    <li data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://aiprocon.csdn.net/m/topic/ai_procon/index&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;0&quot;}">
+                        <div class="img_box"><a href="https://aiprocon.csdn.net/m/topic/ai_procon/index"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190910/b01fe63f1b85520f5010557121dca94a.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="【PPT下载+图文直播】2019 AI开发者大会精彩分享"
+                                                        href="https://aiprocon.csdn.net/m/topic/ai_procon/index"
+                                                        target="_blank">【PPT下载+图文直播】2019 AI开发者大会精彩分享</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blogdev.blog.csdn.net/article/details/100773279&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;1&quot;}">
+                        <div class="img_box"><a href="https://blogdev.blog.csdn.net/article/details/100773279"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190909/e9934c13e0037b85d19dc9c28d46c984.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="CSDN日报190912：前端、架构、数据库、游戏开发纯干货分享"
+                                                        href="https://blogdev.blog.csdn.net/article/details/100773279"
+                                                        target="_blank">CSDN日报190912：前端、架构、数据库、游戏开发纯干货分享</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/csdnnews/article/details/100614376&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;2&quot;}">
+                        <div class="img_box"><a href="https://blog.csdn.net/csdnnews/article/details/100614376"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190909/40d3afd42c1768681e328b9d71785c90.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="风云起的芯片时代，英特尔的封装之路"
+                                                        href="https://blog.csdn.net/csdnnews/article/details/100614376"
+                                                        target="_blank">风云起的芯片时代，英特尔的封装之路</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/100680373&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;3&quot;}">
+                        <div class="img_box"><a href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/100680373"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190912/8cbb18c9a40e3a482f9cf9c1f33c3b51.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="谷歌NIPS论文Transformer模型解读：只要Attention就够了"
+                                                        href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/100680373"
+                                                        target="_blank">谷歌NIPS论文Transformer模型解读：只要Attention就够了</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/csdnnews/article/details/100763949&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;4&quot;}">
+                        <div class="img_box"><a href="https://blog.csdn.net/csdnnews/article/details/100763949"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190912/fe02aaf29a50bd1e220e73af31032576.png?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="告别写笔记，AI 实时转写黑科技来了！"
+                                                        href="https://blog.csdn.net/csdnnews/article/details/100763949"
+                                                        target="_blank">告别写笔记，AI 实时转写黑科技来了！</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/csdnnews/article/details/100763950&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;5&quot;}">
+                        <div class="img_box"><a href="https://blog.csdn.net/csdnnews/article/details/100763950"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190912/3050f8064f40b0dbff5c58d01bcf0b4b.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="物联网正在面临的 9 大安全挑战！"
+                                                        href="https://blog.csdn.net/csdnnews/article/details/100763950"
+                                                        target="_blank">物联网正在面临的 9 大安全挑战！</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/yidunmarket/article/details/100675007&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;6&quot;}">
+                        <div class="img_box"><a href="https://blog.csdn.net/yidunmarket/article/details/100675007"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190910/35e277eef4b00c830132b6985d230103.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="盘点：文本内容安全领域 深度学习的六个主流应用方法"
+                                                        href="https://blog.csdn.net/yidunmarket/article/details/100675007"
+                                                        target="_blank">盘点：文本内容安全领域 深度学习的六个主流应用方法</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/csdnsevenn/article/details/89666825&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;7&quot;}">
+                        <div class="img_box"><a href="https://blog.csdn.net/csdnsevenn/article/details/89666825"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190430/7664eeaaf7f9101a5ba090b7f9db921f.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="人间真实！一文带你群析互联网人叹气图鉴"
+                                                        href="https://blog.csdn.net/csdnsevenn/article/details/89666825"
+                                                        target="_blank">人间真实！一文带你群析互联网人叹气图鉴</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/csdnnews/article/details/100190296&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;8&quot;}">
+                        <div class="img_box"><a href="https://blog.csdn.net/csdnnews/article/details/100190296"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190905/c7e18368a56c74f0f7bc3ec4957ff498.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="华为方舟编译器开源！前华为人重磅解读！"
+                                                        href="https://blog.csdn.net/csdnnews/article/details/100190296"
+                                                        target="_blank">华为方舟编译器开源！前华为人重磅解读！</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/GitChat/article/details/96443995&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;9&quot;}">
+                        <div class="img_box"><a href="https://blog.csdn.net/GitChat/article/details/96443995"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190724/fbb3d5ee507e8e9458582e1b6042e637.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="70道高频Spring面试题，Java晋升必备"
+                                                        href="https://blog.csdn.net/GitChat/article/details/96443995"
+                                                        target="_blank">70道高频Spring面试题，Java晋升必备</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-view="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/csdnnews/article/details/100550182&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;10&quot;}"
+                        data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/csdnnews/article/details/100550182&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;10&quot;}">
+                        <div class="img_box"><a href="https://blog.csdn.net/csdnnews/article/details/100550182"
+                                                target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190909/08d9c640b5b8b798fc5f7f8b73adf933.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="Rust 能取代 Python，更好的实现神经网络？"
+                                                        href="https://blog.csdn.net/csdnnews/article/details/100550182"
+                                                        target="_blank">Rust 能取代 Python，更好的实现神经网络？</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-view="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://edu.csdn.net/?utm_source=home&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;11&quot;}"
+                        data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://edu.csdn.net/?utm_source=home&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;11&quot;}">
+                        <div class="img_box"><a href="https://edu.csdn.net/?utm_source=home" target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190128/19e4a23882b7948c10dd82ba29aeb7a0.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="程序员学习宝典：IT好课尽情选！"
+                                                        href="https://edu.csdn.net/?utm_source=home" target="_blank">程序员学习宝典：IT好课尽情选！</a>
+                            </h3>
+                        </div>
+                    </li>
+                    <li data-report-view="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://qualcomm.csdn.net/&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;12&quot;}"
+                        data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://qualcomm.csdn.net/&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;12&quot;}">
+                        <div class="img_box"><a href="https://qualcomm.csdn.net/" target="_blank"><img
+                                src="https://csdnimg.cn/feed/20180718/a22b0122c8c3af6b39d785228488e1ff.png?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="高通骁龙™杯3D手游开发大赛颁奖活动" href="https://qualcomm.csdn.net/"
+                                                        target="_blank">高通骁龙™杯3D手游开发大赛颁奖活动</a></h3>
+                        </div>
+                    </li>
+                    <li data-report-view="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://ibmuniversity.csdn.net/&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;13&quot;}"
+                        data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://ibmuniversity.csdn.net/&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;13&quot;}">
+                        <div class="img_box"><a href="https://ibmuniversity.csdn.net/" target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190726/0dd5a9f2f960f50f673532b244b1d381.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="上云，你准备好了吗？" href="https://ibmuniversity.csdn.net/"
+                                                        target="_blank">上云，你准备好了吗？</a></h3>
+                            <p class="txt oneline">想要致胜云时代，让企业上云更轻松？快来看看这堂精彩的上云课程吧！</p>
+                        </div>
+                    </li>
+                    <li data-report-view="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;http://intel.csdn.net/&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;14&quot;}"
+                        data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;http://intel.csdn.net/&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;14&quot;}">
+                        <div class="img_box"><a href="http://intel.csdn.net/" target="_blank"><img
+                                src="https://csdnimg.cn/feed/20180206/1ea27140ca62e10637c1667843a1f752.png?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="英特尔开发人员专区" href="http://intel.csdn.net/" target="_blank">英特尔开发人员专区</a>
+                            </h3>
+                            <p class="txt oneline">了解全新技术，缩短开发周期，帮助您更快地将产品推向市场。</p>
+                        </div>
+                    </li>
+                    <li data-report-view="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://baidu.csdn.net/&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;15&quot;}"
+                        data-report-click="{&quot;mod&quot;:&quot;popu_474&quot;,&quot;dest&quot;:&quot;https://baidu.csdn.net/&quot;,&quot;strategy&quot;:&quot;&quot;,&quot;index&quot;:&quot;15&quot;}">
+                        <div class="img_box"><a href="https://baidu.csdn.net/" target="_blank"><img
+                                src="https://csdnimg.cn/feed/20190103/4f0479e9cb32a3a1ca95050d98217f4b.jpg?x-oss-process=image/resize,h_64"
+                                alt=""></a></div>
+                        <div class="content">
+                            <h3 class="company_name"><a title="百度云技术专区" href="https://baidu.csdn.net/" target="_blank">百度云技术专区</a>
+                            </h3>
+                            <p class="txt oneline">云智学院为您打开未来科技的大门</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="other_company clearfix">
+                    <a href="https://bss.csdn.net/m/zone/huawei2018" target="_blank">华为开发者专区</a>
+                    <a href="https://bss.csdn.net/m/topic/huawei_dynamic/index" target="_blank">华为云&nbsp;</a>
+                    <a href="http://g.csdn.net/5271587" target="_blank">腾讯云技术社区</a>
+                    <a href="http://primeton.csdn.net/" target="_blank">普元云计算</a>
+                    <a href="http://powerlinux.csdn.net/" target="_blank">PowerLinux技术社区</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

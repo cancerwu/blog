@@ -1,32 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/downloadhomepage.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script>
+        $(function () {
+            var vm = new Vue({
+                el: "#dhp_body_list",
+                data: {
+                    resources: []
+                },
+                // methods:
+            });
+            $.ajax({
+                url: "/getUserInfo",
+                dataType: "json",
+                success: function (data) {
+                    $(".loginheadpic img").attr("src", "face/" + data.userPic);
+                }
+            });
+            $.ajax({
+                url: "/getAllResources",
+                dataType: "json",
+                success: function (dt) {
+                    var userName;
+                    for (var i = 0; i < dt.length; i++) {
+                        $.ajax({
+                            url: "/getUser",
+                            data: {"userId": dt[i].uploaderId},
+                            type: "post",
+                            dataType: "json",
+                            async: false,   //ajax放在for循环中要设置async为false 变成同步
+                            success: function (d) {
+                                userName = d.userName;
+                            }
+                        });
+                        vm.resources.push({
+                            resourcesName: dt[i].resourcesName,
+                            resourcesAddress: dt[i].resourcesAddress,
+                            name: userName,
+                            resourcesCreateTime: new Date(dt[i].resourcesCreateTime).format("yyyy-MM-dd hh:mm:ss")
+                        })
+                    }
+                }
+            });
+
+
+            Date.prototype.format = function (fmt) {   //日期格式化方法
+                var o = {
+                    "M+": this.getMonth() + 1,                 //月份
+                    "d+": this.getDate(),                    //日
+                    "h+": this.getHours(),                   //小时
+                    "m+": this.getMinutes(),                 //分
+                    "s+": this.getSeconds(),                 //秒
+                    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                    "S": this.getMilliseconds()             //毫秒
+                };
+                if (/(y+)/.test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+                }
+                for (var k in o) {
+                    if (new RegExp("(" + k + ")").test(fmt)) {
+                        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                    }
+                }
+                return fmt;
+            };
+
+
+        });
+    </script>
 </head>
 <body>
-<!--<div class="leftlabel">-->
-<!--    <a href="blogIndex.html"><li>推荐</li></a>-->
-<!--    <a href="blogIndex.html"><li>关注</li></a>-->
-<!--    <a href="blogIndex.html"><li>Java</li></a>-->
-<!--    <a href="blogIndex.html"><li>Python</li></a>-->
-<!--    <a href="blogIndex.html"><li>深度学习</li></a>-->
-<!--    <a href="blogIndex.html"><li>前端</li></a>-->
-<!--    <a href="blogIndex.html"><li>框架</li></a>-->
-<!--    <a href="blogIndex.html"><li>数据库</li></a>-->
-<!--    <a href="blogIndex.html"><li>游戏开发</li></a>-->
-<!--    <a href="blogIndex.html"><li>移动开发</li></a>-->
-<!--    <a href="blogIndex.html"><li>大数据</li></a>-->
-<!--    <a href="blogIndex.html"><li>其他</li></a>-->
-<!--</div>-->
-<!--<div class="rightlabel">-->
-<!--    <li>1</li>-->
-<!--    <li>1</li>-->
-<!--    <li>1</li>-->
-<!--</div>-->
+<!--<div class="leftlabel">
+    <a href="blogIndex.html"><li>推荐</li></a>
+    <a href="blogIndex.html"><li>关注</li></a>
+    <a href="blogIndex.html"><li>Java</li></a>
+    <a href="blogIndex.html"><li>Python</li></a>
+    <a href="blogIndex.html"><li>深度学习</li></a>
+    <a href="blogIndex.html"><li>前端</li></a>
+    <a href="blogIndex.html"><li>框架</li></a>
+    <a href="blogIndex.html"><li>数据库</li></a>
+    <a href="blogIndex.html"><li>游戏开发</li></a>
+    <a href="blogIndex.html"><li>移动开发</li></a>
+    <a href="blogIndex.html"><li>大数据</li></a>
+    <a href="blogIndex.html"><li>其他</li></a>
+</div>
+<div class="rightlabel">
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+</div>-->
 <div class="top">
     <div class="w">
         <div class="logo">
@@ -60,11 +128,14 @@
             <!--                <li><a href="blogIndex.html">注册</a></li>-->
             <li><a href="#">消息</a></li>
             <a href="userInfoIndex.html">
-                <div class="loginheadpic"></div>
+                <div class="loginheadpic">
+                    <img src="images/headpic.jpg">
+                </div>
             </a>
         </div>
     </div>
 </div>
+
 <div id="bodywindow">
     <div id="bodywindow_option">
         <span class="menu">代码资源</span>
@@ -72,6 +143,68 @@
         <div id="bodywindow_option_search">
             <input name="localsearch" type="text" id="bodywindow_option_search_input">
             <span id="bodywindow_option_search_span">搜索</span>
+        </div>
+    </div>
+    <div id="dhp_body_list">
+        <div class="blogs1" v-for="(resource,index) in resources">
+            <div class="filetype"><img src="images/downloadhomepageImg/pdf.png"></div>
+            <a v-bind:href="'/download?fileName=' + resource.resourcesAddress" class="filename">{{resource.resourcesName}}</a>
+            <div class="fileinfo">
+                <span>上传者：</span>
+                <em>{{resource.name}}</em>
+                <span>上传时间：</span>
+                <em>{{resource.resourcesCreateTime}}</em>
+            </div>
+            <!--<strong>
+                <span>积分/C币：</span>
+                <em>5</em>
+            </strong>-->
+        </div>
+    </div>
+</div>
+<!--<div id="dhp_top">
+    <img src="images/downloadhomepageImg/csdnlogo.png" class="option">
+    <a class="option">首页</a>
+    <a class="option">博客</a>
+    <a class="option">学院</a>
+    <a class="option">下载</a>
+    <a class="option">论坛</a>
+
+    <a class="option">APP</a>
+    <a class="option">回答</a>
+    <a class="option">商城</a>
+    <a class="option">活动</a>
+    <a class="option">VIP</a>
+
+    <a class="option">专题</a>
+    <a class="option">招聘</a>
+    <a class="option">ITeye</a>
+    <a class="option">GitChat</a>
+    <a class="option">图文课</a>
+    <div id="dhp_top_input">
+        <input name="search" type="text">
+        <span id="dhp_top_input_span">搜索</span>
+    </div>
+    <a class="funct">
+        <img src="images/downloadhomepageImg/csdn-xie.png">
+        <span class="option">写博客</span>
+    </a>
+    <a class="funct">
+        <img src="images/downloadhomepageImg/message-icon.png">
+        <span class="option">消息</span>
+    </a>
+    <a class="funct">
+        <img src="images/downloadhomepageImg/pic.jpg">
+        <span class="option">*</span>
+    </a>
+</div>
+<div id="dhp_body">
+    <div id="dhp_body_option">
+        <span class="menu">代码资源</span>
+        <span class="menu">最新上传</span>
+        <div id="dhp_body_option_search">
+            <input name="localsearch" type="text">
+            <span id="dhp_body_option_search_span">搜索</span>
         </div>
     </div>
     <div id="dhp_body_list">
@@ -90,68 +223,6 @@
             </strong>
         </div>
     </div>
-</div>
-<!--<div id="dhp_top">-->
-<!--    <img src="images/downloadhomepageImg/csdnlogo.png" class="option">-->
-<!--    <a class="option">首页</a>-->
-<!--    <a class="option">博客</a>-->
-<!--    <a class="option">学院</a>-->
-<!--    <a class="option">下载</a>-->
-<!--    <a class="option">论坛</a>-->
-
-<!--    <a class="option">APP</a>-->
-<!--    <a class="option">回答</a>-->
-<!--    <a class="option">商城</a>-->
-<!--    <a class="option">活动</a>-->
-<!--    <a class="option">VIP</a>-->
-
-<!--    <a class="option">专题</a>-->
-<!--    <a class="option">招聘</a>-->
-<!--    <a class="option">ITeye</a>-->
-<!--    <a class="option">GitChat</a>-->
-<!--    <a class="option">图文课</a>-->
-<!--    <div id="dhp_top_input">-->
-<!--        <input name="search" type="text">-->
-<!--        <span id="dhp_top_input_span">搜索</span>-->
-<!--    </div>-->
-<!--    <a class="funct">-->
-<!--        <img src="images/downloadhomepageImg/csdn-xie.png">-->
-<!--        <span class="option">写博客</span>-->
-<!--    </a>-->
-<!--    <a class="funct">-->
-<!--        <img src="images/downloadhomepageImg/message-icon.png">-->
-<!--        <span class="option">消息</span>-->
-<!--    </a>-->
-<!--    <a class="funct">-->
-<!--        <img src="images/downloadhomepageImg/pic.jpg">-->
-<!--        <span class="option">*</span>-->
-<!--    </a>-->
-<!--</div>-->
-<!--<div id="dhp_body">-->
-<!--    <div id="dhp_body_option">-->
-<!--        <span class="menu">代码资源</span>-->
-<!--        <span class="menu">最新上传</span>-->
-<!--        <div id="dhp_body_option_search">-->
-<!--            <input name="localsearch" type="text">-->
-<!--            <span id="dhp_body_option_search_span">搜索</span>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div id="dhp_body_list">-->
-<!--        <div class="blogs1">-->
-<!--            <div class="filetype"><img src="images/downloadhomepageImg/pdf.png"></div>-->
-<!--            <a class="filename">施耐德ATNSX自动转换开关产品目录.pdf</a>-->
-<!--            <div class="fileinfo">-->
-<!--                <span>上传者：</span>-->
-<!--                <em>meng</em>-->
-<!--                <span>上传时间：</span>-->
-<!--                <em>2019-09-17</em>-->
-<!--            </div>-->
-<!--            <strong>-->
-<!--                <span>积分/C币：</span>-->
-<!--                <em>5</em>-->
-<!--            </strong>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+</div>-->
 </body>
 </html>

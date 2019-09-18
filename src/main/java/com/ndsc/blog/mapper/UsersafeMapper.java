@@ -32,6 +32,8 @@ public interface UsersafeMapper {
     String selectByUserTel(String userinput, String userPassword);
 
     String selectByUserEmail(String userinput, String userPassword);
+    String selectuserTel(String userTel);
+    Usersafe selectAllUsers();
 
     int selectUserId(String userName);
 

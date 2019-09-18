@@ -21,6 +21,7 @@
 #advertisement:hover{
 	cursor: pointer;
 }
+
 #login{
 	height: 350px;
     width: 450px;
@@ -138,8 +139,9 @@ ul{
 	width: 450px;
     float: right;
     position: relative;
-    bottom: -90px;
-    right: 150px;
+    top: 440px;
+    right: -302px;
+
 }
 #download:hover{
 	cursor: pointer;

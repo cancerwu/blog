@@ -2,6 +2,8 @@ package com.ndsc.blog.controller;
 
 import com.ndsc.blog.entity.Resources;
 import com.ndsc.blog.entity.Userinfo;
+import com.ndsc.blog.entity.Usersafe;
+import com.ndsc.blog.mapper.UsersafeMapper;
 import com.ndsc.blog.service.ResourcesService;
 import com.ndsc.blog.service.UserInfoService;
 import com.ndsc.blog.util.FileUpload;
@@ -14,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.List;
 
 /**
  * @Author 扶明方
@@ -27,12 +31,23 @@ public class ResourcesController {
     ResourcesService resourcesService;
     @Autowired
     UserInfoService userInfoService;
+    @Autowired
+    UsersafeMapper usersafeMapper;
+
+    @RequestMapping("test")
+    public void test(HttpServletRequest request) {
+        System.out.println(System.getProperty("user.dir"));
+    }
 
     //上传文件
     @RequestMapping("upload")
     public String uploadResource(Resources resources, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
-//        resources.setUploaderId(new LoginController().getUserId(request));
+        //获取id
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int id = usersafeMapper.selectUserId(userName);
+        resources.setUploaderId(id);
         try {
             resources.setResourcesAddress(new FileUpload().upload(request, file));
         } catch (Exception e) {
@@ -44,11 +59,16 @@ public class ResourcesController {
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";
     }
+
     //上传头像的
     @RequestMapping("uploadFace")
     public String uploadFace(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
-        int id = new LoginController().getUserId(request);
+        //获取id
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int id = usersafeMapper.selectUserId(userName);
+
         Userinfo userinfo = userInfoService.selectByUserId(id);
         try {
             userinfo.setUserPic(new faceUpload().upload(request, file));
@@ -56,7 +76,7 @@ public class ResourcesController {
             e.printStackTrace();
         }
         userInfoService.updateByPrimaryKeySelective(userinfo);
-        return "<a id=\"ak\" href='uploadSuccess.html'>跳转</a>\n" +
+        return "<a id=\"ak\" href='userinfoindex.html'>跳转</a>\n" +
                 "<script>\n" +
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";
@@ -65,7 +85,9 @@ public class ResourcesController {
     @RequestMapping("download")
     public String downloadResource(String fileName, HttpServletRequest request, HttpServletResponse response) {
         //文件路径
-        String serverPath = request.getSession().getServletContext().getRealPath("/") + "upload";
+//        String serverPath = request.getSession().getServletContext().getRealPath("/") + "upload";
+        String serverPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload";
+
         File file = new File(serverPath, fileName);
         if (file.exists()) {
             response.setContentType("application/force-download");// 设置强制下载不打开            
@@ -103,5 +125,15 @@ public class ResourcesController {
             }
         }
         return "下载失败";
+    }
+
+    @RequestMapping("getAllResources")
+    public List<Resources> getAllResources() {
+        return resourcesService.getAllResources();
+    }
+
+    @RequestMapping("getUser")
+    public Usersafe getUser(Integer userId) {
+        return usersafeMapper.selectByPrimaryKey(userId);
     }
 }

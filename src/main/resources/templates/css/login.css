@@ -1,0 +1,132 @@
+/*主块*/
+#main{
+	width: 100%;
+	height: 600px;
+	background-image: url(../images/login_background.jpg);
+	position: relative;
+}
+/*头部*/
+#advertisement{
+	float: left;
+    width: 400px;
+    background-color: #fff;
+    position: relative;
+    bottom: -80px;
+    left: 150px;
+    overflow: hidden
+}
+#advertisement img{
+	width:100%;
+}
+#advertisement:hover{
+	cursor: pointer;
+}
+#login{
+	height: 350px;
+    width: 450px;
+    float: right;
+    border: 1px solid lightgrey;
+    position: relative;
+    right: 150px;
+    top: 80px;
+    background-image: url(../images/login_chose.png);
+}
+#login span{
+	display: block;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #3d3d3d;
+    text-align: center;
+    line-height: 30px;
+}
+#login_chose{
+	height: 100px;
+	width: 100%;
+	display: block;
+	position: relative;
+}
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#login_chose1{
+	width: 100px;
+    height: 30px;
+    background-color: #E6E1FA;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    margin: 20px;
+    margin-left: 178px;
+}
+#login_chose2{
+	width: 100px;
+    height: 30px;
+    background-color: #E6E1FA;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    margin: 20px;
+    margin-left: 178px;
+}
+#login_chose li:hover{
+	cursor: pointer;
+}
+#login_check{
+	width: 100%;
+	height: 100%;
+	background-image: url(../images/login_check.png);
+	position: relative;
+	top: -200px;
+}
+#login_check li{
+	width: 280px;
+    height: 30px;
+    background-color: #eff0f2;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 16px;
+    position: relative;
+    top: 80px;
+    left: 80px;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+#register{
+	width: 100%;
+	height: 100%;
+	background-image: url(../images/login_check.png);
+	position: relative;
+	top: -200px;
+}
+#register li{
+	width: 280px;
+    height: 30px;
+    background-color: #eff0f2;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 16px;
+    position: relative;
+    top: 50px;
+    left: 80px;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+#download{
+	width: 450px;
+    float: right;
+    position: relative;
+    bottom: -90px;
+    right: 150px;
+}
+#download:hover{
+	cursor: pointer;
+}
+#bottom{
+    width: 100%;
+}
+#bottom img{
+    width: 100%;
+}

@@ -1,9 +1,11 @@
 package com.ndsc.blog.controller;
 
+import com.ndsc.blog.entity.Userinfo;
 import com.ndsc.blog.entity.Usersafe;
 import com.ndsc.blog.mapper.UsersafeMapper;
 import com.ndsc.blog.service.LoginService;
 import com.ndsc.blog.service.Md5Encryption;
+import com.ndsc.blog.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,17 +25,34 @@ public class LoginController {
     UsersafeMapper usersafeMapper;
     @Autowired
     Md5Encryption md5Encryption;
+    @Autowired
+    UserInfoService userInfoService;
+
+    @RequestMapping("/getUserInfo")
+    public Userinfo getUserInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int userId = usersafeMapper.selectUserId(userName);
+        return userInfoService.selectByUserId(userId);
+    }
 
     @RequestMapping("/login")
-    public Usersafe selectByLogin(String userinput, String password, HttpServletRequest request) {
+    public String selectByLogin(String userName, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
-         password=md5Encryption.encrype(password);
-        String resultUserName = loginService.selectByLogin(userinput, password);
+        password = md5Encryption.encrype(password);
+        String resultUserName = loginService.selectByLogin(userName, password);
         session.setAttribute("userName", resultUserName);
-        int userId = usersafeMapper.selectUserId(resultUserName);
-        Usersafe usersafe=usersafeMapper.selectByPrimaryKey(userId);
         System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
-        return usersafe;
+        return resultUserName;
+    }
+
+    @RequestMapping("/phoneLogin")
+    public String phoneLogin(String userTel, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String resultUserName = loginService.selectByPhone(userTel);
+        session.setAttribute("userName", resultUserName);
+        System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
+        return resultUserName;
     }
 
     @RequestMapping("/getLoginUserName")
@@ -49,9 +68,15 @@ public class LoginController {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
         System.out.println(userName);
-        int userId = usersafeMapper.selectUserId(userName);
-        System.out.println(userId);
-        return userId;
+        try {
+            int userId = usersafeMapper.selectUserId(userName);
+            System.out.println(userId);
+            return userId;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+
     }
 
     @RequestMapping("/outline")
