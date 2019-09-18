@@ -1,6 +1,6 @@
 $(function () {
-//    $(".login").children().eq(2).css("display","none")
-   // $(".login").children().eq(3).css("display","none")
+   $(".login").children().eq(2).css("display","none")
+   $(".login").children().eq(3).css("display","none")
 
     //$(".login").children().eq(2).css("display","block")
     //$(".login").children().eq(3).css("display","block")
@@ -9,24 +9,27 @@ $(function () {
 
 
 
-            $.ajax({
-                url: "/getUserId",
-                type: "post",
-                dataType: "json",
-                success: function (data1) {
-                    $.ajax({
-                    url: "/selectByBlogtagGetBlog",
-                    type: "post",
-                    dataType: "json",
-                    data:{"tagName":"java"},
+    $.ajax({
+        url: "/selectByBlogtagGetBlog",
+        type: "post",
+        dataType: "json",
+        data:{"tagName":"java"},
+                success: function (data) {
+                        $.ajax({
+                            url: "/getUserId",
+                            type: "post",
+                            dataType: "json",
 
-                    success: function (data) {
+                    success: function (data1) {
 
                     if (data1>0) {
                         $(".login").children().eq(2).css("display","block")
                         $(".login").children().eq(3).css("display","block")
                         $(".login").children().eq(0).css("display","none")
                         $(".login").children().eq(1).css("display","none")
+
+                        // $.cookie("userid",data1);
+                        // // $.cookie("userid");
                     }
                     else {
                         $(".login").children().eq(2).css("display","none")
@@ -64,6 +67,7 @@ $(function () {
         alert("success")
         alert($(".leftlabel").children().eq(0).text())
     })
+
 
 
 })
