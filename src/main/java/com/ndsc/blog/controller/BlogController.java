@@ -154,4 +154,14 @@ public class BlogController {
         System.out.println(collectionId);
         return blogService.selectCollectionCount(collectionId);
     }
+
+    @RequestMapping("/selectUidUsafeUinfoBlog")
+    public Usersafe selectUidUsafeUinfoBlog(Integer userId) {
+        return blogService.selectUidUsafeUinfoBlog(userId);
+    }
+
+    @RequestMapping("/selectUnameUsafeUinfoBlog")
+    public Usersafe selectUnameUsafeUinfoBlog(String userName) {
+        return blogService.selectUnameUsafeUinfoBlog(userName);
+    }
 }
