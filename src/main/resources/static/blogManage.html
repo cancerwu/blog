@@ -11,7 +11,41 @@
     <script src="js/jquery-3.4.1.js"></script>
     <script src="layui/layui.js"></script>
     <script src="js/blogManage.js"></script>
+    <script>
 
+        layui.use('layedit', function(){
+            var layedit = layui.layedit;
+            var index = layedit.build('demo'); //建立编辑器
+            $("#pulishblog").click(function () {
+                console.log($("input[type='radio']:checked").val());
+                console.log(layedit.getContent(index));
+                $.ajax({
+                    url:"/solr/addblog",
+                    type:"post",
+                    data:{
+                        'blogTitle':$("input[name='title']").val(),
+                        'blogContent':layedit.getContent(index),
+                        'blogPubType':$("input[type='radio']:checked").val(),
+                        'userId':1
+                    },
+                    dataType:"text",
+                    success:function (data) {
+                        layer.open({
+                            content: 'test'
+                            ,btn:'OK!',
+                            yes:function(index, layero){
+                                alert("test");//跳转到博客详情页
+                            },
+                            cancel:function(){
+                                 alert("test");//跳转到博客详情页
+                            }
+                        });
+                    }
+
+                })
+            })
+        })
+    </script>
 </head>
 <body>
     <div class="top">
@@ -115,12 +149,7 @@
                     </div>
                 </div>
                 <textarea class="blogcontent" id="demo" style="display: none;"></textarea>
-                <script>
-                    layui.use('layedit', function(){
-                        var layedit = layui.layedit;
-                        layedit.build('demo'); //建立编辑器
-                    });
-                </script>
+
                     <div class="layui-form-item">
                         <label class="layui-form-label">文章标签：</label>
                         <div class="layui-input-block">
@@ -142,10 +171,10 @@
                         <div class="layui-form-item ">
                             <label class="layui-form-label">发布形式：</label>
                             <div class="layui-input-block">
-                                <input type="radio" name="formtype" value="公开" title="公开" checked>
-                                <input type="radio" name="formtype" value="私密" title="私密">
+                                <input type="radio" name="formtype" value="1" title="公开" checked>
+                                <input type="radio" name="formtype" value="0" title="私密">
                             </div>
-                            <a href="http://www.layui.com" class="layui-btn layui-btn-radius publishblog">发布文章</a>
+                            <button id="pulishblog" class="layui-btn layui-btn-radius publishblog">发布文章</button>
                         </div>
                     </div>
                 </div>

@@ -47,8 +47,8 @@
     where blog_id = #{blogId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ndsc.blog.entity.Blog" >
-    insert into blog (blog_title, blog_pub_type, blog_read_num, user_id, blog_content)
-    values (#{blogTitle,jdbcType=VARCHAR}, #{blogPubType,jdbcType=INTEGER}, #{blogReadNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{blogContent,jdbcType=LONGVARCHAR})
+    insert into blog (blog_title, blog_pub_type, user_id, blog_content)
+    values (#{blogTitle,jdbcType=VARCHAR}, #{blogPubType,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{blogContent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Blog" >
     insert into blog
