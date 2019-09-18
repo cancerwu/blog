@@ -18,7 +18,8 @@ public class FileUpload {
         //如果文件不为空，写入上传路径
         if (!file.isEmpty()) {
             //上传文件路径
-            String serverPath = request.getSession().getServletContext().getRealPath("/") + "upload";
+//            String serverPath = request.getSession().getServletContext().getRealPath("/") + "upload";
+            String serverPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload";
             System.out.println(serverPath);
             //上传文件名
             String filename = file.getOriginalFilename();

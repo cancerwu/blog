@@ -1,5 +1,6 @@
 package com.ndsc.blog.entity;
 
+
 import java.util.Date;
 
 public class Resources {

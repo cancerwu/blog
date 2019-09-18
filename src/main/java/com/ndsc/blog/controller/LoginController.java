@@ -1,10 +1,11 @@
 package com.ndsc.blog.controller;
 
+import com.ndsc.blog.entity.Userinfo;
 import com.ndsc.blog.entity.Usersafe;
 import com.ndsc.blog.mapper.UsersafeMapper;
 import com.ndsc.blog.service.LoginService;
 import com.ndsc.blog.service.Md5Encryption;
-import org.apache.taglibs.standard.lang.jstl.NullLiteral;
+import com.ndsc.blog.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,16 @@ public class LoginController {
     UsersafeMapper usersafeMapper;
     @Autowired
     Md5Encryption md5Encryption;
+    @Autowired
+    UserInfoService userInfoService;
+
+    @RequestMapping("/getUserInfo")
+    public Userinfo getUserInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int userId = usersafeMapper.selectUserId(userName);
+        return userInfoService.selectByUserId(userId);
+    }
 
     @RequestMapping("/login")
     public String selectByLogin(String userName, String password, HttpServletRequest request) {
@@ -48,16 +59,9 @@ public class LoginController {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
         System.out.println(userName);
-
-       try{
-           int userId = usersafeMapper.selectUserId(userName);
-           System.out.println(userId);
-           return userId;
-       }catch(Exception e) {
-           e.printStackTrace();
-           return 0;
-       }
-
+        int userId = usersafeMapper.selectUserId(userName);
+        System.out.println(userId);
+        return userId;
     }
 
     @RequestMapping("/outline")
