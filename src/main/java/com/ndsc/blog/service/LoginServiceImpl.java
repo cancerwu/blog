@@ -52,6 +52,11 @@ public class LoginServiceImpl implements LoginService{
     }
 
     @Override
+    public String selectByPhone(String userTel) {
+        return usersafeMapper.selectuserTel(userTel);
+    }
+
+    @Override
     public int becomeVip(Integer userId) {
         return usersafeMapper.becomeVip(userId);
     }
