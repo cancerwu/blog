@@ -1,5 +1,7 @@
 package com.ndsc.blog.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class Userinfo {
     private String realName;
 
     private String userSex;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date userBirthday;
 
     private String userPic;
