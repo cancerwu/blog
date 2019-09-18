@@ -32,6 +32,6 @@ public class WebConfigurer implements WebMvcConfigurer {
 //        loginRegistry.excludePathPatterns("/images/JDregister/*");
 //        loginRegistry.excludePathPatterns("/css/cart/*");
 //        loginRegistry.excludePathPatterns("/cart.html");
-//        loginRegistry.excludePathPatterns("/pay", "/return_url", "/upload.html", "/uploadResource", "/uploadSuccess.html", "/paySuccess.html");
+//        loginRegistry.excludePathPatterns("/pay", "/return_url", "/uploadResource", "/uploadSuccess.html", "/paySuccess.html");
     }
 }

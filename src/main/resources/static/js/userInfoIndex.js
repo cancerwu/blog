@@ -3,6 +3,7 @@ $(function () {
         url: "/getUserInfo",
         dataType:"json",
         success: function (data) {
+            $(".loginheadpic img").attr("src","face/" + data.userPic);
             $(".pic img").attr("src","face/" + data.userPic);
         }
     });

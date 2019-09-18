@@ -16,7 +16,7 @@
                     type: "post",
                     dataType: "text",
                     success: function (data) {
-                       location.href = "/pay?vipId=" + id + "&orderNo=" + GetDateNow();
+                        location.href = "/pay?vipId=" + id + "&orderNo=" + GetDateNow();
                     }
                 })
             });
@@ -33,6 +33,13 @@
                 sNow += String(vNow.getMilliseconds());
                 return sNow;
             };
+            $.ajax({
+                url: "/getUserInfo",
+                dataType: "json",
+                success: function (data) {
+                    $(".loginheadpic img").attr("src", "face/" + data.userPic);
+                }
+            });
         })
 
     </script>

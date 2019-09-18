@@ -6,6 +6,18 @@
     <link href="css/blogDetail.css" rel="stylesheet">
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/indexBottom.css" rel="stylesheet">
+    <script>
+        $(function () {
+            $.ajax({
+                url: "/getUserInfo",
+                dataType: "json",
+                success: function (data) {
+                    $(".loginheadpic img").attr("src", "face/" + data.userPic);
+                    $(".userpic img").attr("src", "face/" + data.userPic);
+                }
+            });
+        })
+    </script>
 </head>
 <body>
 <body>
@@ -60,7 +72,7 @@
                     <span>DCW</span>
                 </div>
             </div>
-            <div class="someinfo"  id="vue_fourinfo">
+            <div class="someinfo" id="vue_fourinfo">
                 <div class="fourinfo">
                     <li>博客</li>
                     <li>{{blogCount}}</li>
@@ -79,7 +91,9 @@
                 </div>
             </div>
             <div class="manageBlog">
-                <a href="blogManage.html"><li>管理博客</li></a>
+                <a href="blogManage.html">
+                    <li>管理博客</li>
+                </a>
             </div>
             <div class="leftbottom">
                 <img src="images/blogIndex/leftbottom.png">
