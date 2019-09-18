@@ -17,7 +17,7 @@ $(function () {
             //     "</div>");
             // $("div[class='idinfo']").append($li2);
             for (var i = 0; i < data.length; i++) {
-                alert(data[i].userinfo.realName);
+                // alert(data[i].userinfo.realName);
                 var $div = ("<li>\n" +
                     "                        <div class=\"blogtitle\">" + data[i].blogTitle + "</div>\n" +
                     "                        <div class=\"bloginfo\">\n" +
