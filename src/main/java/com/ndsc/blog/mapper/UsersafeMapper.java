@@ -38,6 +38,8 @@ public interface UsersafeMapper {
     List<Usersafe> selectAllUsers();
     Usersafe selectUserById(int userId);
     Usersafe selectUserByName(String userName);
+    int blockAcccount(int userId);
+    int countBlog();
     int selectUserId(String userName);
 
     //*********************************

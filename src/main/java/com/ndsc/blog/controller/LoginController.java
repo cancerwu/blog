@@ -46,6 +46,17 @@ public class LoginController {
         return resultUserName;
     }
 
+    @RequestMapping("/login1")
+    public Usersafe selectByLogin1(String userName, String password, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        password = md5Encryption.encrype(password);
+        String resultUserName = loginService.selectByLogin(userName, password);
+        session.setAttribute("userName", resultUserName);
+        int userId = usersafeMapper.selectUserId(userName);
+        System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
+        Usersafe usersafe=usersafeMapper.selectByPrimaryKey(userId);
+        return usersafe;
+    }
     @RequestMapping("/phoneLogin")
     public String phoneLogin(String userTel, HttpServletRequest request) {
         HttpSession session = request.getSession();

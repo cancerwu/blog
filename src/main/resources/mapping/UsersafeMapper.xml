@@ -26,6 +26,12 @@
     <select id="selectAllUsers" resultMap="BaseResultMap">
     select * from usersafe
   </select>
+    <update id="blockAcccount" parameterType="java.lang.Integer">
+                update usersafe set user_status=0 where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+    <select id="countBlog" resultType="java.lang.Integer">
+    select count(*) from blog
+  </select>
     <!--******************************************-->
     <update id="updateUsersafe" parameterType="com.ndsc.blog.entity.Usersafe">
         update usersafe

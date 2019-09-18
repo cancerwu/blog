@@ -26,5 +26,15 @@ return backstage.selectAllUsers();
 {
   return  backstage.selectUserByName(userName);
 }
+@RequestMapping("/blockAcccount")
+  public int blockAcccount(int userId)
+{
+  return backstage.blockAcccount(userId);
+
+}
+  @RequestMapping("/countBlog")
+  public int countBlog(){
+     return backstage.countBlog();
+  }
 }
 
