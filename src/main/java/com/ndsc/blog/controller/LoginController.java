@@ -96,7 +96,6 @@ public class LoginController {
             e.printStackTrace();
             return 0;
         }
-
     }
 
     @RequestMapping("/outline")
