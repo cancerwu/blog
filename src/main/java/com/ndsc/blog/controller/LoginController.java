@@ -20,13 +20,13 @@ public class LoginController {
 
     @Autowired
     LoginService loginService;
+
     @Autowired
     UsersafeMapper usersafeMapper;
     @Autowired
     Md5Encryption md5Encryption;
     @Autowired
     UserInfoService userInfoService;
-
 
     @RequestMapping("/getUserInfo")
     public Userinfo getUserInfo(HttpServletRequest request) {
@@ -50,14 +50,22 @@ public class LoginController {
     public Usersafe selectByLogin1(String userName, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
         password = md5Encryption.encrype(password);
-        String resultUserName = loginService.selectByLogin(userName, password);
-        session.setAttribute("userName", resultUserName);
-        int userId = usersafeMapper.selectUserId(userName);
-        System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
-        Usersafe usersafe = usersafeMapper.selectByPrimaryKey(userId);
-        return usersafe;
-    }
+          Usersafe usersafe= new Usersafe();
 
+        try {
+            String resultUserName = loginService.selectByLogin(userName, password);
+            session.setAttribute("userName", resultUserName);
+            int userId = usersafeMapper.selectUserId(userName);
+            System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
+             usersafe=usersafeMapper.selectByPrimaryKey(userId);
+            return usersafe;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return usersafe;
+        }
+
+    }
     @RequestMapping("/phoneLogin")
     public String phoneLogin(String userTel, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -84,7 +92,7 @@ public class LoginController {
             int userId = usersafeMapper.selectUserId(userName);
             System.out.println(userId);
             return userId;
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
             return 0;
         }
