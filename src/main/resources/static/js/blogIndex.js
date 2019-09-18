@@ -1,36 +1,44 @@
 $(function () {
-//    $(".login").children().eq(2).css("display","none")
-   // $(".login").children().eq(3).css("display","none")
+    $(".login").children().eq(2).css("display", "none")
+    $(".login").children().eq(3).css("display", "none")
 
     //$(".login").children().eq(2).css("display","block")
     //$(".login").children().eq(3).css("display","block")
     //$(".login").children().eq(0).css("display","none")
     // $(".login").children().eq(1).css("display","none")
 
+    $.ajax({
+        url: "/getUserInfo",
+        dataType: "json",
+        success: function (data) {
+            $(".loginheadpic img").attr("src", "face/" + data.userPic);
+        }
+    });
 
-
+    $.ajax({
+        url: "/selectByBlogtagGetBlog",
+        type: "post",
+        dataType: "json",
+        data: {"tagName": "java"},
+        success: function (data) {
             $.ajax({
                 url: "/getUserId",
                 type: "post",
                 dataType: "json",
+
                 success: function (data1) {
-                    $.ajax({
-                    url: "/selectByBlogtagGetBlog",
-                    type: "post",
-                    dataType: "json",
-                    data:{"tagName":"java"},
 
-                    success: function (data) {
+                    if (data1 > 0) {
+                        $(".login").children().eq(2).css("display", "block")
+                        $(".login").children().eq(3).css("display", "block")
+                        $(".login").children().eq(0).css("display", "none")
+                        $(".login").children().eq(1).css("display", "none")
 
-                    if (data1>0) {
-                        $(".login").children().eq(2).css("display","block")
-                        $(".login").children().eq(3).css("display","block")
-                        $(".login").children().eq(0).css("display","none")
-                        $(".login").children().eq(1).css("display","none")
-                    }
-                    else {
-                        $(".login").children().eq(2).css("display","none")
-                        $(".login").children().eq(3).css("display","none")
+                        // $.cookie("userid",data1);
+                        // // $.cookie("userid");
+                    } else {
+                        $(".login").children().eq(2).css("display", "none")
+                        $(".login").children().eq(3).css("display", "none")
                     }
 
 
@@ -55,7 +63,7 @@ $(function () {
     })
     $("#searchtext").click(function () {
         var str = "搜索框"
-        if($(this).val() == str) {
+        if ($(this).val() == str) {
             $(this).val("");
         }
     });
@@ -75,42 +83,42 @@ var page = 0;
 var allTab = document.getElementById('adpart1').getElementsByTagName('img');
 var allLi = document.getElementsByClassName('tabLi');
 
-var timer = setInterval(function(){
+var timer = setInterval(function () {
     page++;
-    if (page>=allTab.length) {
-        page=0;
+    if (page >= allTab.length) {
+        page = 0;
     }
     for (var i = 0; i < allTab.length; i++) {
         allTab[i].style.display = 'none';
-        allLi[i].style.backgroundColor= '#7d7d7d';
+        allLi[i].style.backgroundColor = '#7d7d7d';
     }
-        allTab[page].style.display = 'block';
-        allLi[page].style.backgroundColor = 'white';
-    },1500);
+    allTab[page].style.display = 'block';
+    allLi[page].style.backgroundColor = 'white';
+}, 1500);
 
 var oBanner = document.getElementById('ad');
 var oTurn = document.getElementById('turn');
 
-oBanner.onmouseover = function(){
+oBanner.onmouseover = function () {
     clearInterval(timer);
     oTurn.style.display = 'block';
 }
 
-oBanner.onmouseleave = function(){
+oBanner.onmouseleave = function () {
     oTurn.style.display = 'none';
-    timer = setInterval(function(){
-    page++;
-    if (page>=allTab.length) {
-        page=0;
-    }
-    change(page);
-    },1500);
+    timer = setInterval(function () {
+        page++;
+        if (page >= allTab.length) {
+            page = 0;
+        }
+        change(page);
+    }, 1500);
 }
 
 
 for (var i = 0; i < allLi.length; i++) {
-    allLi[i].setAttribute('flag',i);
-    allLi[i].onclick = function(){
+    allLi[i].setAttribute('flag', i);
+    allLi[i].onclick = function () {
         var flag = this.getAttribute('flag');
         change(flag);
         page = flag;
@@ -119,28 +127,28 @@ for (var i = 0; i < allLi.length; i++) {
 
 var oRight = document.getElementById("rightTurn");
 
-oRight.onclick = function(){
+oRight.onclick = function () {
     page++;
-    if(page>=allTab.length){
-        page=0;
+    if (page >= allTab.length) {
+        page = 0;
     }
     change(page);
 }
 
 var oLeft = document.getElementById("leftTurn");
-oLeft.onclick = function(){
+oLeft.onclick = function () {
     page--;
-    if(page<0){
-        page=4;
+    if (page < 0) {
+        page = 4;
     }
     change(page);
 }
 
-function change(num){
+function change(num) {
     for (var i = 0; i < allTab.length; i++) {
         allTab[i].style.display = 'none';
-        allLi[i].style.backgroundColor= '#7d7d7d';
+        allLi[i].style.backgroundColor = '#7d7d7d';
     }
-        allTab[num].style.display = 'block';
-        allLi[num].style.backgroundColor = 'white';
+    allTab[num].style.display = 'block';
+    allLi[num].style.backgroundColor = 'white';
 }

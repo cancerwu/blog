@@ -1,6 +1,12 @@
 $(function () {
 
-
+    $.ajax({
+        url: "/getUserInfo",
+        dataType: "json",
+        success: function (data) {
+            $(".loginheadpic img").attr("src", "face/" + data.userPic);
+        }
+    });
     $.ajax({
         url: "/getMyRelationUserinfo",
         type: "post",
@@ -16,7 +22,7 @@ $(function () {
             //
             //     "            </div>")
             $.ajax({
-                url:"/getUserId",
+                url: "/getUserId",
                 type: "post",
                 dataType: "json",
                 success: function (data1) {
@@ -24,46 +30,46 @@ $(function () {
                     var useronlineId = data1;
 
                     for (var i = 0; i < data.length; i++) {
-                        var u="removeRelation1"+"?"+"blogerId="+data[i].userId+"&"+"fansId"+"="+data1;
+                        var u = "removeRelation1" + "?" + "blogerId=" + data[i].userId + "&" + "fansId" + "=" + data1;
                         var $div1 = ("<div class=\"fansdateil\">\n" +
                             "<div class=\"fansimages\">\n" +
-                            "<div class=\"fansimages1\">"+
+                            "<div class=\"fansimages1\">" +
                             "</div>\n" +
                             "</div>\n" +
                             "<div class=\"fansname\">\n" +
-                            "<div class=\"fansname1\">"+
-                            "<a href='#'>"+data[i].realName+"</a>"+
+                            "<div class=\"fansname1\">" +
+                            "<a href='#'>" + data[i].realName + "</a>" +
                             "</div>\n" +
                             "</div>\n" +
-                            "<div class=\"delfans\">\n"+
+                            "<div class=\"delfans\">\n" +
                             // "<input type=\"button\" value=\"取消关注\">\n"+
-                            "<a href="+u+">"+"取消关注"+"</a>"+
-                            "</div>"+
+                            "<a href=" + u + ">" + "取消关注" + "</a>" +
+                            "</div>" +
                             "</div>")
-                        var id=data[i].userId;
+                        var id = data[i].userId;
                         id = parseInt(id);
-                        data1=parseInt(data1);
+                        data1 = parseInt(data1);
 
                         $("div[class='fansmain']").append($div1);
 
-                            // $("input[value='取消关注']").click(function () {
-                            //     $.ajax({
-                            //         url :"/removeRelation",
-                            //         type:"post",
-                            //         dataType:"json",
-                            //
-                            //         data:{"blogerId":id,"fansId":data1},
-                            //
-                            //         success :function (data2) {
-                            //
-                            //                 location.href="viewfollow.html";
-                            //
-                            //
-                            //         }
-                            //
-                            //     })
-                            //
-                            // })
+                        // $("input[value='取消关注']").click(function () {
+                        //     $.ajax({
+                        //         url :"/removeRelation",
+                        //         type:"post",
+                        //         dataType:"json",
+                        //
+                        //         data:{"blogerId":id,"fansId":data1},
+                        //
+                        //         success :function (data2) {
+                        //
+                        //                 location.href="viewfollow.html";
+                        //
+                        //
+                        //         }
+                        //
+                        //     })
+                        //
+                        // })
 
                     }
                 }

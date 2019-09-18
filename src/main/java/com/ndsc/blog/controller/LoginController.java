@@ -39,12 +39,13 @@ public class LoginController {
     @RequestMapping("/login")
     public String selectByLogin(String userName, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
-         password=md5Encryption.encrype(password);
+        password = md5Encryption.encrype(password);
         String resultUserName = loginService.selectByLogin(userName, password);
         session.setAttribute("userName", resultUserName);
         System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
         return resultUserName;
     }
+
     @RequestMapping("/phoneLogin")
     public String phoneLogin(String userTel, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -67,9 +68,15 @@ public class LoginController {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
         System.out.println(userName);
-        int userId = usersafeMapper.selectUserId(userName);
-        System.out.println(userId);
-        return userId;
+        try {
+            int userId = usersafeMapper.selectUserId(userName);
+            System.out.println(userId);
+            return userId;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+
     }
 
     @RequestMapping("/outline")

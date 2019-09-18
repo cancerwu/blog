@@ -16,7 +16,13 @@
                 },
                 // methods:
             });
-
+            $.ajax({
+                url: "/getUserInfo",
+                dataType: "json",
+                success: function (data) {
+                    $(".loginheadpic img").attr("src", "face/" + data.userPic);
+                }
+            });
             $.ajax({
                 url: "/getAllResources",
                 dataType: "json",
@@ -118,15 +124,18 @@
             </a>
         </div>
         <div class="login">
-            <!--                <li><a href="blogIndex.html">登录</a></li>
-                            <li><a href="blogIndex.html">注册</a></li>-->
+            <!--                <li><a href="blogIndex.html">登录</a></li>-->
+            <!--                <li><a href="blogIndex.html">注册</a></li>-->
             <li><a href="#">消息</a></li>
             <a href="userInfoIndex.html">
-                <div class="loginheadpic"></div>
+                <div class="loginheadpic">
+                    <img src="images/headpic.jpg">
+                </div>
             </a>
         </div>
     </div>
 </div>
+
 <div id="bodywindow">
     <div id="bodywindow_option">
         <span class="menu">代码资源</span>
