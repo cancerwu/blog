@@ -68,9 +68,15 @@ public class LoginController {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
         System.out.println(userName);
-        int userId = usersafeMapper.selectUserId(userName);
-        System.out.println(userId);
-        return userId;
+        try {
+            int userId = usersafeMapper.selectUserId(userName);
+            System.out.println(userId);
+            return userId;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+
     }
 
     @RequestMapping("/outline")
