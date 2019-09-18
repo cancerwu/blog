@@ -97,7 +97,7 @@
                         </div>
                         <div class="blogauthor">
                             <div class="authorpic">
-                                头像:{{userinfo.userPic}}
+                                <img :src="userinfo.userPic" style="width: 70px">
                             </div>
                             <div class="authorname">
                                 <span>作者用户名:</span>
@@ -185,7 +185,7 @@
                         realName: data.userinfo.realName,
                         userSex: data.userinfo.userSex,
                         userBirthday: data.userinfo.userBirthday,
-                        userPic: data.userinfo.userPic,
+                        userPic: "face/"+data.userinfo.userPic,
                         userCreateTime: data.userinfo.userCreateTime,
                     };
                     vueleftinfo.blogCount = data.blogList.length;
@@ -245,7 +245,7 @@
                         realName: data.userinfo.realName,
                         userSex: data.userinfo.userSex,
                         userBirthday: data.userinfo.userBirthday,
-                        userPic: data.userinfo.userPic,
+                        userPic: "face/"+data.userinfo.userPic,
                         userCreateTime: data.userinfo.userCreateTime,
                     };
                     for (var i = 0; i < data.blogList.length; i++) {
@@ -281,6 +281,11 @@
         }
     }
     $(function () {
+        $("#vue_blog").on("click",".ajax_userName",function () {
+            var userName = $(this).text();
+            var url1 = "http://localhost:8080/userBlogIndex.html?userName="+userName;
+            window.location.replace(url1);
+        })
         init();
         $.ajax({
             url: "/getUserInfo",
