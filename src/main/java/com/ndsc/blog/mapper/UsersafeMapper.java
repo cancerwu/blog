@@ -4,6 +4,8 @@ import com.ndsc.blog.entity.Usersafe;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface UsersafeMapper {
@@ -33,8 +35,9 @@ public interface UsersafeMapper {
 
     String selectByUserEmail(String userinput, String userPassword);
     String selectuserTel(String userTel);
-    Usersafe selectAllUsers();
-
+    List<Usersafe> selectAllUsers();
+    Usersafe selectUserById(int userId);
+    Usersafe selectUserByName(String userName);
     int selectUserId(String userName);
 
     //*********************************
