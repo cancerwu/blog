@@ -47,13 +47,13 @@
                 layer.msg(JSON.stringify(data.field),function(){
                     console.log(data.field);
                     $.ajax({
-                        url:'/login',
+                        url:'/login1',
                         type:'post',
-                        data:{'userName':$("#user").val(),'password':$("#pass").val()},
+                        data:{'userName':$("#username").val(),'password':$("#password").val()},
                         datatype:'json',
                         success:function (data) {
-                            if(data.userName==$("#user").val() && data.userRole==3){
-                                window.location.href = "/index.html";
+                            if(data.userName==$("#username").val() && data.userRole==3){
+                                window.location.href = "/Xadmin/index.html";
                             }
                             else{
                                 layer.open({
@@ -61,6 +61,9 @@
                                     ,content: '账户名或密码错误！'
                                 });
                             }
+                        },
+                        error:function (data) {
+                            console.log(data);
                         }
                     })
                     // location.href='index.html'
