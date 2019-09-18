@@ -12,7 +12,34 @@
     <script src="js/jquery.validate.regex.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.js"></script>
 </head>
+    <script>
+    $(function () {
+        var blogmsg = new Vue({
+            el:'#blog-list',
+            data:{
+                msgs:''
+            },
+        })
+        $("#submit").click(function () {
+            console.log("click");
+            $.ajax({
+                url:'/solr/search',
+                data:{
+                    keyword:$("#searchtext").val()
+                },
+                dataType:'json',
+                success:function (data) {
+                    console.log(data);
+                    blogmsg.msgs=data;
+                }
+            })
+        })
+    });
+
+    </script>
 <body>
 
 <div class="top">
@@ -36,7 +63,7 @@
             <div class="searchtext">
                 <input type="text" id="searchtext" value="搜索框">
             </div>
-            <input type="submit" class="searchbutton" value="搜索">
+            <input type="button" id="submit" class="searchbutton" value="搜索">
         </form>
         <div class="write">
             <a href="#">
@@ -56,6 +83,15 @@
 <div class="main">
     <div class="w">
         <div class="left">
+            <div class="search-result">搜索结果：</div>
+                <div id="blog-list" class="layui-card dingbu">
+                    <div class="layui-card-body list-title" v-for="msg in msgs">
+                        {{msg.blogTitle}}
+                        <div class="author">作者：{{msg.userId}}<span class="time">发布时间：{{msg.id}}</span> <div class="readnum">{{msg.blog_read_num}}次阅读</div></div>
+
+                    </div>
+                </div>
+
 
         </div>
         <div class="right">
@@ -175,6 +211,5 @@
         </div>
     </div>
 </div>
-<script src="js/blogIndex.js"></script>
 </body>
 </html>

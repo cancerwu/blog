@@ -85,6 +85,7 @@ li{
 }
 
 .searchbutton{
+    cursor:pointer;
     width: 50px;
     height: 30px;
     margin-top: 5px;
