@@ -42,6 +42,10 @@
     from blog
     where blog_id = #{blogId,jdbcType=INTEGER}
   </select>
+
+    <update id="updateBlogReadNum" parameterType="java.lang.Integer">
+        update blog set blog_read_num = blog_read_num+1 where blog_id = #{blogId,jdbcType=INTEGER}
+    </update>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from blog
     where blog_id = #{blogId,jdbcType=INTEGER}

@@ -45,6 +45,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public Blog getBlogById(Integer blogid) {
+        int update  = blogMapper.updateBlogReadNum(blogid);
         return blogMapper.selectByPrimaryKey(blogid);
     }
 }
