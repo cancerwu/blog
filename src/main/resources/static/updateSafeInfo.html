@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/updateSafeInfo.css" rel="stylesheet">
+<!--    <link href="css/blogManage.css" rel="stylesheet">-->
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/indexBottom.css" rel="stylesheet">
+    <link rel="stylesheet" href="layui/css/layui.css">
 
+    <script src="layui/layui.js"></script>
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/vue.min.js"></script>
     <script src="js/jquery.validate.regex.js"></script>
@@ -56,10 +59,26 @@
 <div class="main">
     <div class="w">
         <div class="leftlabel">
-            <span><li>账号设置首页</li></span>
-            <span><li>修改密码</li></span>
-            <span><li>修改手机号</li></span>
-            <span><li>修改邮箱</li></span>
+            <!--                <div class="labeltitle">编辑器</div>-->
+            <!--                <a href="blogIndex.html"><li>富文本编辑器</li></a>-->
+            <!--                <div class="labeltitle">内容</div>-->
+            <!--                <a href="blogIndex.html"><li>查看主页</li></a>-->
+            <!--                <a href="blogIndex.html"><li>文章管理</li></a>-->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item"><a href="updateSafeInfo.html">账号设置首页</a></li>
+                <li class="layui-nav-item" ><a name="changepas">修改密码</a></li>
+                <li class="layui-nav-item"><a name="changetel">修改手机号</a></li>
+                <li class="layui-nav-item"><a name="changeEmail">修改邮箱</a></li>
+            </ul>
+            <script>
+                //注意：导航 依赖 element 模块，否则无法进行功能性操作
+                layui.use('element', function(){
+                    var element = layui.element;
+
+                    //…
+                });
+
+            </script>
         </div>
         <div class="showinfo">
             <div class="infotitle">
@@ -97,7 +116,7 @@
                         确认新密码：&nbsp;<input name="againpas" type="text" value="请确认新密码">
                     </div>
                     <div class="changesubmit">
-                        <input type="submit" value="确认修改">
+                        <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
                     </div>
                 </form>
             </div>
@@ -111,7 +130,7 @@
                         输入新手机号：&nbsp;<input name="newtel" type="text" value="请输入新手机号">
                     </div>
                     <div class="changesubmit">
-                        <input type="submit" value="确认修改">
+                        <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
                     </div>
                 </form>
             </div>
@@ -124,7 +143,7 @@
                         输入新邮箱：&nbsp;<input name="newEmail" type="text" value="请输入新邮箱">
                     </div>
                     <div class="changesubmit">
-                        <input type="submit" value="确认修改">
+                        <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
                     </div>
                 </form>
             </div>
