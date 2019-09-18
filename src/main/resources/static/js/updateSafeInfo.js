@@ -8,26 +8,44 @@ $(function () {
     });
 
 
-    $(".leftlabel").children().eq(0).click(function () {
-        alert("success")
-        closeAllDiv();
-        $(".safestatus").css("display","block")
-    })
-    $(".leftlabel").children().eq(1).click(function () {
+    $("a[name='changepas']").click(function () {
         alert("success")
         closeAllDiv();
         $(".changepassword").css("display","block")
     })
-    $(".leftlabel").children().eq(2).click(function () {
+    $("a[name='changetel']").click(function () {
         alert("success")
         closeAllDiv();
         $(".changetel").css("display","block")
     })
-    $(".leftlabel").children().eq(3).click(function () {
+    $("a[name='changeEmail']").click(function () {
         alert("success")
         closeAllDiv();
         $(".changeEmail").css("display","block")
     })
+
+
+    // $(".leftlabel").children().eq(0).click(function () {
+    //     alert("success")
+    //     closeAllDiv();
+    //     $(".safestatus").css("display","block")
+    // })
+
+    // $(".leftlabel").children().eq(1).click(function () {
+    //     alert("success")
+    //     closeAllDiv();
+    //     $(".changepassword").css("display","block")
+    // })
+    // $(".leftlabel").children().eq(2).click(function () {
+    //     alert("success")
+    //     closeAllDiv();
+    //     $(".changetel").css("display","block")
+    // })
+    // $(".leftlabel").children().eq(3).click(function () {
+    //     alert("success")
+    //     closeAllDiv();
+    //     $(".changeEmail").css("display","block")
+    // })
 
     $("input[type='text']").click(function () {
         var patt = new Array();

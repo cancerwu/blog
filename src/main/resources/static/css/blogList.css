@@ -16,203 +16,46 @@ h1,h2,h3,h4,h5,h6,ul,li,ol,dl,dt,dd,p,span,div,object,iframe,pre,abbr,cite,input
 }
 
 .left{
+
     width: 820px;
+    height: 500px;
     float: left;
 }
-
-.leftlabel{
-    position: fixed;
-    margin-left: 60px;
-    margin-top: 50px;
-    width: 100px;
-    height: 600px;
+.search-result{
+    color: rgb(153, 0, 0);
+    margin: 20px 0px 10px 15px;
+    font-size: 22px;
+}
+.dingbu{
+    margin-top: 25px;
 }
 
-.leftlabel li:hover{
-    background-color: #e2231a;
+.list-title{
+    font-size: 18px;
+    color: dimgray;
+    margin-bottom: 5px;
+    font-family: Arial,Microsoft YaHei, SF Pro Display, Roboto, Noto, Arial, PingFang SC, Hiragino Sans GB, sans-serif;
+    line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
-.leftlabel a:hover{
-    color: white;
-}
-.leftlabel li{
-    width: 96px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    border:1px solid #ccc;
-}
-
-.rightlabel{
-    position: fixed;
-    margin-left: 1360px;
-    margin-top: 550px;
-    width: 50px;
-    height: 130px;
-
-}
-
-.rightlabel li:hover{
-    background-color: #e2231a;
-}
-.rightlabel a:hover{
-    color: white;
-}
-.rightlabel li{
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border:1px solid #ccc;
-}
-/*以下轮播图部分*/
-#ad{
-    width: 820px;
-    height: 300px;
-    position: relative;
-
-}
-#adpart1{
-    width: 400px;
-    height: 300px;
-    float: left;
-    /*margin-left: 100px;*/
-    position: relative;
-}
-#adpart1 img{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
-#click{
-    position: absolute;
-    bottom: -6px;
-    width:100px;
-    height: 30px;
-    left: 150px;
-}
-#click ul{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-.tabLi{
-    border: 1px solid white;
-    float: left;
-    width: 10px;
-    height: 10px;
-    border-radius: 200%;
-    margin-left: 5px;
-    background-color: #7d7d7d;
-}
-.tabLi:hover{
-    cursor: pointer;
-}
-#turn{
-    position: absolute;
-    top: 128px;
-    left: 1px;
-    width: 398px;
-}
-#leftTurn{
-    float: left;
-}
-#leftTurn:hover{
-    cursor: pointer;
-}
-#rightTurn{
-    float: right;
-}
-#rightTurn:hover{
-    cursor: pointer;
-}
-.adpart2{
-    width: 400px;
-    height: 300px;
-    margin-left: 20px;
-    float: left;
-}
-
-.adpart2 img{
-    width: 100%;
-    height: 100%;
-}
-
-
-/*以上是轮播图部分*/
-
-.blog{
-    width: 820px;
-
-    margin-top: 20px;
-    float: left;
-}
-
-.blog li{
-    width: 820px;
-    height: 200px;
-
-    border:1px dashed #000
-}
-.blogtitle{
-    width: 500px;
-    height: 40px;
-    margin: auto;
-    margin-top: 10px;
-    text-align: center;
-    font-weight: 1000;
-    line-height: 40px;
-    font-size: 30px;
-}
-
-.bloginfo{
-    width: 820px;
-    height: 150px;
-
-}
-
-.blogcontent{
-    width: 800px;
-    height: 40px;
-    margin: auto;
-    margin-top: 10px;
-    margin-left: 20px;
-    line-height: 40px;
+.author{
+    color: #666666;
+    margin-top: 8px;
     font-size: 15px;
-
 }
-
-.blogauthor{
-    width: 800px;
-    height: 90px;
-    margin: auto;
-    margin-top: 10px;
-    margin-left: 20px;
-    line-height: 90px;
-
-}
-
-.authorpic{
-    width: 70px;
-    height: 70px;
-    margin-top: 10px;
-    margin-left: 10px;
-    background-color: #00db00;
-    float: left;
-}
-
-.authorname{
-    width: 300px;
-    height: 90px;
-    margin-left: 30px;
-    float: left;
-}
-
-.blogreadnum{
-    width: 200px;
-    height: 90px;
-    text-align: center;
+.readnum{
     float: right;
+    color: #666666;
+    font-size: 15px;
 }
+.time{
+    padding-left: 40px;
+}
+
 
 
 @font-face {font-family: "CSDN_iconfont";

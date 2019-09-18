@@ -25,15 +25,13 @@ public class LoginController {
     Md5Encryption md5Encryption;
 
     @RequestMapping("/login")
-    public Usersafe selectByLogin(String userinput, String password, HttpServletRequest request) {
+    public String selectByLogin(String userName, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
          password=md5Encryption.encrype(password);
-        String resultUserName = loginService.selectByLogin(userinput, password);
+        String resultUserName = loginService.selectByLogin(userName, password);
         session.setAttribute("userName", resultUserName);
-        int userId = usersafeMapper.selectUserId(resultUserName);
-        Usersafe usersafe=usersafeMapper.selectByPrimaryKey(userId);
         System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
-        return usersafe;
+        return resultUserName;
     }
 
     @RequestMapping("/getLoginUserName")

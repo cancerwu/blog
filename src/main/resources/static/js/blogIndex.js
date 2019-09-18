@@ -1,4 +1,13 @@
 $(function () {
+    $(".login").children().eq(2).css("display","none")
+    $(".login").children().eq(3).css("display","none")
+
+    // $(".login").children().eq(2).css("display","block")
+    // $(".login").children().eq(3).css("display","block")
+    // $(".login").children().eq(0).css("display","none")
+    // $(".login").children().eq(1).css("display","none")
+
+
     $.ajax({
         url: "/selectByBlogtagGetBlog",
         type: "post",
@@ -17,11 +26,9 @@ $(function () {
             //     "</div>");
             // $("div[class='idinfo']").append($li2);
             for (var i = 0; i < data.length; i++) {
-
+                // alert(data[i].userinfo.realName);
                 var $div = ("<li>\n" +
-                    "                        <div class=\"blogtitle\">\n" +
-                    "                         <a href=''>"+ data[i].blogTitle +" </a>\n"+
-                    "                            </div>\n" +
+                    "                        <div class=\"blogtitle\">" + data[i].blogTitle + "</div>\n" +
                     "                        <div class=\"bloginfo\">\n" +
                     "                            <div class=\"blogcontent\">" + data[i].blogContent + "</div>\n" +
                     "                            <div class=\"blogauthor\">\n" +
@@ -43,10 +50,10 @@ $(function () {
         }
     });
 
-    // $(".leftlabel").children().click(function () {
-    //     alert("success")
-    //     alert($(".leftlabel").children().eq(0).text())
-    // })
+    $(".leftlabel").children().click(function () {
+        alert("success")
+        alert($(".leftlabel").children().eq(0).text())
+    })
 
 
 })

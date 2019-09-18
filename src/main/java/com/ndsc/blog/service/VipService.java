@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface VipService {
     List<Vip> selectAll();
+
+    Vip selectById(Integer vipId);
 }
