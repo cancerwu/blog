@@ -9,7 +9,7 @@
 
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/vue.min.js"></script>
-<!--    <script src="js/jquery.validate.regex.js"></script>-->
+    <!--    <script src="js/jquery.validate.regex.js"></script>-->
     <script src="js/jquery.validate.min.js"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 </head>
@@ -120,12 +120,13 @@
                 <div class="backbutton">
                     ×
                 </div>
-                <form id="changeinfo">
-                    <li>真实姓名：<input name="realname" type="text" value=""></li>
-                    <li>性别：<input name="sex" type="radio" value="男">男&nbsp;&nbsp;&nbsp;<input name="sex" type="radio"
-                                                                                              value="女">女
+                <form id="changeinfo" action="/changeInfo" method="post">
+                    <li>真实姓名：<input name="realName" type="text" value=""></li>
+                    <li>性别：<input name="userSex" type="radio" value="男">男&nbsp;&nbsp;&nbsp;<input name="userSex"
+                                                                                                  type="radio"
+                                                                                                  value="女">女
                     </li>
-                    <li>生日：<input name="birthday" type="date" value=""></li>
+                    <li>生日：<input name="userBirthday" type="date" value=""></li>
                     <div class="submitchange"><input type="submit" value="确认修改"></div>
                 </form>
             </div>

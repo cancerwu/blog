@@ -1,10 +1,10 @@
 $(function () {
     $.ajax({
         url: "/getUserInfo",
-        dataType:"json",
+        dataType: "json",
         success: function (data) {
-            $(".loginheadpic img").attr("src","face/" + data.userPic);
-            $(".pic img").attr("src","face/" + data.userPic);
+            $(".loginheadpic img").attr("src", "face/" + data.userPic);
+            $(".pic img").attr("src", "face/" + data.userPic);
         }
     });
 
