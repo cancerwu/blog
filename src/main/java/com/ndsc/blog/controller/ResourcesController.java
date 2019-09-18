@@ -76,7 +76,7 @@ public class ResourcesController {
             e.printStackTrace();
         }
         userInfoService.updateByPrimaryKeySelective(userinfo);
-        return "<a id=\"ak\" href='uploadSuccess.html'>跳转</a>\n" +
+        return "<a id=\"ak\" href='userinfoindex.html'>跳转</a>\n" +
                 "<script>\n" +
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";

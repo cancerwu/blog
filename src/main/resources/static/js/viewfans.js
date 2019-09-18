@@ -1,6 +1,12 @@
 $(function () {
 
-
+    $.ajax({
+        url: "/getUserInfo",
+        dataType: "json",
+        success: function (data) {
+            $(".loginheadpic img").attr("src", "face/" + data.userPic);
+        }
+    });
     $.ajax({
         url: "/getMyFans",
         type: "post",
@@ -18,12 +24,12 @@ $(function () {
             for (var i = 0; i < data.length; i++) {
                 var $div1 = ("<div class=\"fansdateil\">\n" +
                     "<div class=\"fansimages\">\n" +
-                    "<div class=\"fansimages1\">"+
+                    "<div class=\"fansimages1\">" +
                     "</div>\n" +
                     "</div>\n" +
                     "<div class=\"fansname\">\n" +
-                    "<div class=\"fansname1\">"+
-                    "<a href='#'>"+data[i].realName+"</a>"+
+                    "<div class=\"fansname1\">" +
+                    "<a href='#'>" + data[i].realName + "</a>" +
                     "</div>\n" +
                     "</div>\n" +
                     "</div>")

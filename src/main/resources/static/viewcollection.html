@@ -12,6 +12,18 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <script src="js/view.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url: "/getUserInfo",
+                dataType: "json",
+                success: function (data) {
+                    $(".loginheadpic img").attr("src", "face/" + data.userPic);
+                }
+            });
+        });
+
+    </script>
 </head>
 <body>
 <div class="top">
@@ -55,12 +67,24 @@
 <div class="main">
     <div class="w">
         <div class="leftlabel">
-            <a href="userInfoIndex.html"><li>个人资料</li></a>
-            <a href="blogIndex.html"><li>我的收藏</li></a>
-            <a href="viewfollow.html"><li>我关注的人</li></a>
-            <a href="viewfans.html"><li>我的粉丝</li></a>
-            <a href="userBlogIndex.html"><li>我的主页</li></a>
-            <a href="updateSafeInfo.html"><li>账号设置</li></a>
+            <a href="userInfoIndex.html">
+                <li>个人资料</li>
+            </a>
+            <a href="blogIndex.html">
+                <li>我的收藏</li>
+            </a>
+            <a href="viewfollow.html">
+                <li>我关注的人</li>
+            </a>
+            <a href="viewfans.html">
+                <li>我的粉丝</li>
+            </a>
+            <a href="userBlogIndex.html">
+                <li>我的主页</li>
+            </a>
+            <a href="updateSafeInfo.html">
+                <li>账号设置</li>
+            </a>
         </div>
         <div class="myfans">
             <div class="fanstitle">

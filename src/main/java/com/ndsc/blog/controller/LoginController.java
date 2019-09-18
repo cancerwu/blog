@@ -39,12 +39,13 @@ public class LoginController {
     @RequestMapping("/login")
     public String selectByLogin(String userName, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
-         password=md5Encryption.encrype(password);
+        password = md5Encryption.encrype(password);
         String resultUserName = loginService.selectByLogin(userName, password);
         session.setAttribute("userName", resultUserName);
         System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
         return resultUserName;
     }
+
     @RequestMapping("/phoneLogin")
     public String phoneLogin(String userTel, HttpServletRequest request) {
         HttpSession session = request.getSession();
