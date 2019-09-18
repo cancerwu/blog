@@ -36,4 +36,9 @@ public class BackstageImpl implements Backstage {
     public int countBlog() {
         return usersafeMapper.countBlog();
     }
+
+    @Override
+    public int countUser() {
+        return usersafeMapper.countUser();
+    }
 }

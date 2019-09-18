@@ -50,22 +50,22 @@ public class LoginController {
     public Usersafe selectByLogin1(String userName, String password, HttpServletRequest request) {
         HttpSession session = request.getSession();
         password = md5Encryption.encrype(password);
-          Usersafe usersafe= new Usersafe();
+        Usersafe usersafe = new Usersafe();
 
         try {
             String resultUserName = loginService.selectByLogin(userName, password);
             session.setAttribute("userName", resultUserName);
             int userId = usersafeMapper.selectUserId(userName);
             System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
-             usersafe=usersafeMapper.selectByPrimaryKey(userId);
+            usersafe = usersafeMapper.selectByPrimaryKey(userId);
             return usersafe;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return usersafe;
         }
 
     }
+
     @RequestMapping("/phoneLogin")
     public String phoneLogin(String userTel, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -92,11 +92,10 @@ public class LoginController {
             int userId = usersafeMapper.selectUserId(userName);
             System.out.println(userId);
             return userId;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
-
     }
 
     @RequestMapping("/outline")
@@ -105,8 +104,5 @@ public class LoginController {
         session.setAttribute("userName", null);
         System.out.println("下线成功");
         return 0;
-
     }
-
-
 }

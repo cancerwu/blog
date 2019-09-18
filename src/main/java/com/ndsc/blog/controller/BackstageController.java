@@ -13,28 +13,37 @@ public class BackstageController {
 
 @Autowired
 Backstage backstage;
-@RequestMapping("/selectAllUsers")
+@RequestMapping("/selectAllUsers")//查找所有用户
   public List<Usersafe> selectAll(){
 return backstage.selectAllUsers();
 }
-@RequestMapping("/selectUserById")
+@RequestMapping("/selectUserById")//通过user Id查找
   public Usersafe selectUserById(int userId){
   return backstage.selectUserById(userId);
 }
-@RequestMapping("/selectUserByName")
+@RequestMapping("/selectUserByName")//通过userName查找
   public Usersafe selectUserByName(String userName)
 {
   return  backstage.selectUserByName(userName);
 }
-@RequestMapping("/blockAcccount")
+@RequestMapping("/blockAcccount")//锁定账户
   public int blockAcccount(int userId)
 {
   return backstage.blockAcccount(userId);
 
 }
-  @RequestMapping("/countBlog")
+  @RequestMapping("/countBlog")//总文章数
   public int countBlog(){
      return backstage.countBlog();
   }
+
+//总人数
+@RequestMapping("/countUser")
+public  int countUser(){
+    return backstage.countUser();
 }
 
+
+
+
+}

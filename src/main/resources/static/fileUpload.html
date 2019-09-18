@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>文件上传</title>
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/fileUpload.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.js"></script>
@@ -26,8 +26,8 @@
             <li><a href="blogIndex.html">首页</a></li>
             <li><a href="blogIndex.html">博客</a></li>
             <li><a href="downloadhomepage.html">下载</a></li>
-            <li><a href="vipBuy.html.html">会员</a></li>
-            <li><a href="blogIndex.html">APP</a></li>
+            <li><a href="vipBuy.html">会员</a></li>
+            <li><a href="fileUpload.html">上传</a></li>
             <li><a href="blogIndex.html">论坛</a></li>
             <li><a href="blogIndex.html">商城</a></li>
             <li><a href="blogIndex.html">问答</a></li>
@@ -63,7 +63,7 @@
     <form id="formId" action="/upload" method="post" enctype="multipart/form-data">
         资源名称：<input type="text" name="resourcesName" placeholder="请输入资源名称">
         <div id="upLoadFile">
-            文件：<input type="file" name="file">
+            <input type="file" name="file">
         </div>
         <div id="submitFile">
             <button id="submit">提交</button>

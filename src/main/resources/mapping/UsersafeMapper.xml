@@ -72,6 +72,9 @@
     <select id="countBlog" resultType="java.lang.Integer">
     select count(*) from blog
   </select>
+    <select id="countUser" resultType="java.lang.Integer">
+    select count(*) from usersafe
+  </select>
     <!--******************************************-->
     <update id="updateUsersafe" parameterType="com.ndsc.blog.entity.Usersafe">
         update usersafe

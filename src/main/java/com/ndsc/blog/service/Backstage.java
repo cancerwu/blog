@@ -10,5 +10,6 @@ public interface Backstage {
     Usersafe selectUserByName(String userName);
     int blockAcccount(int userId);
     int countBlog();
+    int countUser();
 
 }
