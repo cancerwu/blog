@@ -108,7 +108,13 @@ public class BlogController {
     public List<Blog> selectCollectionBlog(Integer collectionId){
         return blogService.selectCollectionBlog(collectionId);
     }
-
+    @RequestMapping("/selectCollectionBlog1")
+    public List<Blog> selectCollectionBlog1(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int userId = usersafeMapper.selectUserId(userName);
+        return blogService.selectCollectionBlog(userId);
+    }
     @RequestMapping("/deleteCollection")
     public int deleteCollection(@RequestBody Collect collection){
         return blogService.deleteCollection(collection);

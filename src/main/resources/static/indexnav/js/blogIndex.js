@@ -43,10 +43,10 @@ $(function () {
         }
     });
 
-    // $(".leftlabel").children().click(function () {
-    //     alert("success")
-    //     alert($(".leftlabel").children().eq(0).text())
-    // })
+    $(".leftlabel").children().click(function () {
+        alert("success")
+        alert($(".leftlabel").children().eq(0).text())
+    })
 
 
 })
