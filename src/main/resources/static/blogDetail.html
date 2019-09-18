@@ -29,8 +29,8 @@
         <div class="nav">
             <li><a href="blogIndex.html">首页</a></li>
             <li><a href="blogIndex.html">博客</a></li>
-            <li><a href="downloadhomepage.html">下载</a></li>
-            <li><a href="vipBuy.html.html">会员</a></li>
+            <li><a href="blogIndex.html">下载</a></li>
+            <li><a href="blogIndex.html">会员</a></li>
             <li><a href="blogIndex.html">APP</a></li>
             <li><a href="blogIndex.html">论坛</a></li>
             <li><a href="blogIndex.html">商城</a></li>
@@ -99,28 +99,16 @@
                 <img src="images/blogIndex/leftbottom.png">
             </div>
         </div>
-        <div class="blog" id="vue_blog">
-            <li v-for="(b , index) in blogs">
-                <div class="blogtitle">
-                    文章标题:{{b.blogTitle}}
-                </div>
+        <div class="blog">
+            <div class="blogheader">
+                <div class="blogtitle">文章标题</div>
                 <div class="bloginfo">
-                    <div class="blogcontent">
-                        文章部分内容:{{b.blogContent}}
-                    </div>
-                    <div class="blogauthor">
-                        <div class="authorpic">
-                            头像:{{userinfo.userPic}}
-                        </div>
-                        <div class="authorname">
-                            作者用户名:{{userinfo.realName}}
-                        </div>
-                        <div class="blogreadnum">
-                            博客阅读量 {{b.blogReadNum}} 丨<a href="#">评论</a>
-                        </div>
-                    </div>
+                    <span class="createtime">发布时间：2019-2-12</span>
+                    <span class="readnum">阅读量：0</span>
                 </div>
-            </li>
+            </div>
+            <div class="blogcontent">博客内容</div>
+
         </div>
     </div>
 </div>
