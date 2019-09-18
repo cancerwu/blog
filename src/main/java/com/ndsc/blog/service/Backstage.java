@@ -2,9 +2,13 @@ package com.ndsc.blog.service;
 
 import com.ndsc.blog.entity.Usersafe;
 
+import java.util.List;
+
 public interface Backstage {
-    Usersafe selectAllUsers();
+   List<Usersafe>  selectAllUsers();
     Usersafe selectUserById(int userId);
     Usersafe selectUserByName(String userName);
+    int blockAcccount(int userId);
+    int countBlog();
 
 }

@@ -33,22 +33,27 @@ public class LoginServiceImpl implements LoginService{
         System.out.println(matcher1.matches());
         System.out.println(matcher2.matches());
         System.out.println(matcher3.matches());
+try{
+    if(matcher1.matches()){
 
-        if(matcher1.matches()){
+        result = usersafeMapper.selectByUserName(userinput,userPassword);
+    }
+    else if(matcher2.matches()){
+        result = usersafeMapper.selectByUserTel(userinput,userPassword);
+    }
+    else if(matcher3.matches()){
+        result = usersafeMapper.selectByUserEmail(userinput,userPassword);
+        System.out.println(result);
+    }
+    else{
+        result="error";
+    }
+    return result;
+}catch (Exception e){
+    e.printStackTrace();
+    return "~!";
+}
 
-             result = usersafeMapper.selectByUserName(userinput,userPassword);
-        }
-        else if(matcher2.matches()){
-             result = usersafeMapper.selectByUserTel(userinput,userPassword);
-        }
-        else if(matcher3.matches()){
-             result = usersafeMapper.selectByUserEmail(userinput,userPassword);
-            System.out.println(result);
-        }
-        else{
-            result="error";
-        }
-        return result;
     }
 
     @Override

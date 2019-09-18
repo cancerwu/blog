@@ -40,5 +40,9 @@ public interface BlogService {
 
     int selectCollectionCount(Integer collectionId);
 
+    Usersafe selectUidUsafeUinfoBlog(Integer userId);
+
+    Usersafe selectUnameUsafeUinfoBlog(String userName);
+
 
 }

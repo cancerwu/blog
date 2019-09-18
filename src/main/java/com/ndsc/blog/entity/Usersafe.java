@@ -1,5 +1,7 @@
 package com.ndsc.blog.entity;
 
+import java.util.List;
+
 public class Usersafe {
     private Integer userId;
 
@@ -18,6 +20,26 @@ public class Usersafe {
     private Integer userIntegral;
 
     private Integer userRole;
+
+    private Userinfo userinfo;
+
+    private List<Blog> blogList;
+
+    public Userinfo getUserinfo() {
+        return userinfo;
+    }
+
+    public void setUserinfo(Userinfo userinfo) {
+        this.userinfo = userinfo;
+    }
+
+    public List<Blog> getBlogList() {
+        return blogList;
+    }
+
+    public void setBlogList(List<Blog> blogList) {
+        this.blogList = blogList;
+    }
 
     public Integer getUserId() {
         return userId;
