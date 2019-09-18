@@ -44,4 +44,8 @@ public interface UsersafeMapper {
 
     //*********************************
     int updateUsersafe(Usersafe usersafe);
+
+    Usersafe selectUidUsafeUinfoBlog(Integer userId);
+
+    Usersafe selectUnameUsafeUinfoBlog(String userName);
 }

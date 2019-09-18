@@ -106,6 +106,16 @@ public class BlogServiceImpl implements BlogService {
     public int selectCollectionCount(Integer collectionId) {
         return collectMapper.selectCollectionCount(collectionId);
     }
+
+    @Override
+    public Usersafe selectUidUsafeUinfoBlog(Integer userId) {
+        return usersafeMapper.selectUidUsafeUinfoBlog(userId);
+    }
+
+    @Override
+    public Usersafe selectUnameUsafeUinfoBlog(String userName) {
+        return usersafeMapper.selectUnameUsafeUinfoBlog(userName);
+    }
     //****************************
 
 
