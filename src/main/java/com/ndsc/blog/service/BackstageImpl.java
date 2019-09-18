@@ -5,23 +5,25 @@ import com.ndsc.blog.mapper.UsersafeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BackstageImpl implements Backstage {
    @Autowired
     UsersafeMapper usersafeMapper;
 
     @Override
-    public Usersafe selectAllUsers() {
+    public List<Usersafe> selectAllUsers() {
         return usersafeMapper.selectAllUsers();
     }
 
     @Override
     public Usersafe selectUserById(int userId) {
-        return null;
+        return usersafeMapper.selectByPrimaryKey(userId);
     }
 
     @Override
     public Usersafe selectUserByName(String userName) {
-        return null;
+        return usersafeMapper.selectUserByName(userName);
     }
 }

@@ -26,4 +26,6 @@ public interface BlogMapper {
 
     List<Blog> searchUserBlog(int userId);
 
+    int updateBlogReadNum(Integer blogId);
+
 }
