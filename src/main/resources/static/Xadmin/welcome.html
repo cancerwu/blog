@@ -10,11 +10,57 @@
         <link rel="stylesheet" href="./css/xadmin.css">
         <script src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
+        <script src="../js/jquery-3.4.1.js"></script>
+
         <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
         <!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
           <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <script>
+            $(function () {
+                $.ajax({
+                    url:'/countBlog',
+                    async: false,
+                    type:'post',
+                    datatype:'int',
+                    success:function (data) {
+                        console.log(data);
+                        $("#blogNum").append(data);
+                    }
+                })
+                $.ajax({
+                    url:'/countUser',
+                    async: false,
+                    type:'post',
+                    datatype:'int',
+                    success:function (data) {
+                        console.log(data);
+                        $("#userNum").append(data);
+                    }
+                })
+                $.ajax({
+                    url:'/countUser',
+                    async: false,
+                    type:'post',
+                    datatype:'int',
+                    success:function (data) {
+                        console.log(data);
+                        $("#userNum").append(data);
+                    }
+                })
+                $.ajax({
+                    url:'/countUser',
+                    async: false,
+                    type:'post',
+                    datatype:'int',
+                    success:function (data) {
+                        console.log(data);
+                        $("#userNum").append(data);
+                    }
+                })
+            })
+        </script>
     </head>
     <body>
         <div class="layui-fluid">
@@ -37,40 +83,26 @@
                                     <a href="javascript:;" class="x-admin-backlog-body">
                                         <h3>文章数</h3>
                                         <p>
-                                            <cite>66</cite></p>
+                                            <cite id="blogNum"></cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>用户数</h3>
+                                        <p>
+                                            <cite id="userNum"></cite></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-md2 layui-col-xs6">
                                     <a href="javascript:;" class="x-admin-backlog-body">
                                         <h3>会员数</h3>
                                         <p>
-                                            <cite>12</cite></p>
-                                    </a>
-                                </li>
-                                <li class="layui-col-md2 layui-col-xs6">
-                                    <a href="javascript:;" class="x-admin-backlog-body">
-                                        <h3>回复数</h3>
-                                        <p>
-                                            <cite>99</cite></p>
-                                    </a>
-                                </li>
-                                <li class="layui-col-md2 layui-col-xs6">
-                                    <a href="javascript:;" class="x-admin-backlog-body">
-                                        <h3>商品数</h3>
-                                        <p>
-                                            <cite>67</cite></p>
-                                    </a>
-                                </li>
-                                <li class="layui-col-md2 layui-col-xs6">
-                                    <a href="javascript:;" class="x-admin-backlog-body">
-                                        <h3>文章数</h3>
-                                        <p>
                                             <cite>67</cite></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-md2 layui-col-xs6 ">
                                     <a href="javascript:;" class="x-admin-backlog-body">
-                                        <h3>文章数</h3>
+                                        <h3>总收入金额</h3>
                                         <p>
                                             <cite>6766</cite></p>
                                     </a>
@@ -79,58 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="layui-col-sm6 layui-col-md3">
-                    <div class="layui-card">
-                        <div class="layui-card-header">下载
-                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                        <div class="layui-card-body  ">
-                            <p class="layuiadmin-big-font">33,555</p>
-                            <p>新下载
-                                <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-sm6 layui-col-md3">
-                    <div class="layui-card">
-                        <div class="layui-card-header">下载
-                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                        <div class="layui-card-body ">
-                            <p class="layuiadmin-big-font">33,555</p>
-                            <p>新下载
-                                <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-sm6 layui-col-md3">
-                    <div class="layui-card">
-                        <div class="layui-card-header">下载
-                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                        <div class="layui-card-body ">
-                            <p class="layuiadmin-big-font">33,555</p>
-                            <p>新下载
-                                <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-sm6 layui-col-md3">
-                    <div class="layui-card">
-                        <div class="layui-card-header">下载
-                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                        <div class="layui-card-body ">
-                            <p class="layuiadmin-big-font">33,555</p>
-                            <p>新下载
-                                <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-header">系统信息</div>
@@ -138,11 +119,11 @@
                             <table class="layui-table">
                                 <tbody>
                                     <tr>
-                                        <th>xxx版本</th>
+                                        <th>ndsc 博客最新版本</th>
                                         <td>1.0.180420</td></tr>
                                     <tr>
                                         <th>服务器地址</th>
-                                        <td>x.xuebingsi.com</td></tr>
+                                        <td>47.94.152.107</td></tr>
                                     <tr>
                                         <th>操作系统</th>
                                         <td>WINNT</td></tr>

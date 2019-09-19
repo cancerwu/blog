@@ -44,7 +44,7 @@
               //监听提交
               form.on('submit(login)', function(data){
                 // alert(888)
-                layer.msg(JSON.stringify(data.field),function(){
+                // layer.msg('登录成功',function(){
                     console.log(data.field);
                     $.ajax({
                         url:'/login1',
@@ -53,7 +53,10 @@
                         datatype:'json',
                         success:function (data) {
                             if(data.userName==$("#username").val() && data.userRole==3){
-                                window.location.href = "/Xadmin/index.html";
+                                layer.msg('登录成功',function() {
+                                    time: 200,
+                                    window.location.href = "/Xadmin/index.html";
+                                });
                             }
                             else{
                                 layer.open({
@@ -67,7 +70,7 @@
                         }
                     })
                     // location.href='index.html'
-                });
+
                 return false;
               });
             });
