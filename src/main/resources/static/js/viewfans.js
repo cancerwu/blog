@@ -23,14 +23,9 @@ $(function () {
             //     "            </div>")
             for (var i = 0; i < data.length; i++) {
                 var $div1 = ("<div class=\"fansdateil\">\n" +
-                    "<div class=\"fansimages\">\n" +
-                    "<div class=\"fansimages1\">" +
-                    "</div>\n" +
-                    "</div>\n" +
+
                     "<div class=\"fansname\">\n" +
-                    "<div class=\"fansname1\">" +
                     "<a href='#'>" + data[i].realName + "</a>" +
-                    "</div>\n" +
                     "</div>\n" +
                     "</div>")
                 $("div[class='fansmain']").append($div1);
@@ -38,4 +33,3 @@ $(function () {
         }
     });
 })
-
