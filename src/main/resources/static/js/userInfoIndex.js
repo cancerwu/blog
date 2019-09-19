@@ -7,6 +7,8 @@ $(function () {
             $(".pic img").attr("src", "face/" + data.userPic);
         }
     });
+
+
     var userId;
     $.ajax({
         url: "/getUserId",
@@ -16,7 +18,7 @@ $(function () {
         }
     });
     $(".ajax_blog").click(function () {
-        var url1 = "http://localhost:8080/userBlogIndex.html?userId="+userId;
+        var url1 = "http://localhost:8080/userBlogIndex.html?userId=" + userId;
         window.location.replace(url1);
     })
 
@@ -34,7 +36,6 @@ $(function () {
                 type: "post",
                 dataType: "text",
                 success: function (data1) {
-
                     $.ajax({
                         url: "/selectFansCount1",
                         type: "post",
@@ -45,9 +46,9 @@ $(function () {
                                 type: "post",
                                 dataType: "json",
                                 success: function (data3) {
-                                    var u="userBlogIndex.html?userId="+data.userId;
+                                    var u = "userBlogIndex.html?userId=" + data.userId;
                                     var $li2 = (" <div class=\"idinfo1\">" +
-                                        "<li>用户名：<span>" + data1 + "</span></li>\n" +
+                                        "<li>用户名：<span id=\"userName\">" + data1 + "</span></li>\n" +
                                         "                            <ul>\n" +
                                         "                                <li>粉丝数：<span>" + data2 + "</span></li>\n" +
                                         "                                <li>关注数：<span>" + data3 + "</span></li>\n" +
@@ -61,7 +62,7 @@ $(function () {
                                         "<li>地区：<span>福建省 厦门市 集美区</span></li>" +
                                         "<li>简介：<span></span></li>" +
                                         "</div>");
-                                    var $li3=("<a href="+u+">个人主页></a>");
+                                    var $li3 = ("<a href=" + u + ">个人主页></a>");
                                     $("div[class='otherinfo']").append($li);
                                     $("div[class='idinfo']").append($li2);
                                     $("div[class='intoblog']").append($li3);
@@ -73,12 +74,24 @@ $(function () {
             })
         }
     });
+
+    $.ajax({
+        url: "/isVip",
+        dataType: "text",
+        async: false,
+        success: function (data) {
+            if (data >= 1) {
+                // $("#username").after("<span style='color: red'>会员</span>");
+                $(".infotitle").css("color", "red");
+            }
+        }
+    });
     $(".updateinfo span").click(function () {
         $(".modifyinfo").show()
-    })
+    });
     $(".backbutton").click(function () {
         $(".modifyinfo").hide()
-    })
+    });
     Date.prototype.format = function (fmt) {   //日期格式化方法
         var o = {
             "M+": this.getMonth() + 1,                 //月份

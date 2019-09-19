@@ -6,6 +6,7 @@ import com.alipay.api.request.*;
 import com.ndsc.blog.config.AlipayConfig;
 import com.ndsc.blog.entity.Order;
 import com.ndsc.blog.entity.Vip;
+import com.ndsc.blog.mapper.UsersafeMapper;
 import com.ndsc.blog.mapper.VipMapper;
 import com.ndsc.blog.service.LoginService;
 import com.ndsc.blog.service.OrderService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -36,8 +38,19 @@ public class VipController {
     LoginService loginService;
     @Autowired
     VipService vipService;
+    @Autowired
+    UsersafeMapper usersafeMapper;
 
     Order order = new Order();
+
+    @RequestMapping("isVip")
+    public int isVip(HttpServletRequest request) {
+        //获取id
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int id = usersafeMapper.selectUserId(userName);
+        return vipService.isVip(id);
+    }
 
     @RequestMapping("/pay")
     public String pay(Integer vipId, String orderNo, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, AlipayApiException {
@@ -63,7 +76,11 @@ public class VipController {
 
         order.setProductName(subject);
         order.setOrderTotal(Integer.parseInt(total_amount));
-//        order.setUserId(new LoginController().getUserId(request));
+        //获取id
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int id = usersafeMapper.selectUserId(userName);
+        order.setUserId(id);
 
         alipayRequest.setBizContent("{\"out_trade_no\":\"" + out_trade_no + "\","
                 + "\"total_amount\":\"" + total_amount + "\","
@@ -122,7 +139,11 @@ public class VipController {
             //插入订单表
             orderService.insertOrder(order);
             //修改用户角色
-//            loginService.becomeVip(new LoginController().getUserId(request));
+            //获取id
+            HttpSession session = request.getSession();
+            String userName = (String) session.getAttribute("userName");
+            int id = usersafeMapper.selectUserId(userName);
+            loginService.becomeVip(id);
         } else {
             System.out.println("验签失败");
         }

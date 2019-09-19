@@ -9,6 +9,12 @@
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
     </resultMap>
 
+    <select id="isVip" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*)
+        from orderss
+        where user_id = #{userId}
+    </select>
+
     <select id="countSum" resultType="java.lang.Integer">
     select sum(order_total) from orderss
   </select>
