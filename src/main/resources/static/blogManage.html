@@ -36,8 +36,7 @@
                         'blogTitle':$("input[name='title']").val(),
                         'blogContent':editor.txt.html(),
                         'blogPubType':$("input[type='radio']:checked").val(),
-                        'userId':loginId,
-                        'tagId':$("input[type='checkbox']:checked").val()
+                        'userId':loginId
                     },
                     dataType:"text",
                     success:function (data) {
