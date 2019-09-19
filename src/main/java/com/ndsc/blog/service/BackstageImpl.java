@@ -48,4 +48,9 @@ public class BackstageImpl implements Backstage {
     public int countSum() {
         return orderMapper.countSum();
     }
+
+    @Override
+    public int countVip() {
+        return usersafeMapper.countVip();
+    }
 }

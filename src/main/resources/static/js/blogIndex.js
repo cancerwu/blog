@@ -1,11 +1,12 @@
 $(function () {
+    var tagName;
+    if (window.location.search == "") {
+        tagName = "Java";
+    } else {
+        tagName = window.location.search.split("?")[1].split("=")[1];
+    }
     $(".login").children().eq(2).css("display", "none")
     $(".login").children().eq(3).css("display", "none")
-
-    //$(".login").children().eq(2).css("display","block")
-    //$(".login").children().eq(3).css("display","block")
-    //$(".login").children().eq(0).css("display","none")
-    // $(".login").children().eq(1).css("display","none")
     $.ajax({
         url: "/getUserId",
         type: "post",
@@ -16,9 +17,6 @@ $(function () {
                 $(".login").children().eq(3).css("display", "block")
                 $(".login").children().eq(0).css("display", "none")
                 $(".login").children().eq(1).css("display", "none")
-
-                // $.cookie("userid",data1);
-                // // $.cookie("userid");
             } else {
                 $(".login").children().eq(2).css("display", "none")
                 $(".login").children().eq(3).css("display", "none")
@@ -44,7 +42,7 @@ $(function () {
         url: "/selectByBlogtagGetBlog",
         type: "post",
         dataType: "json",
-        data: {"tagName": "java"},
+        data: {"tagName": tagName},
         success: function (data) {
             var userName;
             for (var i = 0; i < data.length; i++) {
@@ -76,11 +74,6 @@ $(function () {
             $(this).val("");
         }
     });
-
-    $(".leftlabel").children().click(function () {
-        alert("success")
-        alert($(".leftlabel").children().eq(0).text())
-    })
 
 
 });

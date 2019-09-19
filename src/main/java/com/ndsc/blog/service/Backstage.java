@@ -12,5 +12,6 @@ public interface Backstage {
     int countBlog();
     int countUser();
     int countSum();
+    int countVip();
 
 }
