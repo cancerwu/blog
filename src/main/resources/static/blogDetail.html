@@ -6,20 +6,9 @@
     <link href="css/blogDetail.css" rel="stylesheet">
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/indexBottom.css" rel="stylesheet">
-    <script>
-        $(function () {
-            $.ajax({
-                url: "/getUserInfo",
-                dataType: "json",
-                success: function (data) {
-                    $(".loginheadpic img").attr("src", "face/" + data.userPic);
-                    $(".userpic img").attr("src", "face/" + data.userPic);
-                }
-            });
-        })
-    </script>
 </head>
-<body>
+<script src="js/vue.min.js"></script>
+<script src="js/jquery-3.4.1.js"></script>
 <body>
 <div class="top">
     <div class="w">
@@ -63,16 +52,16 @@
 </div>
 <div class="main">
     <div class="w">
-        <div class="leftinfo">
+        <div class="leftinfo" id="vue_leftinfo">
             <div class="userinfo">
                 <div class="userpic">
-                    <img src="images/headpic.jpg">
+                    <img :src="pic" style="width: 80px">
                 </div>
                 <div class="username">
-                    <span>DCW</span>
+                    <span>{{username}}</span>
                 </div>
             </div>
-            <div class="someinfo" id="vue_fourinfo">
+            <div class="someinfo">
                 <div class="fourinfo">
                     <li>博客</li>
                     <li>{{blogCount}}</li>
@@ -99,19 +88,129 @@
                 <img src="images/blogIndex/leftbottom.png">
             </div>
         </div>
-        <div class="blog">
+        <div class="blog" id="vue_blog">
             <div class="blogheader">
-                <div class="blogtitle">文章标题</div>
+                <div class="blogtitle">{{blogs[0].blogTitle}}</div>
                 <div class="bloginfo">
-                    <span class="createtime">发布时间：2019-2-12</span>
-                    <span class="readnum">阅读量：0</span>
+                    <span class="createtime">发布时间：{{blogs[0].blogCreateTime}}</span>
+                    <span class="readnum">阅读量：{{blogs[0].blogReadNum}}</span>
                 </div>
             </div>
-            <div class="blogcontent">博客内容</div>
+            <div class="blogcontent">{{blogs[0].blogContent}}</div>
 
         </div>
     </div>
 </div>
 </body>
-</body>
+<script>
+    $(function () {
+        init_blogDetail();
+        $.ajax({
+            url: "/getUserInfo",
+            dataType: "json",
+            success: function (data) {
+                $(".loginheadpic img").attr("src", "face/" + data.userPic);
+                // $(".userpic img").attr("src", "face/" + data.userPic);
+            }
+        });
+    });
+    (function ($) {
+        $.getUrlParam = function (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return "";
+        }
+    })(jQuery);
+    var vueblog = new Vue({
+        el: "#vue_blog",
+        data: {
+            blogs: [],
+            userinfo: {}
+        }
+    });
+    var vueleftinfo = new Vue({
+        el: "#vue_leftinfo",
+        data: {
+            blogCount: 0,
+            blogerCount: 0,
+            fansCount: 0,
+            username: "",
+            pic: "",
+        }
+    });
+
+    function init_blogDetail() {
+        var blogParameter = parseInt($.getUrlParam('blogId'));
+        if (1 == 1) {
+            $.ajax({
+                url: "http://localhost:8080/selectBlogUsafeUname",
+                type: "post",
+                data: {"blogId": blogParameter},
+                dataType: "json",
+                success: function (data) {
+                    vueblog.usersafe = {
+                        userId: data.userId,
+                        userName: data.userName,
+                        password: data.password,
+                        userEmail: data.userEmail,
+                        userTel: data.userTel,
+                        userStatus: data.userStatus,
+                        userMoney: data.userMoney,
+                        userIntegral: data.userIntegral,
+                        userRole: data.userRole,
+                    };
+
+                    vueleftinfo.username = data.userName;
+
+                    vueblog.userinfo = {
+                        userId: data.userinfo.userId,
+                        realName: data.userinfo.realName,
+                        userSex: data.userinfo.userSex,
+                        userBirthday: data.userinfo.userBirthday,
+                        userPic: "",
+                        userCreateTime: data.userinfo.userCreateTime,
+                    };
+                    if (data.userinfo.userPic == null) {
+                        vueblog.userinfo.userPic = "images/headpic.jpg";
+                        vueleftinfo.pic = "images/headpic.jpg";
+                    } else {
+                        vueblog.userinfo.userPic = "face/" + data.userinfo.userPic
+                        vueleftinfo.pic = "face/" + data.userinfo.userPic;
+                    }
+                    vueleftinfo.blogCount = data.blogList.length;
+                    // displaypage(vueleftinfo.blogCount);
+                    for (var i = 0; i < data.blogList.length; i++) {
+                        vueblog.blogs.push({
+                            blogTitle: data.blogList[i].blogTitle,
+                            blogCreateTime: data.blogList[i].blogCreateTime,
+                            blogPubType: data.blogList[i].blogPubType,
+                            blogReadNum: data.blogList[i].blogReadNum,
+                            blogContent: data.blogList[i].blogContent,
+                            blogAuthor: data.userName
+                        })
+                    }
+                    $.ajax({
+                        url: "http://localhost:8080/selectBlogerCount",
+                        type: "get",
+                        data: {"fansId": data.userId},
+                        dataType: "json",
+                        success: function (data) {
+                            vueleftinfo.blogerCount = data;
+                        }
+                    });
+                    $.ajax({
+                        url: "http://localhost:8080/selectFansCount",
+                        type: "get",
+                        data: {"blogerId": data.userId},
+                        dataType: "json",
+                        success: function (data) {
+                            vueleftinfo.fansCount = data;
+                        }
+                    })
+                }
+            })
+        }
+    };
+</script>
 </html>

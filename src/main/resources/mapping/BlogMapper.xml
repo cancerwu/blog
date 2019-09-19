@@ -9,9 +9,11 @@
     <result column="blog_read_num" property="blogReadNum" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
+
   <resultMap id="ResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BaseResultMap" >
     <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR" />
   </resultMap>
+
   <resultMap id="UserBlogMap" type="com.ndsc.blog.entity.Blog"  >
     <id column="blog_id" property="blogId" jdbcType="INTEGER" />
     <result column="blog_title" property="blogTitle" jdbcType="VARCHAR" />
