@@ -7,6 +7,7 @@ $(function () {
     }
     $(".login").children().eq(2).css("display", "none")
     $(".login").children().eq(3).css("display", "none")
+
     $.ajax({
         url: "/getUserId",
         type: "post",
@@ -23,6 +24,7 @@ $(function () {
             }
         }
     });
+
     $.ajax({
         url: "/getUserInfo",
         dataType: "json",

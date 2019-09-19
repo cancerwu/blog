@@ -29,7 +29,7 @@
         </div>
         <form id="search">
             <div class="searchtext">
-                <input type="text" id="searchtext" value="搜索框">
+                <input type="text" id="searchtext" placeholder="搜索框">
             </div>
             <input type="submit" class="searchbutton" value="搜索">
         </form>
@@ -55,7 +55,7 @@
             <div class="leftinfo"  id="vue_leftinfo">
                 <div class="userinfo">
                     <div class="userpic">
-                        <img :src="pic" style="width: 80px">
+                        <img :src="pic">
                     </div>
                     <div class="username">
                         <span>{{username}}</span>
@@ -79,10 +79,10 @@
                         <li>0</li>
                     </div>
                 </div>
-                <div class="manageBlog">
-                    <a href="blogManage.html"><li>管理博客</li></a>
-                    <a href="blogManage.html"><li>管理博客</li></a>
-                </div>
+<!--                <div class="manageBlog">-->
+<!--                    <a href="blogManage.html"><li>管理博客</li></a>-->
+<!--                    <a href="blogManage.html"><li>管理博客</li></a>-->
+<!--                </div>-->
                 <div class="leftbottom">
                     <img src="images/blogIndex/leftbottom.png">
                 </div>
@@ -90,22 +90,18 @@
             <div class="blog" id="vue_blog">
                 <li v-for="(b , index) in blogs">
                     <a class="blogtitle" :href="'/blogDetail.html?blogId=' + b.blogId">
-                        文章标题:{{b.blogTitle}}
+                        {{b.blogTitle}}
                     </a>
                     <div class="bloginfo">
-                        <div class="blogcontent">
-                            文章内容点标题
-                        </div>
                         <div class="blogauthor">
                             <div class="authorpic">
-                                <img :src="userinfo.userPic" style="width: 70px">
+                                <img :src="userinfo.userPic">
                             </div>
                             <div class="authorname">
-                                <span>作者用户名:</span>
                                 <span class="ajax_userName">{{b.blogAuthor}}</span>
                             </div>
                             <div class="blogreadnum">
-                                博客阅读量 {{b.blogReadNum}} 丨<a href="#">评论</a>
+                                博客阅读量: {{b.blogReadNum}} 丨<a href="#">评论</a>
                             </div>
                         </div>
                     </div>
