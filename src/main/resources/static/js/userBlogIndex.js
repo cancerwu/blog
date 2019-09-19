@@ -202,7 +202,7 @@ $(function () {
         url: "/getUserInfo",
         dataType: "json",
         success: function (data) {
-            $(".userpic img").attr("src", "face/" + data.userPic);
+            // $(".userpic img").attr("src", "face/" + data.userPic);
             $(".loginheadpic img").attr("src", "face/" + data.userPic);
         }
     });

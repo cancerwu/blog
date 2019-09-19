@@ -205,4 +205,9 @@ public class BlogController {
     public Usersafe selectBlogUsafeUname(Integer blogId) {
         return blogService.selectBlogUsafeUname(blogId);
     }
+
+    @RequestMapping("/selectBlogCount")
+    public int selectBlogCount(Integer userId) {
+        return blogService.selectBlogCount(userId);
+    }
 }

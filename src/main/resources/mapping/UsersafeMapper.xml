@@ -84,6 +84,9 @@
     <select id="countVip" resultType="java.lang.Integer">
     select count(*) from usersafe where user_role=2
   </select>
+    <select id="selectBlogCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from usersafe u,blog b where u.user_id = #{userId} and u.user_id = b.user_id
+    </select>
     <!--******************************************-->
     <update id="updateUsersafe" parameterType="com.ndsc.blog.entity.Usersafe">
         update usersafe

@@ -79,11 +79,6 @@
                     <li>0</li>
                 </div>
             </div>
-            <div class="manageBlog">
-                <a href="blogManage.html">
-                    <li>管理博客</li>
-                </a>
-            </div>
             <div class="leftbottom">
                 <img src="images/blogIndex/leftbottom.png">
             </div>
@@ -197,7 +192,6 @@
                         vueblog.userinfo.userPic = "face/"+data.userinfo.userPic
                         vueleftinfo.pic = "face/"+data.userinfo.userPic;
                     }
-                    vueleftinfo.blogCount = data.blogList.length;
                     // displaypage(vueleftinfo.blogCount);
                     for (var i = 0; i < data.blogList.length; i++) {
                         vueblog.blogs.push({
@@ -227,6 +221,15 @@
                             vueleftinfo.fansCount = data;
                         }
                     })
+                    $.ajax({
+                        url: "http://localhost:8080/selectBlogCount",
+                        type: "get",
+                        data: {"userId": data.userId},
+                        dataType: "json",
+                        success: function (data) {
+                            vueleftinfo.blogCount = data;
+                        }
+                    });
                 }
             })
         }

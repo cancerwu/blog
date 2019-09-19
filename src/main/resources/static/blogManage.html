@@ -150,14 +150,15 @@
                 <div class="showblog" v-for="(b , index) in blogs">
                     <div class="blogtitle">
                         <span>{{b.blogTitle}}</span>
+                        <span class="ajax_blogId" style="display: none">{{b.blogId}}</span>
                     </div>
                     <div class="bloginfo">
                             <div class="blogtype"><span>原创</span></div>
                             <div class="blogcreatetime">
-                                博客发布时间{{b.blogCreateTime}}
+                                博客发布时间：&nbsp;{{b.blogCreateTime}}
                             </div>
                             <div class="blogoperation">
-                                博客阅读量{{b.blogReadNum}} 丨 <span>查看</span> 丨 <span id="1">删除</span>
+                                博客阅读量:{{b.blogReadNum}} 丨 <span>查看</span> 丨 <span id="1">删除</span>
                             </div>
                     </div>
                 </div>
@@ -224,12 +225,14 @@
             blogCount:0,
         }
     })
+    var userId;
     function init_blogManage() {
         if(1 == 1) {
             $.ajax({
                 url: "http://localhost:8080/getUserId",
                 dataType: "json",
                 success: function (data) {
+                    userId = data;
                     $.ajax({
                         url: "http://localhost:8080/selectUidUsafeUinfoBlog",
                         type: "post",
@@ -241,7 +244,7 @@
                                 vuemanyinfo.blogs.push({
                                     blogId: data.blogList[i].blogId,
                                     blogTitle: data.blogList[i].blogTitle,
-                                    blogCreateTime: data.blogList[i].blogCreateTime,
+                                    blogCreateTime: new Date(data.blogList[i].blogCreateTime).format("yyyy-MM-dd hh:mm:ss"),
                                     blogPubType: data.blogList[i].blogPubType,
                                     blogReadNum: data.blogList[i].blogReadNum,
                                     blogContent: data.blogList[i].blogContent,
@@ -258,6 +261,11 @@
     }
     $(function () {
         init_blogManage();
+        $(".manyinfo").on("click",".blogtitle",function () {
+            var blogId = $(this).children(".ajax_blogId").text();
+            var url1 = "http://localhost:8080/blogDetail.html?blogId="+blogId;
+            window.location.replace(url1);
+        });
     })
 </script>
 </html>
