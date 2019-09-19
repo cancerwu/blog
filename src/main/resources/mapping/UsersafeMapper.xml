@@ -63,8 +63,8 @@
     <select id="selectUserById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select * from usersafe where user_id = #{userId,jdbcType=INTEGER}
   </select>
-    <select id="selectAllUsers" resultMap="BaseResultMap">
-    select * from usersafe
+    <select id="selectAllUsers" resultMap="UsersafeBaseResultMap">
+    select * from usersafe s,userinfo i where s.user_id=i.user_id
   </select>
     <update id="blockAcccount" parameterType="java.lang.Integer">
                 update usersafe set user_status=0 where user_id = #{userId,jdbcType=INTEGER}
