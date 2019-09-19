@@ -96,13 +96,45 @@
                     <span class="readnum">阅读量：{{blogs[0].blogReadNum}}</span>
                 </div>
             </div>
-            <div class="blogcontent">{{blogs[0].blogContent}}</div>
+            <div class="blogcontent" v-html="blogs[0].blogContent"></div>
 
         </div>
     </div>
 </div>
 </body>
 <script>
+
+    $(function () {
+        init_blogDetail();
+        $.ajax({
+            url: "/getUserInfo",
+            dataType: "json",
+            success: function (data) {
+                $(".loginheadpic img").attr("src", "face/" + data.userPic);
+                // $(".userpic img").attr("src", "face/" + data.userPic);
+            }
+        });
+    });
+    Date.prototype.format = function (fmt) {   //日期格式化方法
+        var o = {
+            "M+": this.getMonth() + 1,                 //月份
+            "d+": this.getDate(),                    //日
+            "h+": this.getHours(),                   //小时
+            "m+": this.getMinutes(),                 //分
+            "s+": this.getSeconds(),                 //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds()             //毫秒
+        };
+        if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            }
+        }
+        return fmt;
+    };
     (function ($) {
         $.getUrlParam = function (name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -170,7 +202,7 @@
                     for (var i = 0; i < data.blogList.length; i++) {
                         vueblog.blogs.push({
                             blogTitle: data.blogList[i].blogTitle,
-                            blogCreateTime: data.blogList[i].blogCreateTime,
+                            blogCreateTime: new Date(data.blogList[i].blogCreateTime).format("yyyy-MM-dd hh:mm:ss"),
                             blogPubType: data.blogList[i].blogPubType,
                             blogReadNum: data.blogList[i].blogReadNum,
                             blogContent: data.blogList[i].blogContent,
@@ -199,16 +231,6 @@
             })
         }
     }
-    $(function () {
-        init_blogDetail();
-        $.ajax({
-            url: "/getUserInfo",
-            dataType: "json",
-            success: function (data) {
-                $(".loginheadpic img").attr("src", "face/" + data.userPic);
-                $(".userpic img").attr("src", "face/" + data.userPic);
-            }
-        });
-    })
+
 </script>
 </html>
