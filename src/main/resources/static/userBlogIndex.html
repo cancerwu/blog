@@ -89,12 +89,12 @@
             </div>
             <div class="blog" id="vue_blog">
                 <li v-for="(b , index) in blogs">
-                    <div class="blogtitle">
+                    <a class="blogtitle" :href="'/blogDetail.html?blogId=' + b.blogId">
                         文章标题:{{b.blogTitle}}
-                    </div>
+                    </a>
                     <div class="bloginfo">
                         <div class="blogcontent">
-                            文章部分内容:{{b.blogContent}}
+                            文章内容点标题
                         </div>
                         <div class="blogauthor">
                             <div class="authorpic">
