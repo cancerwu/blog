@@ -77,6 +77,9 @@
     font-size: 12px;
 }
 
+.hide{
+    display: none;
+}
 .changepic span{
     color: deepskyblue;
 }

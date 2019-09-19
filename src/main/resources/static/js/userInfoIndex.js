@@ -8,6 +8,10 @@ $(function () {
         }
     });
 
+    $("#choosepic").click(function () {
+        $("input[name='file']").click();
+    })
+
     $.ajax({
         url: "/getUserinfo1",
         type: "post",

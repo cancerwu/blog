@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ndsc.blog.mapper.UserinfoMapper">
     <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Userinfo">
         <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER"/>
@@ -35,14 +35,18 @@
         <result column="blog_read_num" property="blogReadNum" jdbcType="INTEGER"/>
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
     </resultMap>
+
     <resultMap id="BlogResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BlogBaseResultMap">
         <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR"/>
     </resultMap>
+
     <!--************************************-->
     <!--************************************-->
+
     <select id="selectByUserinfoGetBlog" resultMap="UserinfoBaseResultMap" parameterType="java.lang.Integer">
     select u.*,b.* from userinfo u,blog b where u.user_id = #{userId} and u.user_id = b.user_id
   </select>
+
     <!--************************************-->
 
     <!--  ********************-->
@@ -85,10 +89,12 @@
         from userinfo
         where userinfo_id = #{userinfoId,jdbcType=INTEGER}
     </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from userinfo
     where userinfo_id = #{userinfoId,jdbcType=INTEGER}
   </delete>
+
     <insert id="insert" parameterType="com.ndsc.blog.entity.Userinfo">
     insert into userinfo (userinfo_id, real_name, user_sex, 
       user_birthday, user_pic, user_create_time, 
@@ -97,6 +103,7 @@
       #{userBirthday,jdbcType=TIMESTAMP}, #{userPic,jdbcType=VARCHAR}, #{userCreateTime,jdbcType=TIMESTAMP}, 
       #{userId,jdbcType=INTEGER})
   </insert>
+
     <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Userinfo">
         insert into userinfo
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -146,6 +153,7 @@
             </if>
         </trim>
     </insert>
+
     <update id="updateByPrimaryKeySelective" parameterType="com.ndsc.blog.entity.Userinfo">
         update userinfo
         <set>
@@ -170,6 +178,7 @@
         </set>
         where userinfo_id = #{userinfoId,jdbcType=INTEGER}
     </update>
+
     <update id="updateByPrimaryKey" parameterType="com.ndsc.blog.entity.Userinfo">
     update userinfo
     set real_name = #{realName,jdbcType=VARCHAR},
@@ -180,4 +189,5 @@
       user_id = #{userId,jdbcType=INTEGER}
     where userinfo_id = #{userinfoId,jdbcType=INTEGER}
   </update>
+
 </mapper>
