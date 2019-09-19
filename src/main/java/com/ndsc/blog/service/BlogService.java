@@ -46,4 +46,6 @@ public interface BlogService {
 
     Usersafe selectBlogUsafeUname(Integer blogId);
 
+    int selectBlogCount(Integer userId);
+
 }

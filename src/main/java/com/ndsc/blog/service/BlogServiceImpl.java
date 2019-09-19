@@ -121,6 +121,11 @@ public class BlogServiceImpl implements BlogService {
     public Usersafe selectBlogUsafeUname(Integer blogId) {
         return usersafeMapper.selectBlogUsafeUname(blogId);
     }
+
+    @Override
+    public int selectBlogCount(Integer userId) {
+        return usersafeMapper.selectBlogCount(userId);
+    }
     //****************************
 
 
