@@ -66,6 +66,8 @@
         })
     </script>
 </head>
+<script src="js/vue.min.js"></script>
+<script src="js/jquery-3.4.1.js"></script>
 <body>
     <div class="top">
         <div class="w">
@@ -144,18 +146,18 @@
                 </script>
             </div>
             <div class="manyinfo">
-                <div class="title">全部（<span></span>)</div>
-                <div class="showblog">
+                <div class="title">全部（<span>{{blogCount}}</span>)</div>
+                <div class="showblog" v-for="(b , index) in blogs">
                     <div class="blogtitle">
-                        <span>文章标题</span>
+                        <span>{{b.blogTitle}}</span>
                     </div>
                     <div class="bloginfo">
                             <div class="blogtype"><span>原创</span></div>
                             <div class="blogcreatetime">
-                                博客发布时间
+                                博客发布时间{{b.blogCreateTime}}
                             </div>
                             <div class="blogoperation">
-                                博客阅读量 丨 <span>查看</span> 丨 <span id="1">删除</span>
+                                博客阅读量{{b.blogReadNum}} 丨 <span>查看</span> 丨 <span id="1">删除</span>
                             </div>
                     </div>
                 </div>
@@ -214,4 +216,48 @@
         </div>
     </div>
 </body>
+<script>
+    var vuemanyinfo = new Vue({
+        el:".manyinfo",
+        data:{
+            blogs:[],
+            blogCount:0,
+        }
+    })
+    function init_blogManage() {
+        if(1 == 1) {
+            $.ajax({
+                url: "http://localhost:8080/getUserId",
+                dataType: "json",
+                success: function (data) {
+                    $.ajax({
+                        url: "http://localhost:8080/selectUidUsafeUinfoBlog",
+                        type: "post",
+                        data: {"userId": data},
+                        dataType: "json",
+                        success: function (data) {
+                            vuemanyinfo.blogCount = data.blogList.length
+                            for (var i = 0; i < data.blogList.length; i++) {
+                                vuemanyinfo.blogs.push({
+                                    blogId: data.blogList[i].blogId,
+                                    blogTitle: data.blogList[i].blogTitle,
+                                    blogCreateTime: data.blogList[i].blogCreateTime,
+                                    blogPubType: data.blogList[i].blogPubType,
+                                    blogReadNum: data.blogList[i].blogReadNum,
+                                    blogContent: data.blogList[i].blogContent,
+                                    blogAuthor: data.userName,
+                                    blogUserId: data.blogList[i].userId
+                                })
+                            }
+                        }
+                    })
+
+                }
+            });
+        }
+    }
+    $(function () {
+        init_blogManage();
+    })
+</script>
 </html>
