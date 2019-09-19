@@ -73,6 +73,11 @@ layui.use('layedit', function(){
                                 code = data;
                             }
                         })
+                    }else {
+                        layer.open({
+                            title:'提示！'
+                            ,content:'该手机还未注册！'
+                        });
                     }
                 }
             })
