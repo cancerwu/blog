@@ -44,5 +44,6 @@ public interface BlogService {
 
     Usersafe selectUnameUsafeUinfoBlog(String userName);
 
+    Usersafe selectBlogUsafeUname(Integer blogId);
 
 }
