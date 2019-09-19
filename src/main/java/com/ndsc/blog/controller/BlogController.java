@@ -107,7 +107,7 @@ public class BlogController {
     }
 
     @RequestMapping("/updateUsersafe")
-    public int updateUsersafe(@RequestBody Usersafe usersafe) {
+    public int updateUsersafe( Usersafe usersafe) {
         usersafe.setPassword(md5Encryption.encrype(usersafe.getPassword()));
         return blogService.updateUsersafe(usersafe);
     }

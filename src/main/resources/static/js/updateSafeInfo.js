@@ -40,6 +40,62 @@ layui.use('layedit', function(){
     })
 
 
+
+           $.ajax({
+        url: "/getUserId",
+        dataType: "json",
+        success: function (data) {
+            $("#b1").click(function () {
+                var newpassword = $("#pass").val();
+                $.ajax({
+                    url: "/updateUsersafe",
+                    type:"post",
+                    dataType:"text",
+                    data:{'userId':data,'password':newpassword},
+                    success: function (data1) {
+
+                    }
+                })
+            })
+        }
+    })
+    $.ajax({
+        url: "/getUserId",
+        dataType: "json",
+        success: function (data) {
+            $("#b1").click(function () {
+                var newtel = $("#tel").val();
+                $.ajax({
+                    url: "/updateUsersafe",
+                    type:"post",
+                    dataType:"text",
+                    data:{'userId':data,'userTel':newtel},
+                    success: function (data1) {
+
+                    }
+                })
+            })
+        }
+    })
+    $.ajax({
+        url: "/getUserId",
+        dataType: "json",
+        success: function (data) {
+            $("#b1").click(function () {
+                var newemail = $("#emil").val();
+                $.ajax({
+                    url: "/updateUsersafe",
+                    type:"post",
+                    dataType:"text",
+                    data:{'userId':data,'userEmial':newemail},
+                    success: function (data1) {
+
+                    }
+                })
+            })
+        }
+    })
+
     // $(".leftlabel").children().eq(0).click(function () {
     //     alert("success")
     //     closeAllDiv();
