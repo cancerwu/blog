@@ -36,7 +36,8 @@
                         'blogTitle':$("input[name='title']").val(),
                         'blogContent':editor.txt.html(),
                         'blogPubType':$("input[type='radio']:checked").val(),
-                        'userId':loginId
+                        'userId':loginId,
+                        'tagId':$("input[type='checkbox']:checked").val()
                     },
                     dataType:"text",
                     success:function (data) {
@@ -49,6 +50,7 @@
                                 window.location.href = "/blogManage.html";
                             },
                             cancel:function(){
+                                window.location.href = "/blogManage.html";
                             }
                         });
                     },

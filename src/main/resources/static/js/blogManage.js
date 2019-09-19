@@ -7,6 +7,7 @@ $(function () {
         }
     });
     $(".fwb").click(function () {
+
         $(".manyinfo").css("display", "none")
         $(".writeblog").css("display", "block")
 
