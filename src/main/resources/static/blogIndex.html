@@ -11,7 +11,16 @@
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/vue.min.js"></script>
 
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 </head>
+<script>
+    $(function () {
+        $("input[name='search1']").click(function () {
+            $.cookie('keyword',$("#searchtext").val());
+            window.location.href = "/blogList.html";
+        })
+    })
+</script>
 <body>
 <div class="leftlabel">
     <a href="blogIndex.html">
@@ -83,7 +92,7 @@
             <div class="searchtext">
                 <input type="text" id="searchtext" value="搜索框">
             </div>
-            <input type="submit" class="searchbutton" value="搜索">
+            <input type="button" name="search1" class="searchbutton" value="搜索">
         </form>
         <div class="write">
             <a href="#">

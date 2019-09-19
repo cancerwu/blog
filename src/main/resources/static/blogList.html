@@ -14,14 +14,16 @@
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="layui/css/layui.css">
     <script src="layui/layui.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 </head>
     <script>
-
+    var keyword = $.cookie('keyword');
+    console.log(keyword)
     $(function () {
         $.ajax({
             url:'/solr/search',
             data:{
-                keyword:$("#searchtext").val()
+                keyword:keyword,
             },
             dataType:'json',
             success:function (data) {

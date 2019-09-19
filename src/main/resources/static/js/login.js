@@ -1,4 +1,5 @@
-$(function () {
+
+layui.use('layedit', function(){
     $("#login_chose1").click(function () {
         $("#login_check").fadeIn(500);
     })
@@ -26,7 +27,10 @@ $(function () {
                 if (data==userName){
                     window.location.href = "/blogIndex.html";
                 }else {
-                    alert("账户或密码错误");
+                    layer.open({
+                        title:'错误！'
+                        ,content:'账户或密码错误!'
+                    });
                 }
             }
         })
@@ -38,9 +42,15 @@ $(function () {
         var flag = 0;
         var reg = /(1[3-9]\d{9}$)/;
         if (!userTel){
-            alert("手机号不能为空!");
+            layer.open({
+                title:'错误！'
+                ,content:'手机号不能为空'
+            });
         }else if(!reg.test(userTel)){
-            alert("不合法的手机号，请重新输入！")
+            layer.open({
+                title:'错误！'
+                ,content:'不合法的手机号，请重新输入！'
+            });
         }else{
             $.ajax({
                 url :"/checkSamePhone",
@@ -57,6 +67,10 @@ $(function () {
                             data:{'userTel':userTel},
                             success:function (data) {
                                 alert("已发送验证码至您的手机！")
+                                layer.open({
+                                    title:'提示！'
+                                    ,content:'已发送验证码至您的手机！'
+                                });
                                 code = data;
                             }
                         })
@@ -79,7 +93,10 @@ $(function () {
                 }
             })
         }else{
-            alert("验证码输入错误！");
+            layer.open({
+                title:'错误！'
+                ,content:'验证码输入错误！'
+            });
         }
     })
 
