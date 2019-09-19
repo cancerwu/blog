@@ -1,9 +1,9 @@
-/*h1,h2,h3,h4,h5,h6,div,p,img,input,span,ul,ol,li,a,header,body,i,em,strong{*/
-/*    margin: 0px;*/
-/*    padding: 0px;*/
-/*    border-width: 0px;*/
-/*    float: left;*/
-/*}*/
+h1,h2,h3,h4,h5,h6,div,p,img,input,span,ul,ol,li,a,header,body,i,em,strong{
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    float: left;
+}
 body{
     background-image: url(../images/upLoadImg.jpg);
 }
