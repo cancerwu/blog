@@ -198,12 +198,12 @@ $(function () {
     //     var url1 = "http://localhost:8080/blogDetail.html?blogId="+ blogId;
     //     window.location.replace(url1);
     // });
-    // $.ajax({
-    //     url: "/getUserInfo",
-    //     dataType: "json",
-    //     success: function (data) {
-    //         $(".userpic img").attr("src", "face/" + data.userPic);
-    //         $(".loginheadpic img").attr("src", "face/" + data.userPic);
-    //     }
-    // });
+    $.ajax({
+        url: "/getUserInfo",
+        dataType: "json",
+        success: function (data) {
+            $(".userpic img").attr("src", "face/" + data.userPic);
+            $(".loginheadpic img").attr("src", "face/" + data.userPic);
+        }
+    });
 })

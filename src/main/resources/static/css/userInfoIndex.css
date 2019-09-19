@@ -17,6 +17,7 @@
 }
 .leftlabel a:hover{
     color: white;
+    cursor: pointer;
 }
 .leftlabel li{
     width: 158px;
