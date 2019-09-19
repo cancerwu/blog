@@ -1,7 +1,9 @@
 $(function () {
-    var tagName = window.location.search.split("?")[1].split("=")[1];
-    if (tagName == "") {
+    var tagName;
+    if (window.location.search == "") {
         tagName = "Java";
+    } else {
+        tagName = window.location.search.split("?")[1].split("=")[1];
     }
     $(".login").children().eq(2).css("display", "none")
     $(".login").children().eq(3).css("display", "none")
