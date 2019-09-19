@@ -9,6 +9,9 @@
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
     </resultMap>
 
+    <select id="countSum" resultType="java.lang.Integer">
+    select sum(order_total) from orderss
+  </select>
     <insert id="insert" parameterType="com.ndsc.blog.entity.Order">
     insert into orderss (order_id, product_name, order_time, 
       order_total, user_id)

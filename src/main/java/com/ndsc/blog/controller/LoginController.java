@@ -30,10 +30,15 @@ public class LoginController {
 
     @RequestMapping("/getUserInfo")
     public Userinfo getUserInfo(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        String userName = (String) session.getAttribute("userName");
-        int userId = usersafeMapper.selectUserId(userName);
-        return userInfoService.selectByUserId(userId);
+        try {
+
+            HttpSession session = request.getSession();
+            String userName = (String) session.getAttribute("userName");
+            int userId = usersafeMapper.selectUserId(userName);
+            return userInfoService.selectByUserId(userId);
+        }catch (Exception e ){
+            return null;
+        }
     }
 
     @RequestMapping("/login")
@@ -84,12 +89,12 @@ public class LoginController {
     }
 
     @RequestMapping("/getUserId")
-    public int getUserId(HttpServletRequest request) {
+    public Integer getUserId(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
         System.out.println(userName);
         try {
-            int userId = usersafeMapper.selectUserId(userName);
+            Integer userId = usersafeMapper.selectUserId(userName);
             System.out.println(userId);
             return userId;
         } catch (Exception e) {

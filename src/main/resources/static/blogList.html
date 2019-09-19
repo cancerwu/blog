@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>NDSC博客列表</title>
     <link href="css/blogList.css" rel="stylesheet">
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/indexBottom.css" rel="stylesheet">
-
+    <link rel="icon" type="text/css" href="images\blogIndex\logo.png">
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/vue.min.js"></script>
     <script src="js/jquery.validate.regex.js"></script>
@@ -16,7 +16,21 @@
     <script src="layui/layui.js"></script>
 </head>
     <script>
+
     $(function () {
+        $.ajax({
+            url:'/solr/search',
+            data:{
+                keyword:$("#searchtext").val()
+            },
+            dataType:'json',
+            success:function (data) {
+                console.log(data);
+                blogmsg.msgs=data;
+            }
+        })
+
+
         var blogmsg = new Vue({
             el:'#blog-list',
             data:{

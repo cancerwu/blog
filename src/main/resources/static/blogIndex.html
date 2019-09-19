@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>NDSC首页</title>
     <link href="css/blogIndex.css" rel="stylesheet">
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/indexBottom.css" rel="stylesheet">
+    <link rel="icon" type="text/css" href="images\blogIndex\logo.png">
 
     <script src="js/jquery-3.4.1.js"></script>
-    <!--    <script src="js/vue.min.js"></script>-->
-    <!--    <script src="js/jquery.validate.regex.js"></script>-->
-    <!--    <script src="js/jquery.validate.min.js"></script>-->
-    <!--    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>-->
+    <script src="js/vue.min.js"></script>
+
 </head>
 <body>
 <div class="leftlabel">
@@ -132,97 +131,23 @@
                     <img src="images/blogIndex/logo1.png">
                 </div>
             </div>
-            <div class="blog">
-                <li>
-                    <div class="blogtitle">文章标题</div>
+
+            <div class="blog vue">
+                <li v-for="(blog,index) in blogs">
+                    <div class="blogtitle">
+                        <a :href="'/blogDetail.html?blogId=' + blog.blogId + '&userId=' + blog.userId">{{blog.blogTitle}}</a>
+                    </div>
                     <div class="bloginfo">
                         <div class="blogauthor">
                             <div class="authorpic">
-                                <img src="images/headpic.jpg">
+                                <img :src="'face/' + blog.userPic">
                             </div>
-                            <div class="authorname">作者用户名</div>
-                            <div class="blogreadnum">博客阅读量 丨 <a href="#">评论</a></div>
+                            <div class="authorname"><a :href="'/userBlogIndex.html?userId=' + blog.userId">{{blog.userName}}</a>
+                            </div>
+                            <div class="blogreadnum">博客阅读量:{{blog.blogReadNum}} 丨 <a href="#">评论</a></div>
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="blogtitle">文章标题</div>
-                    <div class="bloginfo">
-                        <div class="blogauthor">
-                            <div class="authorpic">
-                                <img src="images/headpic.jpg">
-                            </div>
-                            <div class="authorname">作者用户名</div>
-                            <div class="blogreadnum">博客阅读量 丨 <a href="#">评论</a></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="blogtitle">文章标题</div>
-                    <div class="bloginfo">
-                        <div class="blogauthor">
-                            <div class="authorpic">
-                                <img src="images/headpic.jpg">
-                            </div>
-                            <div class="authorname">作者用户名</div>
-                            <div class="blogreadnum">博客阅读量 丨 <a href="#">评论</a></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="blogtitle">文章标题</div>
-                    <div class="bloginfo">
-                        <div class="blogauthor">
-                            <div class="authorpic">
-                                <img src="images/headpic.jpg">
-                            </div>
-                            <div class="authorname">作者用户名</div>
-                            <div class="blogreadnum">博客阅读量 丨 <a href="#">评论</a></div>
-                        </div>
-                    </div>
-                </li>
-                <!--                    <li>-->
-                <!--                        <div class="blogtitle">-->
-                <!--                            文章标题-->
-                <!--                        </div>-->
-                <!--                        <div class="bloginfo">-->
-                <!--                            <div class="blogcontent">-->
-                <!--                                文章部分内容-->
-                <!--                            </div>-->
-                <!--                            <div class="blogauthor">-->
-                <!--                                <div class="authorpic">-->
-                <!--                                    头像-->
-                <!--                                </div>-->
-                <!--                                <div class="authorname">-->
-                <!--                                    作者用户名-->
-                <!--                                </div>-->
-                <!--                                <div class="blogreadnum">-->
-                <!--                                    博客阅读量 丨 <a href="#">评论</a>-->
-                <!--                                </div>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                    </li>-->
-                <!--                    <li>-->
-                <!--                        <div class="blogtitle">-->
-                <!--                            文章标题-->
-                <!--                        </div>-->
-                <!--                        <div class="bloginfo">-->
-                <!--                            <div class="blogcontent">-->
-                <!--                                文章部分内容-->
-                <!--                            </div>-->
-                <!--                            <div class="blogauthor">-->
-                <!--                                <div class="authorpic">-->
-                <!--                                    头像-->
-                <!--                                </div>-->
-                <!--                                <div class="authorname">-->
-                <!--                                    作者用户名-->
-                <!--                                </div>-->
-                <!--                                <div class="blogreadnum">-->
-                <!--                                    博客阅读量 丨 <a href="#">评论</a>-->
-                <!--                                </div>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                    </li>-->
             </div>
         </div>
         <div class="right">

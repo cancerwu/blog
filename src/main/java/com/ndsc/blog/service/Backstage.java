@@ -11,5 +11,6 @@ public interface Backstage {
     int blockAcccount(int userId);
     int countBlog();
     int countUser();
+    int countSum();
 
 }

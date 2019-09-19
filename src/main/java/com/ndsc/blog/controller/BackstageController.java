@@ -42,7 +42,9 @@ return backstage.selectAllUsers();
 public  int countUser(){
     return backstage.countUser();
 }
-
+//账单总金额
+  @RequestMapping("/countSum")
+  public  int countSum(){return backstage.countSum();}
 
 
 
