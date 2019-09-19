@@ -12,5 +12,8 @@ public interface OrderMapper {
     int insertSelective(Order record);
 
     List<Order> selectOrdersByUserId(Integer userId);
+
     int countSum();
+
+    int isVip(Integer userId);
 }

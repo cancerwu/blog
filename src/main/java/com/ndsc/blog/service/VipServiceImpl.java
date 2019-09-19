@@ -1,6 +1,7 @@
 package com.ndsc.blog.service;
 
 import com.ndsc.blog.entity.Vip;
+import com.ndsc.blog.mapper.OrderMapper;
 import com.ndsc.blog.mapper.VipMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ import java.util.List;
 public class VipServiceImpl implements VipService {
     @Autowired
     VipMapper vipMapper;
+    @Autowired
+    OrderMapper orderMapper;
 
     @Override
     public List<Vip> selectAll() {
@@ -25,5 +28,10 @@ public class VipServiceImpl implements VipService {
     @Override
     public Vip selectById(Integer vipId) {
         return vipMapper.selectById(vipId);
+    }
+
+    @Override
+    public int isVip(Integer userId) {
+        return orderMapper.isVip(userId);
     }
 }
