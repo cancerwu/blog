@@ -21,6 +21,14 @@
     console.log(keyword)
     $(function () {
         $.ajax({
+            url: "/getUserInfo",
+            dataType: "json",
+            success: function (data) {
+                $(".loginheadpic img").attr("src", "face/" + data.userPic);
+                // $(".userpic img").attr("src", "face/" + data.userPic);
+            }
+        });
+        $.ajax({
             url: '/solr/search',
             data: {
                 keyword: keyword,
@@ -128,7 +136,9 @@
             <!--                <li><a href="blogIndex.html">注册</a></li>-->
             <li><a href="#">消息</a></li>
             <a href="userInfoIndex.html">
-                <div class="loginheadpic"></div>
+                <div class="loginheadpic">
+                    <img src="" >
+                </div>
             </a>
         </div>
     </div>
