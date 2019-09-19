@@ -2,6 +2,7 @@ package com.ndsc.blog.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ndsc.blog.entity.Blog;
+import com.ndsc.blog.entity.Tag;
 import com.ndsc.blog.service.ManageBlogService;
 
 import org.apache.ibatis.annotations.Param;
@@ -26,7 +27,9 @@ public class ManageBlogController {
     ManageBlogService manageBlogService;
     @RequestMapping("/solr/addblog")
     public  int save(Blog blog){
+
         int ret =manageBlogService.addBlog(blog);
+        System.out.println(blog.getBlogId());
         return ret;
     }
     @RequestMapping("/searchUserBlogs")

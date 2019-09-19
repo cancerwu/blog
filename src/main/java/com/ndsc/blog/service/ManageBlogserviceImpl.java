@@ -19,7 +19,10 @@ public class ManageBlogserviceImpl implements ManageBlogService {
     @Override
     public int addBlog(Blog blog) {
         //像数据库插入数据
+
         blogMapper.insert(blog);
+//        int blogId = blog.getBlogId();
+//        blogMapper.insertTag(blogId,tagId);
         //维护solr
         UpdateResponse updateResponse =solrTemplate.saveBean("blog", blog, Duration.ZERO);
         solrTemplate.commit("blog");

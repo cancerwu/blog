@@ -56,6 +56,10 @@
     insert into blog (blog_title, blog_pub_type, user_id, blog_content)
     values (#{blogTitle,jdbcType=VARCHAR}, #{blogPubType,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{blogContent,jdbcType=LONGVARCHAR})
   </insert>
+  <insert id="insertTag" parameterType="int">
+    insert into tag(tag_id,blog_id)
+    values (tagId,blogId)
+  </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Blog" >
     insert into blog
     <trim prefix="(" suffix=")" suffixOverrides="," >

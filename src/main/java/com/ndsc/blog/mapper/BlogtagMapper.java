@@ -14,6 +14,7 @@ public interface BlogtagMapper {
 
     int insert(Blogtag record);
 
+
     int insertSelective(Blogtag record);
 
     Blogtag selectByPrimaryKey(Integer tagId);
