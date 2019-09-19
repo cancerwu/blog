@@ -32,6 +32,12 @@ return backstage.selectAllUsers();
   return backstage.blockAcccount(userId);
 
 }
+    //修改管理员
+    @RequestMapping("/changeAdmin")
+    public  int changeAdmin(int userId)
+    {
+        return backstage.changeAdmin(userId);
+    }
   @RequestMapping("/countBlog")//总文章数
   public int countBlog(){
      return backstage.countBlog();
@@ -48,6 +54,6 @@ public  int countUser(){
 //Vip数量
   @RequestMapping("/countVip")
   public int countVip(){return backstage.countVip();}
-
+//xiu
 
 }
