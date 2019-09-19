@@ -6,12 +6,37 @@ $(function () {
     //$(".login").children().eq(3).css("display","block")
     //$(".login").children().eq(0).css("display","none")
     // $(".login").children().eq(1).css("display","none")
+    $.ajax({
+        url: "/getUserId",
+        type: "post",
+        dataType: "json",
+        success: function (data1) {
+            if (data1 > 0) {
+                $(".login").children().eq(2).css("display", "block")
+                $(".login").children().eq(3).css("display", "block")
+                $(".login").children().eq(0).css("display", "none")
+                $(".login").children().eq(1).css("display", "none")
 
+                // $.cookie("userid",data1);
+                // // $.cookie("userid");
+            } else {
+                $(".login").children().eq(2).css("display", "none")
+                $(".login").children().eq(3).css("display", "none")
+            }
+        }
+    });
     $.ajax({
         url: "/getUserInfo",
         dataType: "json",
         success: function (data) {
             $(".loginheadpic img").attr("src", "face/" + data.userPic);
+        }
+    });
+
+    var vm = new Vue({
+        el: ".vue",
+        data: {
+            blogs: []
         }
     });
 
@@ -21,46 +46,30 @@ $(function () {
         dataType: "json",
         data: {"tagName": "java"},
         success: function (data) {
-            $.ajax({
-                url: "/getUserId",
-                type: "post",
-                dataType: "json",
+            var userName;
+            for (var i = 0; i < data.length; i++) {
 
-                success: function (data1) {
-
-                    if (data1 > 0) {
-                        $(".login").children().eq(2).css("display", "block")
-                        $(".login").children().eq(3).css("display", "block")
-                        $(".login").children().eq(0).css("display", "none")
-                        $(".login").children().eq(1).css("display", "none")
-
-                        // $.cookie("userid",data1);
-                        // // $.cookie("userid");
-                    } else {
-                        $(".login").children().eq(2).css("display", "none")
-                        $(".login").children().eq(3).css("display", "none")
+                $.ajax({
+                    url: "/getUser",
+                    data: {"userId": data[i].userId},
+                    async: false,
+                    success: function (dt) {
+                        userName = dt.userName;
                     }
-
-
-                    for (var i = 0; i < data.length; i++) {
-                        // alert(data[i].userinfo.realName);
-                        var $div = ("<li>\n" +
-                            "                        <div class=\"blogtitle\">" + data[i].blogTitle + "</div>\n" +
-                            "                        <div class=\"bloginfo\">\n" +
-                            "                            <div class=\"blogcontent\">" + data[i].blogContent + "</div>\n" +
-                            "                            <div class=\"blogauthor\">\n" +
-                            "                                <div class=\"authorpic\">头像</div>\n" +
-                            "                                <div class=\"authorname\">" + data[i].userinfo.realName + "</div>\n" +
-                            "                                <div class=\"blogreadnum\">" + data[i].blogReadNum + "<a href=\"#\">浏览</a></div>\n" +
-                            "                            </div>\n" +
-                            "                        </div>\n" +
-                            "                    </li>")
-                        $("div[class='blog']").append($div);
-                    }
-                }
-            })
+                });
+                vm.blogs.push({
+                    blogId: data[i].blogId,
+                    userId: data[i].userId,
+                    blogTitle: data[i].blogTitle,
+                    blogCreateTime: data[i].blogCreateTime,
+                    blogContent: data[i].blogContent,
+                    blogReadNum: data[i].blogReadNum,
+                    userPic: data[i].userinfo.userPic,
+                    userName: userName,
+                });
+            }
         }
-    })
+    });
     $("#searchtext").click(function () {
         var str = "搜索框"
         if ($(this).val() == str) {
@@ -74,7 +83,7 @@ $(function () {
     })
 
 
-})
+});
 
 // 轮播图
 //声明一个变量 记录当前的页码是多少
@@ -102,7 +111,7 @@ var oTurn = document.getElementById('turn');
 oBanner.onmouseover = function () {
     clearInterval(timer);
     oTurn.style.display = 'block';
-}
+};
 
 oBanner.onmouseleave = function () {
     oTurn.style.display = 'none';
@@ -113,7 +122,7 @@ oBanner.onmouseleave = function () {
         }
         change(page);
     }, 1500);
-}
+};
 
 
 for (var i = 0; i < allLi.length; i++) {
@@ -133,7 +142,7 @@ oRight.onclick = function () {
         page = 0;
     }
     change(page);
-}
+};
 
 var oLeft = document.getElementById("leftTurn");
 oLeft.onclick = function () {
@@ -142,7 +151,7 @@ oLeft.onclick = function () {
         page = 4;
     }
     change(page);
-}
+};
 
 function change(num) {
     for (var i = 0; i < allTab.length; i++) {
