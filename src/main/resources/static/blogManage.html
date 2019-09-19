@@ -154,10 +154,10 @@
                     <div class="bloginfo">
                             <div class="blogtype"><span>原创</span></div>
                             <div class="blogcreatetime">
-                                博客发布时间{{b.blogCreateTime}}
+                                博客发布时间：&nbsp;{{b.blogCreateTime}}
                             </div>
                             <div class="blogoperation">
-                                博客阅读量{{b.blogReadNum}} 丨 <span>查看</span> 丨 <span id="1">删除</span>
+                                博客阅读量:{{b.blogReadNum}} 丨 <span>查看</span> 丨 <span id="1">删除</span>
                             </div>
                     </div>
                 </div>
@@ -241,7 +241,7 @@
                                 vuemanyinfo.blogs.push({
                                     blogId: data.blogList[i].blogId,
                                     blogTitle: data.blogList[i].blogTitle,
-                                    blogCreateTime: data.blogList[i].blogCreateTime,
+                                    blogCreateTime: new Date(data.blogList[i].blogCreateTime).format("yyyy-MM-dd hh:mm:ss"),
                                     blogPubType: data.blogList[i].blogPubType,
                                     blogReadNum: data.blogList[i].blogReadNum,
                                     blogContent: data.blogList[i].blogContent,
