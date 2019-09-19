@@ -66,7 +66,6 @@ layui.use('layedit', function(){
                             dataType:"text",
                             data:{'userTel':userTel},
                             success:function (data) {
-                                alert("已发送验证码至您的手机！")
                                 layer.open({
                                     title:'提示！'
                                     ,content:'已发送验证码至您的手机！'
