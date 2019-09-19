@@ -7,6 +7,18 @@ $(function () {
             $(".pic img").attr("src", "face/" + data.userPic);
         }
     });
+    var userId;
+    $.ajax({
+        url: "/getUserId",
+        dataType: "json",
+        success: function (data) {
+            userId = data;
+        }
+    });
+    $(".ajax_blog").click(function () {
+        var url1 = "http://localhost:8080/userBlogIndex.html?userId="+userId;
+        window.location.replace(url1);
+    })
 
     $("#choosepic").click(function () {
         $("input[name='file']").click();
