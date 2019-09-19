@@ -61,7 +61,7 @@ public class LoginController {
             String resultUserName = loginService.selectByLogin(userName, password);
             session.setAttribute("userName", resultUserName);
             int userId = usersafeMapper.selectUserId(userName);
-            System.out.println("---------" + session.getAttribute("userName") + "登陆成功");
+            System.out.println("---------" + session.getAttribute("userName"));
             usersafe = usersafeMapper.selectByPrimaryKey(userId);
             return usersafe;
         } catch (Exception e) {

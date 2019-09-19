@@ -45,6 +45,7 @@ $(function () {
                                 type: "post",
                                 dataType: "json",
                                 success: function (data3) {
+                                    var u="userBlogIndex.html?userId="+data.userId;
                                     var $li2 = (" <div class=\"idinfo1\">" +
                                         "<li>用户名：<span>" + data1 + "</span></li>\n" +
                                         "                            <ul>\n" +
@@ -60,8 +61,10 @@ $(function () {
                                         "<li>地区：<span>福建省 厦门市 集美区</span></li>" +
                                         "<li>简介：<span></span></li>" +
                                         "</div>");
+                                    var $li3=("<a href="+u+">个人主页></a>");
                                     $("div[class='otherinfo']").append($li);
                                     $("div[class='idinfo']").append($li2);
+                                    $("div[class='intoblog']").append($li3);
                                 }
                             })
                         }

@@ -8,11 +8,22 @@
     <link href="css/indexBottom.css" rel="stylesheet">
     <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="icon" type="text/css" href="images\blogIndex\logo.png">
+    <script src="js/jquery-3.4.1.js"></script>
     <script src="layui/layui.js"></script>
     <script src="js/blogManage.js"></script>
 
     <script>
+        var loginId = '';
         layui.use('layedit', function(){
+            $.ajax({
+                url: "/getUserId",
+                type: "post",
+                dataType: "json",
+                success: function (data1) {
+                    loginId = data1
+                }
+            });
+
             // var layedit = layui.layedit;
             // var index = layedit.build('demo'); //建立编辑器
             $("#pulishblog").click(function () {
@@ -25,7 +36,7 @@
                         'blogTitle':$("input[name='title']").val(),
                         'blogContent':editor.txt.html(),
                         'blogPubType':$("input[type='radio']:checked").val(),
-                        'userId':1
+                        'userId':loginId
                     },
                     dataType:"text",
                     success:function (data) {
@@ -83,8 +94,8 @@
                 <input type="submit" class="searchbutton" value="搜索">
             </form>
             <div class="write">
-                <a href="#">
-                    写&nbsp;博&nbsp;客
+                <a href="blogManage.html">
+                    管理博客
                 </a>
             </div>
             <div class="login">
@@ -217,7 +228,7 @@
     function init_blogManage() {
         if(1 == 1) {
             $.ajax({
-                url: "/getUserId",
+                url: "http://localhost:8080/getUserId",
                 dataType: "json",
                 success: function (data) {
                     $.ajax({
