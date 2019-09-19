@@ -142,7 +142,7 @@
             </div>
 
             <div class="blog vue">
-                <li v-for="(blog,index) in blogs">
+                <li v-for="(blog,index) in blogs" v-cloak>
                     <div class="blogtitle">
                         <a :href="'/blogDetail.html?blogId=' + blog.blogId + '&userId=' + blog.userId">{{blog.blogTitle}}</a>
                     </div>

@@ -146,7 +146,7 @@
             <span id="bodywindow_option_search_span">搜索</span>
         </div>
     </div>
-    <div id="dhp_body_list">
+    <div id="dhp_body_list" v-cloak="">
         <div class="blogs1" v-for="(resource,index) in resources">
             <div class="filetype"><img src="images/downloadhomepageImg/pdf.png"></div>
             <a v-bind:href="'/download?fileName=' + resource.resourcesAddress" class="filename">{{resource.resourcesName}}</a>

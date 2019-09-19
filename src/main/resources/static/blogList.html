@@ -147,7 +147,7 @@
     <div class="w">
         <div class="left">
             <div class="search-result">搜索结果：</div>
-            <div id="blog-list" class="layui-card dingbu">
+            <div id="blog-list" class="layui-card dingbu" v-cloak="">
                 <div class="layui-card-body list-title" v-for="msg in msgs">
                     <a :href="'/blogDetail.html?blogId=' + msg.blogId + '&userId=' + msg.userId">{{msg.blogTitle}}</a>
                     <div class="author">作者：<a
