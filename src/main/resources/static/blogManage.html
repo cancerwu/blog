@@ -150,7 +150,6 @@
                 <div class="showblog" v-for="(b , index) in blogs">
                     <div class="blogtitle">
                         <span>{{b.blogTitle}}</span>
-                        <span class="ajax_blogId" style="display: none">{{b.blogId}}</span>
                     </div>
                     <div class="bloginfo">
                             <div class="blogtype"><span>原创</span></div>
@@ -158,7 +157,7 @@
                                 博客发布时间：&nbsp;{{b.blogCreateTime}}
                             </div>
                             <div class="blogoperation">
-                                博客阅读量:{{b.blogReadNum}} 丨 <span>查看</span> 丨 <span id="1">删除</span>
+                                博客阅读量:{{b.blogReadNum}} 丨 <span class="clickblog">查看<span class="ajax_blogId" style="display: none">{{b.blogId}}</span></span> 丨 <span id="1">删除</span>
                             </div>
                     </div>
                 </div>
@@ -261,7 +260,7 @@
     }
     $(function () {
         init_blogManage();
-        $(".manyinfo").on("click",".blogtitle",function () {
+        $(".manyinfo").on("click",".clickblog",function () {
             var blogId = $(this).children(".ajax_blogId").text();
             var url1 = "http://localhost:8080/blogDetail.html?blogId="+blogId;
             window.location.replace(url1);
