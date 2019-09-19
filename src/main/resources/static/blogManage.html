@@ -11,27 +11,29 @@
     <script src="js/jquery-3.4.1.js"></script>
     <script src="layui/layui.js"></script>
     <script src="js/blogManage.js"></script>
-    <script>
 
+    <script>
         layui.use('layedit', function(){
-            var layedit = layui.layedit;
-            var index = layedit.build('demo'); //建立编辑器
+            // var layedit = layui.layedit;
+            // var index = layedit.build('demo'); //建立编辑器
             $("#pulishblog").click(function () {
+                console.log(editor.txt.html());
                 console.log($("input[type='radio']:checked").val());
-                console.log(layedit.getContent(index));
                 $.ajax({
                     url:"/solr/addblog",
                     type:"post",
                     data:{
                         'blogTitle':$("input[name='title']").val(),
-                        'blogContent':layedit.getContent(index),
+                        'blogContent':editor.txt.html(),
                         'blogPubType':$("input[type='radio']:checked").val(),
                         'userId':1
                     },
                     dataType:"text",
                     success:function (data) {
                         layer.open({
-                            content: 'test'
+                            title:'SUCCESS！'
+                            ,content:'发布成功！'
+                            ,icon: 1
                             ,btn:'OK!',
                             yes:function(index, layero){
                                 alert("test");//跳转到博客详情页
@@ -39,6 +41,14 @@
                             cancel:function(){
                                  alert("test");//跳转到博客详情页
                             }
+                        });
+                    },
+                    error:function () {
+                        layer.open({
+                            title:'FAIL！',
+                            content: '发布失败！'
+                            ,btn:'OK!',
+                            icon:2
                         });
                     }
 
@@ -150,8 +160,8 @@
                         <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <textarea class="blogcontent" id="demo" style="display: none;"></textarea>
-
+<!--                <textarea class="blogcontent" id="demo" style="display: none;"></textarea>-->
+                    <div id="editor"></div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">文章标签：</label>
                         <div class="layui-input-block">
@@ -181,6 +191,17 @@
                     </div>
                 </div>
             </div>
+            <script type="text/javascript" src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+            <script type="text/javascript">
+                var E = window.wangEditor
+                var editor = new E('#editor')
+                // editor.customConfig.uploadImgServer = '/uploadimage';  // 上传图片到服务器
+                // // 或者 var editor = new E( document.getElementById('editor') )
+                // editor.customConfig.uploadFileName = 'file';
+                editor.customConfig.uploadImgShowBase64 = true;
+                editor.create()
+            </script>
+
         </div>
     </div>
 </body>

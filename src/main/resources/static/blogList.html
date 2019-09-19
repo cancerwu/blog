@@ -16,7 +16,21 @@
     <script src="layui/layui.js"></script>
 </head>
     <script>
+
     $(function () {
+        $.ajax({
+            url:'/solr/search',
+            data:{
+                keyword:$("#searchtext").val()
+            },
+            dataType:'json',
+            success:function (data) {
+                console.log(data);
+                blogmsg.msgs=data;
+            }
+        })
+
+
         var blogmsg = new Vue({
             el:'#blog-list',
             data:{
