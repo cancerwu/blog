@@ -13,4 +13,6 @@ public interface VipService {
     List<Vip> selectAll();
 
     Vip selectById(Integer vipId);
+
+    int isVip(Integer userId);
 }
