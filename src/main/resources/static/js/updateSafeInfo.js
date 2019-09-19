@@ -1,4 +1,4 @@
-$(function () {
+layui.use('layedit', function(){
     $.ajax({
         url: "/getUserInfo",
         dataType: "json",
@@ -15,17 +15,26 @@ $(function () {
 
 
     $("a[name='changepas']").click(function () {
-        alert("success")
+        layer.open({
+            title:'错误！'
+            ,content:'success!'
+        });
         closeAllDiv();
         $(".changepassword").css("display", "block")
     })
     $("a[name='changetel']").click(function () {
-        alert("success")
+        layer.open({
+            title:'错误！'
+            ,content:'success!'
+        });
         closeAllDiv();
         $(".changetel").css("display", "block")
     })
     $("a[name='changeEmail']").click(function () {
-        alert("success")
+        layer.open({
+            title:'错误！'
+            ,content:'success!'
+        });
         closeAllDiv();
         $(".changeEmail").css("display", "block")
     })

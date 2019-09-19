@@ -35,6 +35,11 @@ public class BackstageImpl implements Backstage {
     }
 
     @Override
+    public int changeAdmin(int userId) {
+        return usersafeMapper.changeAdmin(userId);
+    }
+
+    @Override
     public int countBlog() {
         return usersafeMapper.countBlog();
     }

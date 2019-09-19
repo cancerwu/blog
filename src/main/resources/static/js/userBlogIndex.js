@@ -84,6 +84,7 @@ function init(){
                 displaypage(vueleftinfo.blogCount);
                 for (var i = 0; i < data.blogList.length; i++) {
                     vueblog.blogs.push({
+                        blogId:data.blogList[i].blogId,
                         blogTitle: data.blogList[i].blogTitle,
                         blogCreateTime: data.blogList[i].blogCreateTime,
                         blogPubType: data.blogList[i].blogPubType,
@@ -154,6 +155,7 @@ function init(){
 
                 for (var i = 0; i < data.blogList.length; i++) {
                     vueblog.blogs.push({
+                        blogId:data.blogList[i].blogId,
                         blogTitle: data.blogList[i].blogTitle,
                         blogCreateTime: data.blogList[i].blogCreateTime,
                         blogPubType: data.blogList[i].blogPubType,
@@ -189,8 +191,13 @@ $(function () {
         var userName = $(this).text();
         var url1 = "http://localhost:8080/userBlogIndex.html?userName="+userName;
         window.location.replace(url1);
-    })
+    });
     init();
+    // $("#vue_blog").on("click",".blogtitle",function () {
+    //     var blogId = $(this).children().text();
+    //     var url1 = "http://localhost:8080/blogDetail.html?blogId="+ blogId;
+    //     window.location.replace(url1);
+    // });
     // $.ajax({
     //     url: "/getUserInfo",
     //     dataType: "json",

@@ -1,5 +1,5 @@
 
-$(function () {
+layui.use('layedit', function(){
     var phoneFlag = 0;
     var checkFlag=0;
     var nameFlag = 0;
@@ -19,12 +19,18 @@ $(function () {
             $(".pro-step2 .step-index").css("color", "white");
             $(".pro-step2 .step-desc").css("color", "#00db00");
         } else {
-            alert("请先通过手机号验证！");
+            layer.open({
+                title:'错误！'
+                ,content:'请先通过手机号验证!'
+            });
         }
 
         }
         else{
-            alert("输入正确的手机验证码")
+            layer.open({
+                title:'错误！'
+                ,content:'输入正确的手机验证码!'
+            });
         }
 
 
@@ -34,7 +40,11 @@ $(function () {
         $("button[name='checkphone']").css("outline","none");
         var phoneReg = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
         if ((!phoneReg.test($("input[name='tel']").val())) || $("input[name='tel']").val().length != 11){
-            alert("手机号不符合要求");
+
+            layer.open({
+                title:'错误！'
+                ,content:'手机号不符合要求!'
+            });
             // $("button[name='checkphone']").css("outline","none");
             $("button[name='checkphone']").css("border-color","red");
             phoneFlag = 0;
@@ -180,7 +190,10 @@ $(function () {
         if($("input[name='agree']").is(':checked')){
             agreeFlag = 1;
         }else{
-            alert("请阅读并同意注册协议！");
+            layer.open({
+                title:'错误！'
+                ,content:'请阅读并同意注册协议!'
+            });
         }
     })
 
