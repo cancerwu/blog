@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <title>登录</title>
     <link rel="stylesheet" type="text/css" href="css/login.css">
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/vue.min.js"></script>
     <script src="js/login.js"></script>
+    <script>
+        var countdown=60;
+        function settime(obj) {
+            if (countdown == 0) {
+                obj.removeAttribute("disabled");
+                obj.value="免费获取验证码";
+                countdown = 60;
+                return;
+            } else {
+                obj.setAttribute("disabled",true);
+                obj.value="重新发送(" + countdown + ")";
+                countdown--;
+            }
+            setTimeout(function() {
+                settime(obj) },1000)
+        }
+    </script>
 </head>
 <body>
 <div id="main">
@@ -43,7 +61,7 @@
                     <ul>
                         <li>手机号：<input id="Tel" type="text" name="eMail"></li>
                         <li>
-                            <button id="pGetCode">点击获取验证码</button>
+                            <input type="button" id="pGetCode" value="免费获取验证码" onclick="settime(this)" />
                         </li>
                         <li>验证码：<input id="code" type="text" name="passes"></li>
                         <li>
