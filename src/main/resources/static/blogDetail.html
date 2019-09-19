@@ -103,6 +103,18 @@
 </div>
 </body>
 <script>
+
+    $(function () {
+        init_blogDetail();
+        $.ajax({
+            url: "/getUserInfo",
+            dataType: "json",
+            success: function (data) {
+                $(".loginheadpic img").attr("src", "face/" + data.userPic);
+                // $(".userpic img").attr("src", "face/" + data.userPic);
+            }
+        });
+    });
     Date.prototype.format = function (fmt) {   //日期格式化方法
         var o = {
             "M+": this.getMonth() + 1,                 //月份
@@ -196,7 +208,6 @@
                             blogContent: data.blogList[i].blogContent,
                             blogAuthor:data.userName
                         })
-
                     }
                     $.ajax({
                         url: "http://localhost:8080/selectBlogerCount",
@@ -220,16 +231,6 @@
             })
         }
     }
-    $(function () {
-        init_blogDetail();
-        $.ajax({
-            url: "/getUserInfo",
-            dataType: "json",
-            success: function (data) {
-                $(".loginheadpic img").attr("src", "face/" + data.userPic);
-                $(".userpic img").attr("src", "face/" + data.userPic);
-            }
-        });
-    })
+
 </script>
 </html>

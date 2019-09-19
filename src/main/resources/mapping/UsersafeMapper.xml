@@ -78,6 +78,9 @@
     <select id="countUser" resultType="java.lang.Integer">
     select count(*) from usersafe
   </select>
+    <select id="countVip" resultType="java.lang.Integer">
+    select count(*) from usersafe where user_role=2
+  </select>
     <!--******************************************-->
     <update id="updateUsersafe" parameterType="com.ndsc.blog.entity.Usersafe">
         update usersafe
