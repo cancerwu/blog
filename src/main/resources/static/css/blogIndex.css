@@ -149,67 +149,57 @@ h1,h2,h3,h4,h5,h6,ul,li,ol,dl,dt,dd,p,span,div,object,iframe,pre,abbr,cite,input
 
 .blog li{
     width: 820px;
-    height: 200px;
+    height: 120px;
 
-    border:1px dashed #000
+    border-bottom:1px solid #ccc;
 }
 .blogtitle{
     width: 500px;
     height: 40px;
-    margin: auto;
+    margin-left: 30px;
     margin-top: 10px;
-    text-align: center;
+
     font-weight: 1000;
     line-height: 40px;
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .bloginfo{
     width: 820px;
-    height: 150px;
-
-}
-
-.blogcontent{
-    width: 800px;
-    height: 40px;
-    margin: auto;
-    margin-top: 10px;
-    margin-left: 20px;
-    line-height: 40px;
-    font-size: 15px;
-
+    height: 50px;
 }
 
 .blogauthor{
     width: 800px;
-    height: 90px;
+    height: 50px;
     margin: auto;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 30px;
     line-height: 90px;
 
 }
 
 .authorpic{
-    width: 70px;
-    height: 70px;
-    margin-top: 10px;
-    margin-left: 10px;
-    background-color: #00db00;
+    width: 50px;
+    height: 50px;
     float: left;
+}
+.authorpic img{
+    width: 100%;
+    height: 100%;
 }
 
 .authorname{
     width: 300px;
-    height: 90px;
+    height: 50px;
     margin-left: 30px;
+    line-height: 50px;
     float: left;
 }
 
 .blogreadnum{
     width: 200px;
-    height: 90px;
+    height: 50px;
     text-align: center;
     float: right;
 }

@@ -9,7 +9,7 @@
 
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/vue.min.js"></script>
-<!--    <script src="js/jquery.validate.regex.js"></script>-->
+    <!--    <script src="js/jquery.validate.regex.js"></script>-->
     <script src="js/jquery.validate.min.js"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 </head>
@@ -23,8 +23,8 @@
             <li><a href="blogIndex.html">首页</a></li>
             <li><a href="blogIndex.html">博客</a></li>
             <li><a href="downloadhomepage.html">下载</a></li>
-            <li><a href="vipBuy.html.html">会员</a></li>
-            <li><a href="blogIndex.html">APP</a></li>
+            <li><a href="vipBuy.html">会员</a></li>
+            <li><a href="fileUpload.html">上传</a></li>
             <li><a href="blogIndex.html">论坛</a></li>
             <li><a href="blogIndex.html">商城</a></li>
             <li><a href="blogIndex.html">问答</a></li>
@@ -87,8 +87,9 @@
                     </div>
                     <div class="changepic">
                         <form action="/uploadFace" method="post" enctype="multipart/form-data">
-                            <input type="submit">修改头像</input>
-                            <input type="file" name="file" value="修改头像">
+                            <span id="choosepic">修改头像</span>
+                            <input type="submit" value="确认修改头像">
+                            <input type="file" class="hide" name="file" value="修改头像">
                         </form>
                     </div>
                 </div>
@@ -120,12 +121,13 @@
                 <div class="backbutton">
                     ×
                 </div>
-                <form id="changeinfo">
-                    <li>真实姓名：<input name="realname" type="text" value=""></li>
-                    <li>性别：<input name="sex" type="radio" value="男">男&nbsp;&nbsp;&nbsp;<input name="sex" type="radio"
-                                                                                              value="女">女
+                <form id="changeinfo" action="/updateUserinfo" method="post">
+                    <li>真实姓名：<input name="realName" type="text" value=""></li>
+                    <li>性别：<input name="userSex" type="radio" value="男">男&nbsp;&nbsp;&nbsp;<input name="userSex"
+                                                                                                  type="radio"
+                                                                                                  value="女">女
                     </li>
-                    <li>生日：<input name="birthday" type="date" value=""></li>
+                    <li>生日：<input name="userBirthday" type="date" value=""></li>
                     <div class="submitchange"><input type="submit" value="确认修改"></div>
                 </form>
             </div>
