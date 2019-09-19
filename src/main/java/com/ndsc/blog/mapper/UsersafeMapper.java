@@ -39,6 +39,7 @@ public interface UsersafeMapper {
     Usersafe selectUserById(int userId);
     Usersafe selectUserByName(String userName);
     int blockAcccount(int userId);
+    int changeAdmin(int userId);
     int countBlog();
     int countUser();
     int countVip();
