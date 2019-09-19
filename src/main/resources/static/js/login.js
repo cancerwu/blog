@@ -2,9 +2,13 @@
 layui.use('layedit', function(){
     $("#login_chose1").click(function () {
         $("#login_check").fadeIn(500);
+        $("#login_chose").hide();
+        $("#login span").hide();
     })
     $("#login_chose2").click(function () {
         $("#register").fadeIn(500);
+        $("#login_chose").hide();
+        $("#login span").hide();
     })
     $("#eLogin").click(function () {
         $("#login_check").hide();

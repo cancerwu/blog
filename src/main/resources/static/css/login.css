@@ -5,32 +5,22 @@
 	background-image: url(../images/login_background.jpg);
 	position: relative;
 }
-/*头部*/
-#advertisement{
-	float: left;
-    width: 400px;
-    background-color: #fff;
-    position: relative;
-    bottom: -80px;
-    left: 150px;
-    overflow: hidden
+input{
+    background-color: white;
+    border: none;
+    height: 23px;
+    width: 270px;
+    border-radius: 26px;
+    text-align: center;
 }
-#advertisement img{
-	width:100%;
-}
-#advertisement:hover{
-	cursor: pointer;
-}
-
+/*登录块*/
 #login{
 	height: 350px;
     width: 450px;
     float: right;
-    border: 1px solid lightgrey;
     position: relative;
-    right: 150px;
+    right: 520px;
     top: 80px;
-    background-image: url(../images/login_chose.png);
 }
 #login button{
     color: #4696af;
@@ -98,9 +88,8 @@ ul{
 #login_check{
 	width: 100%;
 	height: 100%;
-	background-image: url(../images/login_check.png);
 	position: relative;
-	top: -200px;
+	top: -50px;
 }
 #login_check li{
 	width: 280px;
@@ -118,9 +107,8 @@ ul{
 #register{
 	width: 100%;
 	height: 100%;
-	background-image: url(../images/login_check.png);
 	position: relative;
-	top: -200px;
+	top: -15px;
 }
 #register li{
 	width: 280px;
@@ -135,16 +123,13 @@ ul{
     margin-top: 5px;
     padding-top: 5px;
 }
-#download{
-	width: 450px;
-    float: right;
-    position: relative;
-    top: 440px;
-    right: -302px;
-
+#Tel{
+    width: 174px;
+    float: left;
 }
-#download:hover{
-	cursor: pointer;
+#pGetCode{
+    width: 100px;
+    float: left;
 }
 #bottom{
     width: 100%;
