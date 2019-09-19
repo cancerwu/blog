@@ -4,6 +4,7 @@
 	height: 600px;
 	background-image: url(../images/login_background.jpg);
 	position: relative;
+    background-size: cover;
 }
 input{
     background-color: white;
