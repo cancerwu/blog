@@ -49,4 +49,6 @@ public interface UsersafeMapper {
     Usersafe selectUidUsafeUinfoBlog(Integer userId);
 
     Usersafe selectUnameUsafeUinfoBlog(String userName);
+
+    Usersafe selectBlogUsafeUname(Integer blogId);
 }

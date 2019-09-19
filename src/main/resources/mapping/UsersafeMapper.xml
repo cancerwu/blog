@@ -52,6 +52,9 @@
     <select id="selectUnameUsafeUinfoBlog" resultMap="UsersafeBaseResultMap" parameterType="java.lang.String">
         select us.*,ui.*,b.* from userinfo ui RIGHT join usersafe us on (us.user_id = ui.user_id) left join  blog b on (us.user_id = b.user_id) where us.user_name = #{userName}
     </select>
+    <select id="selectBlogUsafeUname" parameterType="java.lang.Integer" resultMap="UsersafeBaseResultMap" >
+    select us.*,ui.*,b.* from userinfo ui RIGHT join usersafe us on (us.user_id = ui.user_id) left join  blog b on (us.user_id = b.user_id) where b.blog_id = #{blogId}
+    </select>
     <!--******************************************-->
     <sql id="Base_Column_List">
     user_id, user_name, password, user_email, user_tel, user_status, user_money, user_integral, 
