@@ -19,7 +19,6 @@ public class Userinfo {
     private Date userCreateTime;
 
     private Integer userId;
-
     //**********************************
     private List<Blog> blogList;
 
