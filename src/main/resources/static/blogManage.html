@@ -32,12 +32,15 @@
                 $.ajax({
                     url:"/solr/addblog",
                     type:"post",
-                    data:{
+                    contentType:"application/json;charset=utf-8", //必须要设置
+                    data:JSON.stringify({
                         'blogTitle':$("input[name='title']").val(),
                         'blogContent':editor.txt.html(),
                         'blogPubType':$("input[type='radio']:checked").val(),
-                        'userId':loginId
-                    },
+                        'userId':loginId,
+                        'tagId':$("input[type='checkbox']:checked").val(),
+                    }),
+
                     dataType:"text",
                     success:function (data) {
                         layer.open({
@@ -177,9 +180,9 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">文章标签：</label>
                         <div class="layui-input-block">
-                            <input type="checkbox" name="like[write]" title="Java">
-                            <input type="checkbox" name="like[read]" title="Python" checked>
-                            <input type="checkbox" name="like[dai]" title="C++">
+                            <input type="checkbox" name="like[write]" title="Java" value="1">
+                            <input type="checkbox" name="like[read]" title="Python" checked value="2">
+                            <input type="checkbox" name="like[dai]" title="C++" value="3">
                         </div>
                         <div class="layui-form-item choosetype">
                             <label class="layui-form-label">文章类型：</label>

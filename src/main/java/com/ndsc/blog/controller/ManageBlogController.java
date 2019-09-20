@@ -26,11 +26,12 @@ public class ManageBlogController {
     @Autowired
     ManageBlogService manageBlogService;
     @RequestMapping("/solr/addblog")
-    public  int save(Blog blog){
-
-        int ret =manageBlogService.addBlog(blog);
-        System.out.println(blog.getBlogId());
-        return ret;
+    public  int save(@RequestBody JSONObject object){
+        System.out.println(object.toJSONString());
+//        int ret =manageBlogService.addBlog(blog);
+//        System.out.println(blog.getBlogId());
+//        return ret;
+        return 1;
     }
     @RequestMapping("/searchUserBlogs")
     public List<Blog> searchUserBlogs(int userId){
