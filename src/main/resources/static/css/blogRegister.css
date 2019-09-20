@@ -222,6 +222,10 @@ input{
     text-align: center;
     font-size: 14px;
 }
+
+.checkphone:hover{
+    cursor: pointer;
+}
 .nextstep{
     width: 400px;
     height: 54px;
@@ -234,7 +238,10 @@ input{
     position:absolute;
     bottom:0;
     border: 0px;
+    left: 0px;
 }
+
+
 .mainbottom{
     width: 400px;
     height: 28px;
