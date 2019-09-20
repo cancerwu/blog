@@ -2,49 +2,70 @@
     $.getUrlParam = function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
-        if (r != null) return unescape(r[2]); return "";
+        if (r != null) return unescape(r[2]);
+        return "";
     }
 })(jQuery);
-function getParameter(){
-    var reg_int=/^[0-9]+$/;
+
+function getParameter() {
+    var reg_int = /^[0-9]+$/;
     var key;
-    var  xx = $.getUrlParam('userId') + $.getUrlParam('userName');
-    if(reg_int.test(xx)){
+    var xx = $.getUrlParam('userId') + $.getUrlParam('userName');
+    if (reg_int.test(xx)) {
         key = parseInt(xx);
-    }else {
+    } else {
         key = xx;
     }
     return key;
-}
-function displaypage(len){
-    if(len == 1){
+};
+
+function isLogin() {
+    var login = 0;
+    $.ajax({
+        url: "/isLogin",
+        dataType: "text",
+        async: false,
+        success: function (data) {
+            if (data == "true") {
+                login = 1;
+            }
+        }
+    });
+    return login;
+};
+
+function displaypage(len) {
+    if (len == 1) {
         $(".blog").hide();
-    }else {
+    } else {
         $(".blog").show();
     }
 }
+
 var userId = 0;
+var blogerId;
 var vueblog = new Vue({
-    el:"#vue_blog",
-    data:{
-        blogs:[],
-        userinfo:{}
+    el: "#vue_blog",
+    data: {
+        blogs: [],
+        userinfo: {}
     }
 });
 var vueleftinfo = new Vue({
-    el:"#vue_leftinfo",
-    data:{
-        blogCount:0,
-        blogerCount:0,
-        fansCount:0,
-        username:"",
-        pic:"",
+    el: "#vue_leftinfo",
+    data: {
+        blogCount: 0,
+        blogerCount: 0,
+        fansCount: 0,
+        username: "",
+        pic: "",
     }
 });
-function init(){
+
+function init() {
     var userParameter = getParameter();
     var userField = jQuery.isNumeric(userParameter) ? "userId" : "userName";
-    if(jQuery.isNumeric(userParameter)){
+    if (jQuery.isNumeric(userParameter)) {
         $.ajax({
             url: "http://localhost:8080/selectUidUsafeUinfoBlog",
             type: "post",
@@ -73,24 +94,24 @@ function init(){
                     userPic: "",
                     userCreateTime: data.userinfo.userCreateTime,
                 };
-                if(data.userinfo.userPic == null){
+                if (data.userinfo.userPic == null) {
                     vueblog.userinfo.userPic = "images/headpic.jpg";
                     vueleftinfo.pic = "images/headpic.jpg";
-                }else {
-                    vueblog.userinfo.userPic = "face/"+data.userinfo.userPic
-                    vueleftinfo.pic = "face/"+data.userinfo.userPic;
+                } else {
+                    vueblog.userinfo.userPic = "face/" + data.userinfo.userPic
+                    vueleftinfo.pic = "face/" + data.userinfo.userPic;
                 }
                 vueleftinfo.blogCount = data.blogList.length;
                 displaypage(vueleftinfo.blogCount);
                 for (var i = 0; i < data.blogList.length; i++) {
                     vueblog.blogs.push({
-                        blogId:data.blogList[i].blogId,
+                        blogId: data.blogList[i].blogId,
                         blogTitle: data.blogList[i].blogTitle,
                         blogCreateTime: data.blogList[i].blogCreateTime,
                         blogPubType: data.blogList[i].blogPubType,
                         blogReadNum: data.blogList[i].blogReadNum,
                         blogContent: data.blogList[i].blogContent,
-                        blogAuthor:data.userName
+                        blogAuthor: data.userName
                     })
                 }
                 $.ajax({
@@ -102,6 +123,7 @@ function init(){
                         vueleftinfo.blogerCount = data;
                     }
                 });
+                blogerId = data.userId;
                 $.ajax({
                     url: "http://localhost:8080/selectFansCount",
                     type: "get",
@@ -110,10 +132,23 @@ function init(){
                     success: function (data) {
                         vueleftinfo.fansCount = data;
                     }
-                })
+                });
+                if (isLogin()) {
+                    $.ajax({
+                        url: "/isFans",
+                        data: {"blogerId": data.userId},
+                        dataType: "text",
+                        success: function (data) {
+                            if (data == 1) {
+                                $("#watch").text("已关注");
+                                $("#watch").css({"background-color": "red", "color": "white"});
+                            }
+                        }
+                    });
+                }
             }
         })
-    }else {
+    } else {
         $.ajax({
             url: "http://localhost:8080/selectUnameUsafeUinfoBlog",
             type: "post",
@@ -139,15 +174,15 @@ function init(){
                     realName: data.userinfo.realName,
                     userSex: data.userinfo.userSex,
                     userBirthday: data.userinfo.userBirthday,
-                    userPic: "face/"+data.userinfo.userPic,
+                    userPic: "face/" + data.userinfo.userPic,
                     userCreateTime: data.userinfo.userCreateTime,
                 };
-                if(data.userinfo.userPic == null){
+                if (data.userinfo.userPic == null) {
                     vueblog.userinfo.userPic = "images/headpic.jpg";
                     vueleftinfo.pic = "images/headpic.jpg";
-                }else {
-                    vueblog.userinfo.userPic = "face/"+data.userinfo.userPic
-                    vueleftinfo.pic = "face/"+data.userinfo.userPic;
+                } else {
+                    vueblog.userinfo.userPic = "face/" + data.userinfo.userPic
+                    vueleftinfo.pic = "face/" + data.userinfo.userPic;
                 }
 
                 vueleftinfo.blogCount = data.blogList.length;
@@ -155,13 +190,13 @@ function init(){
 
                 for (var i = 0; i < data.blogList.length; i++) {
                     vueblog.blogs.push({
-                        blogId:data.blogList[i].blogId,
+                        blogId: data.blogList[i].blogId,
                         blogTitle: data.blogList[i].blogTitle,
                         blogCreateTime: data.blogList[i].blogCreateTime,
                         blogPubType: data.blogList[i].blogPubType,
                         blogReadNum: data.blogList[i].blogReadNum,
                         blogContent: data.blogList[i].blogContent,
-                        blogAuthor:data.userName
+                        blogAuthor: data.userName
                     })
                 }
                 $.ajax({
@@ -186,24 +221,54 @@ function init(){
         })
     }
 }
+
 $(function () {
-    $("#vue_blog").on("click",".ajax_userName",function () {
+    $("#vue_blog").on("click", ".ajax_userName", function () {
         var userName = $(this).text();
-        var url1 = "http://localhost:8080/userBlogIndex.html?userName="+userName;
+        var url1 = "http://localhost:8080/userBlogIndex.html?userName=" + userName;
         window.location.replace(url1);
     });
     init();
-    // $("#vue_blog").on("click",".blogtitle",function () {
-    //     var blogId = $(this).children().text();
-    //     var url1 = "http://localhost:8080/blogDetail.html?blogId="+ blogId;
-    //     window.location.replace(url1);
-    // });
+    /*$("#vue_blog").on("click",".blogtitle",function () {
+        var blogId = $(this).children().text();
+        var url1 = "http://localhost:8080/blogDetail.html?blogId="+ blogId;
+        window.location.replace(url1);
+    });*/
     $.ajax({
         url: "/getUserInfo",
         dataType: "json",
         success: function (data) {
-            // $(".userpic img").attr("src", "face/" + data.userPic);
             $(".loginheadpic img").attr("src", "face/" + data.userPic);
         }
     });
-})
+
+
+    $("#watch").click(function () {
+        if (isLogin()) {
+            if ($("#watch").text() == '关注') {
+                $.ajax({
+                    url: "/insertRelation",
+                    data: {"blogerId": blogerId},
+                    dataType: "text",
+                    success: function () {
+                        $("#watch").text("已关注");
+                        $("#watch").css({"background-color": "red", "color": "white"});
+                    }
+                });
+            } else if ($("#watch").text() == '已关注') {
+                $.ajax({
+                    url: "deleteRelation",
+                    data: {"blogerId": blogerId},
+                    dataType: "text",
+                    success: function () {
+                        $("#watch").text("关注");
+                        $("#watch").css({"background-color": "white", "color": "black"});
+                    }
+                });
+            }
+        } else {
+            alert("请先登录");
+        }
+    });
+
+});

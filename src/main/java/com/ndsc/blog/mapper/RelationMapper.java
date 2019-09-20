@@ -22,9 +22,12 @@ public interface RelationMapper {
     int deleteRelation(Relation relation);
 
     List<Userinfo> selectFans(Integer blogerId);
+
     //**********************
     //**********************
     int selectFansCount(Integer blogerId);
 
     int selectBlogerCount(Integer fansId);
+
+    int isFans(Relation relation);
 }
