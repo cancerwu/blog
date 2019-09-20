@@ -22,7 +22,7 @@ public class faceUpload {
             String serverPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\face";
             //上传文件名
             String filename = file.getOriginalFilename();
-            filename = new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()) + filename;
+//            filename = new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()) + filename;
             File serverFile = new File(serverPath, filename);
             //判断路径是否存在，如果不存在就创建一个
             if (!serverFile.getParentFile().exists()) {

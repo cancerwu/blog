@@ -41,9 +41,13 @@ public class ManageBlogController {
         return manageBlogService.searchUserBlog(userId);
     }
 
-    @RequestMapping("/solr/deleteBlog")
-    public int deleteBlogByBlogId(Integer blogId){
-        return manageBlogService.deleteBlogByBlogId(blogId);
+    @RequestMapping("/deleteBlog")
+    public String deleteBlogByBlogId(Integer blogId){
+         manageBlogService.deleteBlogByBlogId(blogId);
+         return "<a id=\"ak\" href='blogManage.html'></a>\n" +
+                 "<script>\n" +
+                 "    document.getElementById(\"ak\").click();\n" +
+                 "</script>";
     }
 
     @RequestMapping("/uploadimage")

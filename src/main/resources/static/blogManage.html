@@ -25,6 +25,17 @@
                 }
             });
 
+            /*$("#delete").click(function () {
+                $.ajax({
+                    url:'/solr/deleteBlog',
+                    type:'post',
+                    data:
+                    dataType:'text',
+                    success:function (data) {
+                        window.location.href = "/blogManage.html"
+                    }
+                })
+            })*/
             // var layedit = layui.layedit;
             // var index = layedit.build('demo'); //建立编辑器
             $("#pulishblog").click(function () {
@@ -161,7 +172,8 @@
                                 博客发布时间：&nbsp;{{b.blogCreateTime}}
                             </div>
                             <div class="blogoperation">
-                                博客阅读量:{{b.blogReadNum}} 丨 <span class="clickblog">查看<span class="ajax_blogId" style="display: none">{{b.blogId}}</span></span> 丨 <span id="1">删除</span>
+                                博客阅读量:{{b.blogReadNum}} 丨 <span class="clickblog">查看<span class="ajax_blogId" style="display: none">{{b.blogId}}</span></span>
+                                丨 <span id="delete"><a :href="'/deleteBlog?blogId=' + b.blogId" >删除</a></span>
                             </div>
                     </div>
                 </div>
