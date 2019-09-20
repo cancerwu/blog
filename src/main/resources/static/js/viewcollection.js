@@ -1,4 +1,11 @@
 $(function () {
+        $.ajax({
+            url: "/getUserInfo",
+            dataType: "json",
+            success: function (data) {
+                $(".loginheadpic img").attr("src", "face/" + data.userPic);
+            }
+        });
     $.ajax({
         url: "/selectCollectionBlog1",
         type: "post",
