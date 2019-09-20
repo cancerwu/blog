@@ -15,11 +15,11 @@ public interface BlogService {
     //***********************
     int insertRelation(Relation relation);
 
-    List<Userinfo> selectRelationUser(Integer fansId);
+    List<Usersafe> selectRelationUser(Integer fansId);
 
     int deleteRelation(Relation relation);
 
-    List<Userinfo> selectFans(Integer blogerId);
+    List<Usersafe> selectFans(Integer blogerId);
     //**********************
 
     //**************usersafe*******************

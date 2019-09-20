@@ -49,7 +49,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Userinfo> selectRelationUser(Integer fansId) {
+    public List<Usersafe> selectRelationUser(Integer fansId) {
         return relationMapper.selectRelationUser(fansId);
     }
 
@@ -59,7 +59,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Userinfo> selectFans(Integer blogerId) {
+    public List<Usersafe> selectFans(Integer blogerId) {
         return relationMapper.selectFans(blogerId);
     }
 

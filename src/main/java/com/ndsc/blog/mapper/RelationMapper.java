@@ -2,6 +2,7 @@ package com.ndsc.blog.mapper;
 
 import com.ndsc.blog.entity.Relation;
 import com.ndsc.blog.entity.Userinfo;
+import com.ndsc.blog.entity.Usersafe;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -17,11 +18,11 @@ public interface RelationMapper {
     //***********************
     int insertRelation(Relation relation);
 
-    List<Userinfo> selectRelationUser(Integer fansId);
+    List<Usersafe> selectRelationUser(Integer fansId);
 
     int deleteRelation(Relation relation);
 
-    List<Userinfo> selectFans(Integer blogerId);
+    List<Usersafe> selectFans(Integer blogerId);
 
     //**********************
     //**********************

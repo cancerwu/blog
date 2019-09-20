@@ -20,6 +20,18 @@
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
     </resultMap>
 
+    <resultMap id="UserSafeResultMap" type="com.ndsc.blog.entity.Usersafe">
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="user_tel" property="userTel" jdbcType="VARCHAR"/>
+        <result column="user_status" property="userStatus" jdbcType="INTEGER"/>
+        <result column="user_money" property="userMoney" jdbcType="INTEGER"/>
+        <result column="user_integral" property="userIntegral" jdbcType="INTEGER"/>
+        <result column="user_role" property="userRole" jdbcType="INTEGER"/>
+    </resultMap>
+
     <select id="isFans" parameterType="com.ndsc.blog.entity.Relation" resultType="java.lang.Integer">
       select count(*)
       from relation
@@ -30,16 +42,16 @@
     insert into relation(bloger_id, fans_id) values (#{blogerId,jdbcType=INTEGER}, #{fansId,jdbcType=INTEGER})
   </insert>
 
-    <select id="selectRelationUser" parameterType="java.lang.Integer" resultMap="UserinfoBaseResultMap">
-    select u.* from relation r,userinfo u where r.fans_id = #{fansId} and r.bloger_id = u.user_id
+    <select id="selectRelationUser" parameterType="java.lang.Integer" resultMap="UserSafeResultMap">
+    select u.* from relation r,usersafe u where r.fans_id = #{fansId} and r.bloger_id = u.user_id
   </select>
 
     <delete id="deleteRelation" parameterType="com.ndsc.blog.entity.Relation">
     delete from relation where fans_id= #{fansId,jdbcType=INTEGER} and bloger_id = #{blogerId,jdbcType=INTEGER}
   </delete>
 
-    <select id="selectFans" parameterType="java.lang.Integer" resultMap="UserinfoBaseResultMap">
-    select u.* from relation r,userinfo u where r.bloger_id = #{blogerId} and r.fans_id = u.user_id
+    <select id="selectFans" parameterType="java.lang.Integer" resultMap="UserSafeResultMap">
+    select u.* from relation r,usersafe u where r.bloger_id = #{blogerId} and r.fans_id = u.user_id
   </select>
 
     <select id="selectFansCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">

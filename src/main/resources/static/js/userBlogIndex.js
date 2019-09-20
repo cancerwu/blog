@@ -59,6 +59,7 @@ var vueleftinfo = new Vue({
         fansCount: 0,
         username: "",
         pic: "",
+        userId: 0
     }
 });
 
@@ -85,6 +86,7 @@ function init() {
                 };
 
                 vueleftinfo.username = data.userName;
+                vueleftinfo.userId = data.userinfo.userId;
 
                 vueblog.userinfo = {
                     userId: data.userinfo.userId,
@@ -111,7 +113,8 @@ function init() {
                         blogPubType: data.blogList[i].blogPubType,
                         blogReadNum: data.blogList[i].blogReadNum,
                         blogContent: data.blogList[i].blogContent,
-                        blogAuthor: data.userName
+                        blogAuthor: data.userName,
+                        userId:data.userId
                     })
                 }
                 $.ajax({

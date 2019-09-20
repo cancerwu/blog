@@ -119,13 +119,12 @@ public class BlogController {
     }
 
     @RequestMapping("/getRelationUserinfo")
-    public List<Userinfo> getRelationUserinfo(int fansId) {
+    public List<Usersafe> getRelationUserinfo(int fansId) {
         return blogService.selectRelationUser(fansId);
     }
 
     @RequestMapping("/getMyRelationUserinfo")
-    public List<Userinfo> getMyRelationUserinfo(HttpServletRequest request) {
-
+    public List<Usersafe> getMyRelationUserinfo(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
         int userId = usersafeMapper.selectUserId(userName);
@@ -139,12 +138,12 @@ public class BlogController {
 
 
     @RequestMapping("/getFans")
-    public List<Userinfo> getFans(int blogerId) {
+    public List<Usersafe> getFans(int blogerId) {
         return blogService.selectFans(blogerId);
     }
 
     @RequestMapping("/getMyFans")//获得当前登录用户的粉丝
-    public List<Userinfo> getMyFans(HttpServletRequest request) {
+    public List<Usersafe> getMyFans(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
         int userId = usersafeMapper.selectUserId(userName);
