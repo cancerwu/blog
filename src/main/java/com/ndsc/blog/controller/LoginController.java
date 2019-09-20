@@ -31,7 +31,6 @@ public class LoginController {
     @RequestMapping("/getUserInfo")
     public Userinfo getUserInfo(HttpServletRequest request) {
         try {
-
             HttpSession session = request.getSession();
             String userName = (String) session.getAttribute("userName");
             int userId = usersafeMapper.selectUserId(userName);
