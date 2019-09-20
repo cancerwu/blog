@@ -39,7 +39,6 @@ public class SearchServiceImpl implements SearchService {
         ScoredPage<Blog> pages =solrTemplate.queryForPage("blog", query, Blog.class);
         System.out.println("pages.getTotal="+pages.getTotalElements());
         List<Blog> content=pages.getContent();
-      System.out.println("sousuo chenggong ");
         return content;
     }
 
