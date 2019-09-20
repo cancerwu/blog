@@ -1,6 +1,7 @@
 package com.ndsc.blog.controller;
 
 import com.ndsc.blog.entity.*;
+import com.ndsc.blog.mapper.RelationMapper;
 import com.ndsc.blog.mapper.UsersafeMapper;
 import com.ndsc.blog.service.BlogService;
 import com.ndsc.blog.service.Md5Encryption;
@@ -33,6 +34,50 @@ public class BlogController {
     UsersafeMapper usersafeMapper;
     @Autowired
     UserInfoService userInfoService;
+    @Autowired
+    RelationMapper relationMapper;
+
+    @RequestMapping("isLogin")
+    public boolean isLogin(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return (String) session.getAttribute("userName") != null ? true : false;
+    }
+
+    @RequestMapping("insertRelation")
+    public int insertRelation(Integer blogerId, HttpServletRequest request) {
+        //获取id
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int id = usersafeMapper.selectUserId(userName);
+        Relation relation = new Relation();
+        relation.setBlogerId(blogerId);
+        relation.setFansId(id);
+        return relationMapper.insertRelation(relation);
+    }
+
+    @RequestMapping("deleteRelation")
+    public int deleteRelation(Integer blogerId, HttpServletRequest request) {
+        //获取id
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int id = usersafeMapper.selectUserId(userName);
+        Relation relation = new Relation();
+        relation.setBlogerId(blogerId);
+        relation.setFansId(id);
+        return relationMapper.deleteRelation(relation);
+    }
+
+    @RequestMapping("isFans")
+    public int isFans(Integer blogerId, HttpServletRequest request) {
+        //获取id
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        int id = usersafeMapper.selectUserId(userName);
+        Relation relation = new Relation();
+        relation.setBlogerId(blogerId);
+        relation.setFansId(id);
+        return relationMapper.isFans(relation);
+    }
 
     @RequestMapping("/getUserinfo")
     public Userinfo getUserinfo(int userId) {
@@ -107,7 +152,7 @@ public class BlogController {
     }
 
     @RequestMapping("/updateUsersafe")
-    public int updateUsersafe( Usersafe usersafe) {
+    public int updateUsersafe(Usersafe usersafe) {
         usersafe.setPassword(md5Encryption.encrype(usersafe.getPassword()));
         return blogService.updateUsersafe(usersafe);
     }

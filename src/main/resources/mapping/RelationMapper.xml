@@ -1,64 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ndsc.blog.mapper.RelationMapper" >
-  <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Relation" >
-    <result column="bloger_id" property="blogerId" jdbcType="INTEGER" />
-    <result column="fans_id" property="fansId" jdbcType="INTEGER" />
-  </resultMap>
-  <!--***********************************-->
-  <resultMap id="RelationBaseResultMap" type="com.ndsc.blog.entity.Relation" >
-    <result column="bloger_id" property="blogerId" jdbcType="INTEGER" />
-    <result column="fans_id" property="fansId" jdbcType="INTEGER" />
-  </resultMap>
-  <resultMap id="UserinfoBaseResultMap" type="com.ndsc.blog.entity.Userinfo" >
-    <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER" />
-    <result column="real_name" property="realName" jdbcType="VARCHAR" />
-    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
-    <result column="user_birthday" property="userBirthday" jdbcType="TIMESTAMP" />
-    <result column="user_pic" property="userPic" jdbcType="VARCHAR" />
-    <result column="user_create_time" property="userCreateTime" jdbcType="TIMESTAMP" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
-  </resultMap>
-  <insert id="insertRelation" parameterType="com.ndsc.blog.entity.Relation">
+<mapper namespace="com.ndsc.blog.mapper.RelationMapper">
+    <resultMap id="BaseResultMap" type="com.ndsc.blog.entity.Relation">
+        <result column="bloger_id" property="blogerId" jdbcType="INTEGER"/>
+        <result column="fans_id" property="fansId" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--***********************************-->
+    <resultMap id="RelationBaseResultMap" type="com.ndsc.blog.entity.Relation">
+        <result column="bloger_id" property="blogerId" jdbcType="INTEGER"/>
+        <result column="fans_id" property="fansId" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="UserinfoBaseResultMap" type="com.ndsc.blog.entity.Userinfo">
+        <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+        <result column="user_birthday" property="userBirthday" jdbcType="TIMESTAMP"/>
+        <result column="user_pic" property="userPic" jdbcType="VARCHAR"/>
+        <result column="user_create_time" property="userCreateTime" jdbcType="TIMESTAMP"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="isFans" parameterType="com.ndsc.blog.entity.Relation" resultType="java.lang.Integer">
+      select count(*)
+      from relation
+      where bloger_id = #{blogerId} and fans_Id = #{fansId}
+    </select>
+
+    <insert id="insertRelation" parameterType="com.ndsc.blog.entity.Relation">
     insert into relation(bloger_id, fans_id) values (#{blogerId,jdbcType=INTEGER}, #{fansId,jdbcType=INTEGER})
   </insert>
-  <select id="selectRelationUser" parameterType="java.lang.Integer" resultMap="UserinfoBaseResultMap">
+
+    <select id="selectRelationUser" parameterType="java.lang.Integer" resultMap="UserinfoBaseResultMap">
     select u.* from relation r,userinfo u where r.fans_id = #{fansId} and r.bloger_id = u.user_id
   </select>
-  <delete id="deleteRelation" parameterType="com.ndsc.blog.entity.Relation">
+
+    <delete id="deleteRelation" parameterType="com.ndsc.blog.entity.Relation">
     delete from relation where fans_id= #{fansId,jdbcType=INTEGER} and bloger_id = #{blogerId,jdbcType=INTEGER}
   </delete>
-  <select id="selectFans" parameterType="java.lang.Integer" resultMap="UserinfoBaseResultMap">
+
+    <select id="selectFans" parameterType="java.lang.Integer" resultMap="UserinfoBaseResultMap">
     select u.* from relation r,userinfo u where r.bloger_id = #{blogerId} and r.fans_id = u.user_id
   </select>
-  <select id="selectFansCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+
+    <select id="selectFansCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
     select count(*) from relation where bloger_id = #{blogerId}
   </select>
-  <select id="selectBlogerCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+
+    <select id="selectBlogerCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
     select count(*) from relation where fans_id = #{fansId}
   </select>
-  <!--***********************************-->
-  <insert id="insert" parameterType="com.ndsc.blog.entity.Relation" >
+
+    <!--***********************************-->
+    <insert id="insert" parameterType="com.ndsc.blog.entity.Relation">
     insert into relation (bloger_id, fans_id)
     values (#{blogerId,jdbcType=INTEGER}, #{fansId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Relation" >
-    insert into relation
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="blogerId != null" >
-        bloger_id,
-      </if>
-      <if test="fansId != null" >
-        fans_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="blogerId != null" >
-        #{blogerId,jdbcType=INTEGER},
-      </if>
-      <if test="fansId != null" >
-        #{fansId,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+
+    <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Relation">
+        insert into relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="blogerId != null">
+                bloger_id,
+            </if>
+            <if test="fansId != null">
+                fans_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="blogerId != null">
+                #{blogerId,jdbcType=INTEGER},
+            </if>
+            <if test="fansId != null">
+                #{fansId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
 </mapper>

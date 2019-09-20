@@ -10,7 +10,7 @@
 <script src="js/vue.min.js"></script>
 <script src="js/jquery-3.4.1.js"></script>
 <body>
-    <div class="top">
+<div class="top">
     <div class="w">
         <div class="logo">
             <img src="images/blogIndex/logo.png">
@@ -50,65 +50,67 @@
         </div>
     </div>
 </div>
-    <div class="main">
-        <div class="w">
-            <div class="leftinfo"  id="vue_leftinfo" v-cloak>
-                <div class="userinfo">
-                    <div class="userpic">
-                        <img :src="pic">
-                    </div>
-                    <div class="username">
-                        <span>{{username}}</span>
-                    </div>
+<div class="main">
+    <div class="w">
+        <div class="leftinfo" id="vue_leftinfo" v-cloak>
+            <div class="userinfo">
+                <div class="userpic">
+                    <img :src="pic">
                 </div>
-                <div class="someinfo">
-                    <div class="fourinfo">
-                        <li>博客</li>
-                        <li>{{blogCount}}</li>
-                    </div>
-                    <div class="fourinfo">
-                        <li>关注</li>
-                        <li>{{blogerCount}}</li>
-                    </div>
-                    <div class="fourinfo">
-                        <li>粉丝</li>
-                        <li>{{fansCount}}</li>
-                    </div>
-                    <div class="fourinfo">
-                        <li>评论</li>
-                        <li>0</li>
-                    </div>
-                </div>
-<!--                <div class="manageBlog">-->
-<!--                    <a href="blogManage.html"><li>管理博客</li></a>-->
-<!--                    <a href="blogManage.html"><li>管理博客</li></a>-->
-<!--                </div>-->
-                <div class="leftbottom">
-                    <img src="images/blogIndex/leftbottom.png">
+                <div class="username">
+                    <span>{{username}}</span>
+                    <span id="watch"
+                          style="border: 1px solid red; width: 50px; height: 30px;font-size: 14px;cursor:pointer">关注</span>
                 </div>
             </div>
-            <div class="blog" id="vue_blog" v-cloak>
-                <li v-for="(b , index) in blogs">
-                    <a class="blogtitle" :href="'/blogDetail.html?blogId=' + b.blogId">
-                        {{b.blogTitle}}
-                    </a>
-                    <div class="bloginfo">
-                        <div class="blogauthor">
-                            <div class="authorpic">
-                                <img :src="userinfo.userPic">
-                            </div>
-                            <div class="authorname">
-                                <span class="ajax_userName">{{b.blogAuthor}}</span>
-                            </div>
-                            <div class="blogreadnum">
-                                博客阅读量: {{b.blogReadNum}} 丨<a href="#">评论</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+            <div class="someinfo">
+                <div class="fourinfo">
+                    <li>博客</li>
+                    <li>{{blogCount}}</li>
+                </div>
+                <div class="fourinfo">
+                    <li>关注</li>
+                    <li>{{blogerCount}}</li>
+                </div>
+                <div class="fourinfo">
+                    <li>粉丝</li>
+                    <li>{{fansCount}}</li>
+                </div>
+                <div class="fourinfo">
+                    <li>评论</li>
+                    <li>0</li>
+                </div>
+            </div>
+            <!--                <div class="manageBlog">
+                                <a href="blogManage.html"><li>管理博客</li></a>
+                                <a href="blogManage.html"><li>管理博客</li></a>
+                            </div>-->
+            <div class="leftbottom">
+                <img src="images/blogIndex/leftbottom.png">
             </div>
         </div>
+        <div class="blog" id="vue_blog" v-cloak>
+            <li v-for="(b , index) in blogs">
+                <a class="blogtitle" :href="'/blogDetail.html?blogId=' + b.blogId">
+                    {{b.blogTitle}}
+                </a>
+                <div class="bloginfo">
+                    <div class="blogauthor">
+                        <div class="authorpic">
+                            <img :src="userinfo.userPic">
+                        </div>
+                        <div class="authorname">
+                            <span class="ajax_userName">{{b.blogAuthor}}</span>
+                        </div>
+                        <div class="blogreadnum">
+                            博客阅读量: {{b.blogReadNum}} 丨<a href="#">评论</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </div>
     </div>
+</div>
 </body>
 <script src="js/userBlogIndex.js"></script>
 </html>
