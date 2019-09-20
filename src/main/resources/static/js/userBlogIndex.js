@@ -35,7 +35,7 @@ function isLogin() {
 };
 
 function displaypage(len) {
-    if (len == 1) {
+    if (len == 0) {
         $(".blog").hide();
     } else {
         $(".blog").show();
