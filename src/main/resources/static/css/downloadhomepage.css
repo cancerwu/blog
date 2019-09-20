@@ -198,11 +198,11 @@ body{
     width: 90%;
     margin: 0% 5%;
     height: 40px;
-    background-color: #999999;
 }
 #bodywindow_option .menu{
-    height: 30px;
-    margin: 5px;
+    height: 40px;
+    font-size: 25px;
+    margin-left: 400px;
 }
 #bodywindow_option_search{
     height: 30px;
