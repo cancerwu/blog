@@ -24,6 +24,7 @@ public class SendSmsController {
         } catch (Exception e) {
             return "";
         }
+
         return code;
     }
 }
