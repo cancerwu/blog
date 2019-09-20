@@ -52,7 +52,7 @@
 </div>
 <div class="main">
     <div class="w">
-        <div class="leftinfo" id="vue_leftinfo">
+        <div class="leftinfo" id="vue_leftinfo" v-cloak>
             <div class="userinfo">
                 <div class="userpic">
                     <img :src="pic">
@@ -83,7 +83,7 @@
                 <img src="images/blogIndex/leftbottom.png">
             </div>
         </div>
-        <div class="blog" id="vue_blog">
+        <div class="blog" id="vue_blog" v-cloak>
             <div class="blogheader">
                 <div class="blogtitle">{{blogs[0].blogTitle}}</div>
                 <div class="bloginfo">

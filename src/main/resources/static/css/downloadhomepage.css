@@ -1,4 +1,4 @@
-h1,h2,h3,h4,h5,h6,div,p,img,input,span,ul,ol,li,a,header,body,i,em,strong{
+h1,h2,h3,h4,h5,h6,p,img,input,span,ul,ol,li,header,body,i,em,strong{
     margin: 0px;
     padding: 0px;
     border-width: 0px;
@@ -8,6 +8,26 @@ body{
     background-image: url(../images/upLoadImg.jpg);
     background-size: cover;
 }
+
+#dhp_body_list div{
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    float: left;
+}
+#dhp_body_list a{
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    float: left;
+}
+
+.top .w{
+    width: 1180px;
+    margin: auto;
+}
+
+
 /*body{*/
 /*    width: 100%;*/
 /*}*/
@@ -212,7 +232,9 @@ body{
 }
 
 
-
+[v-cloak] {
+    display: none;
+}
 
 
 

@@ -13,6 +13,12 @@ $(function () {
 
     })
 
+    $(".back").click(function () {
+        $(".writeblog").css("display", "none")
+        $(".manyinfo").css("display", "block")
+
+    })
+
     Date.prototype.format = function (fmt) {   //日期格式化方法
         var o = {
             "M+": this.getMonth() + 1,                 //月份

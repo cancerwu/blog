@@ -121,3 +121,7 @@
 .choosetype{
     width: 200px;
 }
+
+[v-cloak] {
+    display: none;
+}
