@@ -39,6 +39,26 @@
                         $("#userNum").append(data);
                     }
                 })
+                $.ajax({
+                    url:'/countVip',
+                    async: false,
+                    type:'post',
+                    datatype:'int',
+                    success:function (data) {
+                        console.log(data);
+                        $("#vipNum").append(data);
+                    }
+                })
+                $.ajax({
+                    url:'/countSum',
+                    async: false,
+                    type:'post',
+                    datatype:'int',
+                    success:function (data) {
+                        console.log(data);
+                        $("#sumNum").append(data);
+                    }
+                })
                 // $.ajax({
                 //     url:'/countUser',
                 //     async: false,
@@ -97,14 +117,14 @@
                                     <a href="javascript:;" class="x-admin-backlog-body">
                                         <h3>会员数</h3>
                                         <p>
-                                            <cite>2</cite></p>
+                                            <cite id="vipNum"></cite></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-md2 layui-col-xs6 ">
                                     <a href="javascript:;" class="x-admin-backlog-body">
                                         <h3>总收入金额</h3>
                                         <p>
-                                            <cite>6766</cite></p>
+                                            <cite id="sumNum"></cite></p>
                                     </a>
                                 </li>
                             </ul>
