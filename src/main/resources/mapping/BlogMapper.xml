@@ -52,13 +52,17 @@
     delete from blog
     where blog_id = #{blogId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ndsc.blog.entity.Blog" >
+  <insert id="insert" parameterType="com.ndsc.blog.entity.Blog" useGeneratedKeys="true" keyProperty="blogId">
+<!--    <selectKey keyProperty="blogId" order="AFTER" resultType="java.lang.Integer">-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
     insert into blog (blog_title, blog_pub_type, user_id, blog_content)
-    values (#{blogTitle,jdbcType=VARCHAR}, #{blogPubType,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{blogContent,jdbcType=LONGVARCHAR})
+    values (#{blogTitle,jdbcType=VARCHAR}, #{blogPubType,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{blogContent,jdbcType=LONGVARCHAR});
   </insert>
-  <insert id="insertTag" parameterType="int">
-    insert into tag(tag_id,blog_id)
-    values (tagId,blogId)
+
+  <insert id="insertTag" parameterType="java.util.Map">
+    insert into tag(blog_id,tag_id)
+    values(#{blogId,jdbcType=INTEGER},#{tagId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ndsc.blog.entity.Blog" >
     insert into blog
