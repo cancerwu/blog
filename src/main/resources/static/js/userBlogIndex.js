@@ -223,6 +223,7 @@ function init() {
 }
 
 $(function () {
+
     $("#vue_blog").on("click", ".ajax_userName", function () {
         var userName = $(this).text();
         var url1 = "http://localhost:8080/userBlogIndex.html?userName=" + userName;
@@ -255,7 +256,7 @@ $(function () {
                         $("#watch").css({"background-color": "red", "color": "white"});
                     }
                 });
-            } else if ($("#watch").text() == '已关注') {
+            } else if ($("#watch").text() == '已关注' || $("#watch").text() == '取消关注') {
                 $.ajax({
                     url: "deleteRelation",
                     data: {"blogerId": blogerId},
