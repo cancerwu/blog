@@ -6,13 +6,13 @@
     <link href="css/blogManage.css" rel="stylesheet">
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/indexBottom.css" rel="stylesheet">
-    <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="icon" type="text/css" href="images\blogIndex\logo.png">
-    <script src="js/jquery-3.4.1.js"></script>
-    <script src="layui/layui.js"></script>
-    <script src="js/blogManage.js"></script>
+
     <link rel="stylesheet" href="layui/css/layui.css">
     <script src="layui/layui.js"></script>
+
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/blogManage.js"></script>
     <script>
         var loginId = '';
         layui.use('layedit', function(){
@@ -72,7 +72,6 @@
     </script>
 </head>
 <script src="js/vue.min.js"></script>
-<script src="js/jquery-3.4.1.js"></script>
 <body>
     <div class="top">
         <div class="w">
@@ -233,12 +232,12 @@
     function init_blogManage() {
         if(1 == 1) {
             $.ajax({
-                url: "http://localhost:8080/getUserId",
+                url: "/getUserId",
                 dataType: "json",
                 success: function (data) {
                     userId = data;
                     $.ajax({
-                        url: "http://localhost:8080/selectUidUsafeUinfoBlog",
+                        url: "/selectUidUsafeUinfoBlog",
                         type: "post",
                         data: {"userId": data},
                         dataType: "json",
@@ -267,7 +266,7 @@
         init_blogManage();
         $(".manyinfo").on("click",".clickblog",function () {
             var blogId = $(this).children(".ajax_blogId").text();
-            var url1 = "http://localhost:8080/blogDetail.html?blogId="+blogId;
+            var url1 = "/blogDetail.html?blogId="+blogId;
             window.location.replace(url1);
         });
     })

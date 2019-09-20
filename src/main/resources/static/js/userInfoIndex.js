@@ -18,7 +18,7 @@ $(function () {
         }
     });
     $(".ajax_blog").click(function () {
-        var url1 = "http://localhost:8080/userBlogIndex.html?userId=" + userId;
+        var url1 = "/userBlogIndex.html?userId=" + userId;
         window.location.replace(url1);
     })
 

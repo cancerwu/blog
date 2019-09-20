@@ -6,10 +6,13 @@
     <link href="css/blogDetail.css" rel="stylesheet">
     <link href="css/indexTop.css" rel="stylesheet">
     <link href="css/indexBottom.css" rel="stylesheet">
+
     <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.js"></script>
+
     <script src="js/vue.min.js"></script>
     <script src="js/jquery-3.4.1.js"></script>
-    <script src="layui/layui.js"></script>
+
 </head>
 
 <body>
@@ -145,7 +148,7 @@
                     });
                 } else if ($("#watch").text() == '已关注' || $("#watch").text() == '取消关注') {
                     $.ajax({
-                        url: "deleteRelation",
+                        url: "/deleteRelation",
                         data: {"blogerId": blogerId},
                         dataType: "text",
                         success: function () {
@@ -210,7 +213,7 @@
         var blogParameter = parseInt($.getUrlParam('blogId'));
         if (1 == 1) {
             $.ajax({
-                url: "http://localhost:8080/selectBlogUsafeUname",
+                url: "/selectBlogUsafeUname",
                 type: "post",
                 data: {"blogId": blogParameter},
                 dataType: "json",
@@ -272,7 +275,7 @@
                         })
                     }
                     $.ajax({
-                        url: "http://localhost:8080/selectBlogerCount",
+                        url: "/selectBlogerCount",
                         type: "get",
                         data: {"fansId": data.userId},
                         dataType: "json",
@@ -281,7 +284,7 @@
                         }
                     });
                     $.ajax({
-                        url: "http://localhost:8080/selectFansCount",
+                        url: "/selectFansCount",
                         type: "get",
                         data: {"blogerId": data.userId},
                         dataType: "json",
@@ -290,7 +293,7 @@
                         }
                     })
                     $.ajax({
-                        url: "http://localhost:8080/selectBlogCount",
+                        url: "/selectBlogCount",
                         type: "get",
                         data: {"userId": data.userId},
                         dataType: "json",
