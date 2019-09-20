@@ -52,10 +52,10 @@
     delete from blog
     where blog_id = #{blogId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ndsc.blog.entity.Blog" >
-    <selectKey keyProperty="blogId" order="AFTER" resultType="int">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
+  <insert id="insert" parameterType="com.ndsc.blog.entity.Blog" useGeneratedKeys="true" keyProperty="blogId">
+<!--    <selectKey keyProperty="blogId" order="AFTER" resultType="java.lang.Integer">-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
     insert into blog (blog_title, blog_pub_type, user_id, blog_content)
     values (#{blogTitle,jdbcType=VARCHAR}, #{blogPubType,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{blogContent,jdbcType=LONGVARCHAR});
   </insert>

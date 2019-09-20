@@ -26,8 +26,10 @@ public class ManageBlogserviceImpl implements ManageBlogService {
         blog.setBlogContent((String)itemMap.get("blogContent"));
         blog.setBlogPubType((Integer)itemMap.get("BlogPubType"));
         blog.setUserId((Integer)itemMap.get("userId"));
-        Integer tagId=(Integer)itemMap.get("tagId");
-        int blogId = blogMapper.insert(blog);
+
+        Integer tagId= Integer.parseInt(itemMap.get("tagId").toString());
+        blogMapper.insert(blog);
+        Integer blogId = blog.getBlogId();
         Map<String,Integer> tagMap =new HashMap<String, Integer>();
         tagMap.put("blogId",blogId);
         tagMap.put("tagId",tagId);
