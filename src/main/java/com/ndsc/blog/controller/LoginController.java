@@ -35,7 +35,7 @@ public class LoginController {
             String userName = (String) session.getAttribute("userName");
             int userId = usersafeMapper.selectUserId(userName);
             return userInfoService.selectByUserId(userId);
-        }catch (Exception e ){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -103,10 +103,9 @@ public class LoginController {
     }
 
     @RequestMapping("/outline")
-    public int outline(HttpServletRequest request) {
+    public void outline(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute("userName", null);
         System.out.println("下线成功");
-        return 0;
     }
 }

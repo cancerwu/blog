@@ -25,19 +25,7 @@ layui.use('layedit', function(){
         }
     });
 
-    $("#logout").click(function () {
-        layer.open({
-            title:'提示',
-            content: '退出登录！'
-        });
-        $.ajax({
-            url: "/",
-            dataType: "json",
-            success: function (data) {
 
-            }
-        })
-    })
 
     $.ajax({
         url: "/getUserInfo",
