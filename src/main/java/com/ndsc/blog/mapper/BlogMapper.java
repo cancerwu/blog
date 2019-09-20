@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 
@@ -14,7 +15,7 @@ public interface BlogMapper {
 
     int insert(Blog record);
 
-    int insertTag(int blogId,int tagId);
+    int insertTag(Map tagMap);
 
     int insertSelective(Blog record);
 

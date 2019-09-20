@@ -8,7 +8,9 @@ import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ManageBlogserviceImpl implements ManageBlogService {
@@ -17,10 +19,19 @@ public class ManageBlogserviceImpl implements ManageBlogService {
     @Autowired
     private SolrTemplate solrTemplate;
     @Override
-    public int addBlog(Blog blog) {
+    public int addBlog(Map itemMap) {
         //像数据库插入数据
-
-        blogMapper.insert(blog);
+        Blog blog = new Blog();
+        blog.setBlogTitle((String)itemMap.get("blogTitle"));
+        blog.setBlogContent((String)itemMap.get("blogContent"));
+        blog.setBlogPubType((Integer)itemMap.get("BlogPubType"));
+        blog.setUserId((Integer)itemMap.get("userId"));
+        Integer tagId=(Integer)itemMap.get("tagId");
+        int blogId = blogMapper.insert(blog);
+        Map<String,Integer> tagMap =new HashMap<String, Integer>();
+        tagMap.put("blogId",blogId);
+        tagMap.put("tagId",tagId);
+        blogMapper.insertTag(tagMap);
 //        int blogId = blog.getBlogId();
 //        blogMapper.insertTag(blogId,tagId);
         //维护solr

@@ -13,11 +13,11 @@ public class Blog {
     private Integer blogId;
     @Indexed
     private String blogTitle;
-
+    @Indexed
     private Date blogCreateTime;
 
     private Integer blogPubType;
-
+    @Indexed
     private Integer blogReadNum;
 
     private Integer userId;

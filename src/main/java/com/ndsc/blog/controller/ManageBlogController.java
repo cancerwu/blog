@@ -27,11 +27,14 @@ public class ManageBlogController {
     ManageBlogService manageBlogService;
     @RequestMapping("/solr/addblog")
     public  int save(@RequestBody JSONObject object){
-        System.out.println(object.toJSONString());
+        Map<String, Object> itemMap = JSONObject.toJavaObject(object, Map.class);
+        System.out.println(itemMap);
+        manageBlogService.addBlog(itemMap);
+
 //        int ret =manageBlogService.addBlog(blog);
 //        System.out.println(blog.getBlogId());
-//        return ret;
         return 1;
+
     }
     @RequestMapping("/searchUserBlogs")
     public List<Blog> searchUserBlogs(int userId){
