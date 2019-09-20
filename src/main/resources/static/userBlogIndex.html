@@ -99,7 +99,7 @@
                             <img :src="userinfo.userPic">
                         </div>
                         <div class="authorname">
-                            <span class="ajax_userName">{{b.blogAuthor}}</span>
+                            <span class="ajax_userName"><a :href="'/userBlogIndex.html?userId=' + b.userId">{{b.blogAuthor}}</a></span>
                         </div>
                         <div class="blogreadnum">
                             博客阅读量: {{b.blogReadNum}} 丨<a href="#">评论</a>
