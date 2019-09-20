@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,6 @@
 </head>
 <script>
     var keyword = $.cookie('keyword');
-    console.log(keyword)
     $(function () {
         $.ajax({
             url: "/getUserInfo",
@@ -39,6 +38,7 @@
             dataType: 'json',
             success: function (data) {
                 blogmsg.msgs = [];
+                console.log(data);
                 var userName;
                 for (var i = 0; i < data.length; i++) {
                     $.ajax({
@@ -77,6 +77,7 @@
                 dataType: 'json',
                 success: function (data) {
                     blogmsg.msgs = [];
+                    console.log(data);
                     var userName;
                     for (var i = 0; i < data.length; i++) {
                         $.ajax({

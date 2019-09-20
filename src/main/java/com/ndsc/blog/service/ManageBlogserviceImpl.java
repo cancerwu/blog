@@ -22,11 +22,12 @@ public class ManageBlogserviceImpl implements ManageBlogService {
     public int addBlog(Map itemMap) {
         //像数据库插入数据
         Blog blog = new Blog();
+
         blog.setBlogTitle((String)itemMap.get("blogTitle"));
         blog.setBlogContent((String)itemMap.get("blogContent"));
         blog.setBlogPubType((Integer)itemMap.get("BlogPubType"));
         blog.setUserId((Integer)itemMap.get("userId"));
-//        blog.setUserId(Integer.parseInt(itemMap.get("userId").toString()));
+
         Integer tagId= Integer.parseInt(itemMap.get("tagId").toString());
         blogMapper.insert(blog);
         Integer blogId = blog.getBlogId();
@@ -37,7 +38,7 @@ public class ManageBlogserviceImpl implements ManageBlogService {
 //        int blogId = blog.getBlogId();
 //        blogMapper.insertTag(blogId,tagId);
         //维护solr
-        UpdateResponse updateResponse =solrTemplate.saveBean("blog", blog, Duration.ZERO);
+        UpdateResponse updateResponse =solrTemplate.saveBean("blog", blog);
         solrTemplate.commit("blog");
 
         return updateResponse.getStatus();

@@ -13,13 +13,13 @@ public class Blog {
     private Integer blogId;
     @Indexed
     private String blogTitle;
-    @Indexed
+
     private Date blogCreateTime;
 
     private Integer blogPubType;
     @Indexed
     private Integer blogReadNum;
-
+    @Indexed
     private Integer userId;
 
     private String blogContent;
