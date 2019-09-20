@@ -153,8 +153,16 @@ public class BlogController {
 
     @RequestMapping("/updateUsersafe")
     public int updateUsersafe(Usersafe usersafe) {
-        usersafe.setPassword(md5Encryption.encrype(usersafe.getPassword()));
-        return blogService.updateUsersafe(usersafe);
+
+        try{
+            usersafe.setPassword(md5Encryption.encrype(usersafe.getPassword()));
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }finally {
+            return blogService.updateUsersafe(usersafe);
+        }
+
     }
 
     @RequestMapping("/selectByUserinfoGetBlog")

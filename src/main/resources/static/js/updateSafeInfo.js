@@ -51,7 +51,7 @@ layui.use('layedit', function(){
         url: "/getUserId",
         dataType: "json",
         success: function (data) {
-            $("#b1").click(function () {
+            $("#b2").click(function () {
                 var newtel = $("#tel").val();
                 $.ajax({
                     url: "/updateUsersafe",
@@ -69,13 +69,13 @@ layui.use('layedit', function(){
         url: "/getUserId",
         dataType: "json",
         success: function (data) {
-            $("#b1").click(function () {
-                var newemail = $("#emil").val();
+            $("#b3").click(function () {
+                var newemail = $("#email").val();
                 $.ajax({
                     url: "/updateUsersafe",
                     type:"post",
                     dataType:"text",
-                    data:{'userId':data,'userEmial':newemail},
+                    data:{'userId':data,'userEmail':newemail},
                     success: function (data1) {
 
                     }
