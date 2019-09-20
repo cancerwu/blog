@@ -68,7 +68,7 @@ function init() {
     var userField = jQuery.isNumeric(userParameter) ? "userId" : "userName";
     if (jQuery.isNumeric(userParameter)) {
         $.ajax({
-            url: "http://localhost:8080/selectUidUsafeUinfoBlog",
+            url: "/selectUidUsafeUinfoBlog",
             type: "post",
             data: {"userId": userParameter},
             dataType: "json",
@@ -118,7 +118,7 @@ function init() {
                     })
                 }
                 $.ajax({
-                    url: "http://localhost:8080/selectBlogerCount",
+                    url: "/selectBlogerCount",
                     type: "get",
                     data: {"fansId": data.userId},
                     dataType: "json",
@@ -128,7 +128,7 @@ function init() {
                 });
                 blogerId = data.userId;
                 $.ajax({
-                    url: "http://localhost:8080/selectFansCount",
+                    url: "/selectFansCount",
                     type: "get",
                     data: {"blogerId": data.userId},
                     dataType: "json",
@@ -153,7 +153,7 @@ function init() {
         })
     } else {
         $.ajax({
-            url: "http://localhost:8080/selectUnameUsafeUinfoBlog",
+            url: "/selectUnameUsafeUinfoBlog",
             type: "post",
             data: {"userName": userParameter},
             dataType: "json",
@@ -203,7 +203,7 @@ function init() {
                     })
                 }
                 $.ajax({
-                    url: "http://localhost:8080/selectBlogerCount",
+                    url: "/selectBlogerCount",
                     type: "get",
                     data: {"fansId": data.userId},
                     dataType: "json",
@@ -212,7 +212,7 @@ function init() {
                     }
                 });
                 $.ajax({
-                    url: "http://localhost:8080/selectFansCount",
+                    url: "/selectFansCount",
                     type: "get",
                     data: {"blogerId": data.userId},
                     dataType: "json",
@@ -229,13 +229,13 @@ $(function () {
 
     $("#vue_blog").on("click", ".ajax_userName", function () {
         var userName = $(this).text();
-        var url1 = "http://localhost:8080/userBlogIndex.html?userName=" + userName;
+        var url1 = "/userBlogIndex.html?userName=" + userName;
         window.location.replace(url1);
     });
     init();
     /*$("#vue_blog").on("click",".blogtitle",function () {
         var blogId = $(this).children().text();
-        var url1 = "http://localhost:8080/blogDetail.html?blogId="+ blogId;
+        var url1 = "/blogDetail.html?blogId="+ blogId;
         window.location.replace(url1);
     });*/
     $.ajax({
