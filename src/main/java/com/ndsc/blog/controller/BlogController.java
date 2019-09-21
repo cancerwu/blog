@@ -107,7 +107,7 @@ public class BlogController {
         newUserInfo.setRealName(userinfo.getRealName());
         newUserInfo.setUserBirthday(userinfo.getUserBirthday());
         blogService.updateUserinfo(newUserInfo);
-        return "<a id=\"ak\" href='userinfoindex.html'>跳转</a>\n" +
+        return "<a id=\"ak\" href='http://47.94.152.107:8080/userinfoindex.html'>跳转</a>\n" +
                 "<script>\n" +
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";
@@ -153,12 +153,12 @@ public class BlogController {
     @RequestMapping("/updateUsersafe")
     public int updateUsersafe(Usersafe usersafe) {
 
-        try{
+        try {
             usersafe.setPassword(md5Encryption.encrype(usersafe.getPassword()));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
-        }finally {
+        } finally {
             return blogService.updateUsersafe(usersafe);
         }
 
