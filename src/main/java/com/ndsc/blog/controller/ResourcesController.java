@@ -76,7 +76,7 @@ public class ResourcesController {
             e.printStackTrace();
         }
         userInfoService.updateByPrimaryKeySelective(userinfo);
-        return "<a id=\"ak\" href='userinfoindex.html'></a>\n" +
+        return "<a id=\"ak\" href='http://47.94.152.107:8080/userinfoindex.html'>跳转</a>\n" +
                 "<script>\n" +
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";
