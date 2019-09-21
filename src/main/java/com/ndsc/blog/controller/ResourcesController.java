@@ -54,7 +54,7 @@ public class ResourcesController {
             e.printStackTrace();
         }
         resourcesService.uploadResource(resources);
-        return "<a id=\"ak\" href='uploadSuccess.html'>跳转</a>\n" +
+        return "<a id=\"ak\" href='/uploadSuccess.html'>跳转</a>\n" +
                 "<script>\n" +
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";
@@ -76,7 +76,7 @@ public class ResourcesController {
             e.printStackTrace();
         }
         userInfoService.updateByPrimaryKeySelective(userinfo);
-        return "<a id=\"ak\" href='http://47.94.152.107:8080/userinfoindex.html'>跳转</a>\n" +
+        return "<a id=\"ak\" href='http://47.94.152.107:8080/userInfoIndex.html'></a>\n" +
                 "<script>\n" +
                 "    document.getElementById(\"ak\").click();\n" +
                 "</script>";
@@ -86,7 +86,7 @@ public class ResourcesController {
     public String downloadResource(String fileName, HttpServletRequest request, HttpServletResponse response) {
         //文件路径
 //        String serverPath = request.getSession().getServletContext().getRealPath("/") + "upload";
-        String serverPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload";
+        String serverPath = System.getProperty("user.dir") + "/src/main/resources/static/upload";
 
         File file = new File(serverPath, fileName);
         if (file.exists()) {
