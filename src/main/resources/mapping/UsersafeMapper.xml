@@ -23,28 +23,28 @@
         <result column="user_money" property="userMoney" jdbcType="INTEGER"/>
         <result column="user_integral" property="userIntegral" jdbcType="INTEGER"/>
         <result column="user_role" property="userRole" jdbcType="INTEGER"/>
-        <association property="userinfo" resultMap="UserinfoBaseResultMap" />
-        <collection property="blogList" resultMap="BlogResultMapWithBLOBs" />
+        <association property="userinfo" resultMap="UserinfoBaseResultMap"/>
+        <collection property="blogList" resultMap="BlogResultMapWithBLOBs"/>
     </resultMap>
-    <resultMap id="UserinfoBaseResultMap" type="com.ndsc.blog.entity.Userinfo" >
-        <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER" />
-        <result column="real_name" property="realName" jdbcType="VARCHAR" />
-        <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
-        <result column="user_birthday" property="userBirthday" jdbcType="TIMESTAMP" />
-        <result column="user_pic" property="userPic" jdbcType="VARCHAR" />
-        <result column="user_create_time" property="userCreateTime" jdbcType="TIMESTAMP" />
-        <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <resultMap id="UserinfoBaseResultMap" type="com.ndsc.blog.entity.Userinfo">
+        <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+        <result column="user_birthday" property="userBirthday" jdbcType="TIMESTAMP"/>
+        <result column="user_pic" property="userPic" jdbcType="VARCHAR"/>
+        <result column="user_create_time" property="userCreateTime" jdbcType="TIMESTAMP"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
     </resultMap>
-    <resultMap id="BlogBaseResultMap" type="com.ndsc.blog.entity.Blog" >
-        <id column="blog_id" property="blogId" jdbcType="INTEGER" />
-        <result column="blog_title" property="blogTitle" jdbcType="VARCHAR" />
-        <result column="blog_create_time" property="blogCreateTime" jdbcType="TIMESTAMP" />
-        <result column="blog_pub_type" property="blogPubType" jdbcType="INTEGER" />
-        <result column="blog_read_num" property="blogReadNum" jdbcType="INTEGER" />
-        <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <resultMap id="BlogBaseResultMap" type="com.ndsc.blog.entity.Blog">
+        <id column="blog_id" property="blogId" jdbcType="INTEGER"/>
+        <result column="blog_title" property="blogTitle" jdbcType="VARCHAR"/>
+        <result column="blog_create_time" property="blogCreateTime" jdbcType="TIMESTAMP"/>
+        <result column="blog_pub_type" property="blogPubType" jdbcType="INTEGER"/>
+        <result column="blog_read_num" property="blogReadNum" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
     </resultMap>
-    <resultMap id="BlogResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BlogBaseResultMap" >
-        <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR" />
+    <resultMap id="BlogResultMapWithBLOBs" type="com.ndsc.blog.entity.Blog" extends="BlogBaseResultMap">
+        <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR"/>
     </resultMap>
     <select id="selectUidUsafeUinfoBlog" resultMap="UsersafeBaseResultMap">
         select us.*,ui.*,b.* from userinfo ui RIGHT join usersafe us on (us.user_id = ui.user_id) left join  blog b on (us.user_id = b.user_id) where us.user_id = #{userId}
@@ -52,7 +52,7 @@
     <select id="selectUnameUsafeUinfoBlog" resultMap="UsersafeBaseResultMap" parameterType="java.lang.String">
         select us.*,ui.*,b.* from userinfo ui RIGHT join usersafe us on (us.user_id = ui.user_id) left join  blog b on (us.user_id = b.user_id) where us.user_name = #{userName}
     </select>
-    <select id="selectBlogUsafeUname" parameterType="java.lang.Integer" resultMap="UsersafeBaseResultMap" >
+    <select id="selectBlogUsafeUname" parameterType="java.lang.Integer" resultMap="UsersafeBaseResultMap">
     select us.*,ui.*,b.* from userinfo ui RIGHT join usersafe us on (us.user_id = ui.user_id) left join  blog b on (us.user_id = b.user_id) where b.blog_id = #{blogId}
     </select>
     <!--******************************************-->
@@ -90,14 +90,14 @@
     <!--******************************************-->
     <update id="updateUsersafe" parameterType="com.ndsc.blog.entity.Usersafe">
         update usersafe
-        <set >
-            <if test="password != null" >
+        <set>
+            <if test="password != null">
                 password = #{password,jdbcType=VARCHAR},
             </if>
-            <if test="userEmail != null" >
+            <if test="userEmail != null">
                 user_email = #{userEmail,jdbcType=VARCHAR},
             </if>
-            <if test="userTel != null" >
+            <if test="userTel != null">
                 user_tel = #{userTel,jdbcType=VARCHAR},
             </if>
         </set>
@@ -268,7 +268,7 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 
-  <update id="becomeVip" parameterType="java.lang.Integer">
+    <update id="becomeVip" parameterType="java.lang.Integer">
     update usersafe
     set user_role = 3
     where user_id = #{userId,jdbcType=INTEGER}

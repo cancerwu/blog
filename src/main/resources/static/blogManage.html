@@ -15,7 +15,7 @@
     <script src="js/blogManage.js"></script>
     <script>
         var loginId = '';
-        layui.use('layedit', function(){
+        layui.use('layedit', function () {
             $.ajax({
                 url: "/getUserId",
                 type: "post",
@@ -42,38 +42,38 @@
                 console.log(editor.txt.html());
                 console.log($("input[type='radio']:checked").val());
                 $.ajax({
-                    url:"/solr/addblog",
-                    type:"post",
-                    contentType:"application/json;charset=utf-8", //必须要设置
-                    data:JSON.stringify({
-                        'blogTitle':$("input[name='title']").val(),
-                        'blogContent':editor.txt.html(),
-                        'blogPubType':$("input[type='radio']:checked").val(),
-                        'userId':loginId,
-                        'tagId':$("input[type='checkbox']:checked").val(),
+                    url: "/solr/addblog",
+                    type: "post",
+                    contentType: "application/json;charset=utf-8", //必须要设置
+                    data: JSON.stringify({
+                        'blogTitle': $("input[name='title']").val(),
+                        'blogContent': editor.txt.html(),
+                        'blogPubType': $("input[type='radio']:checked").val(),
+                        'userId': loginId,
+                        'tagId': $("input[type='checkbox']:checked").val(),
                     }),
 
-                    dataType:"text",
-                    success:function (data) {
+                    dataType: "text",
+                    success: function (data) {
                         layer.open({
-                            title:'SUCCESS！'
-                            ,content:'发布成功！'
-                            ,icon: 1
-                            ,btn:'OK!',
-                            yes:function(index, layero){
+                            title: 'SUCCESS！'
+                            , content: '发布成功！'
+                            , icon: 1
+                            , btn: 'OK!',
+                            yes: function (index, layero) {
                                 window.location.href = "/blogManage.html";
                             },
-                            cancel:function(){
+                            cancel: function () {
                                 window.location.href = "/blogManage.html";
                             }
                         });
                     },
-                    error:function () {
+                    error: function () {
                         layer.open({
-                            title:'FAIL！',
+                            title: 'FAIL！',
                             content: '发布失败！'
-                            ,btn:'OK!',
-                            icon:2
+                            , btn: 'OK!',
+                            icon: 2
                         });
                     }
 
@@ -84,165 +84,168 @@
 </head>
 <script src="js/vue.min.js"></script>
 <body>
-    <div class="top">
-        <div class="w">
-            <div class="logo">
-                <img src="images/blogIndex/logo.png">
+<div class="top">
+    <div class="w">
+        <div class="logo">
+            <img src="images/blogIndex/logo.png">
+        </div>
+        <div class="nav">
+            <li><a href="blogIndex.html">首页</a></li>
+            <li><a href="blogIndex.html">博客</a></li>
+            <li><a href="downloadhomepage.html">下载</a></li>
+            <li><a href="vipBuy.html">会员</a></li>
+            <li><a href="fileUpload.html">上传</a></li>
+            <li><a href="blogIndex.html">论坛</a></li>
+            <li><a href="blogIndex.html">商城</a></li>
+            <li><a href="blogIndex.html">问答</a></li>
+            <li><a href="blogIndex.html">课程</a></li>
+            <li><a href="blogIndex.html">客服</a></li>
+        </div>
+        <form id="search">
+            <div class="searchtext">
+                <input type="text" id="searchtext" value="搜索框">
             </div>
-            <div class="nav">
-                <li><a href="blogIndex.html">首页</a></li>
-                <li><a href="blogIndex.html">博客</a></li>
-                <li><a href="downloadhomepage.html">下载</a></li>
-                <li><a href="vipBuy.html">会员</a></li>
-                <li><a href="fileUpload.html">上传</a></li>
-                <li><a href="blogIndex.html">论坛</a></li>
-                <li><a href="blogIndex.html">商城</a></li>
-                <li><a href="blogIndex.html">问答</a></li>
-                <li><a href="blogIndex.html">课程</a></li>
-                <li><a href="blogIndex.html">客服</a></li>
-            </div>
-            <form id="search">
-                <div class="searchtext">
-                    <input type="text" id="searchtext" value="搜索框">
+            <input type="submit" class="searchbutton" value="搜索">
+        </form>
+        <div class="write">
+            <a href="blogManage.html">
+                管理博客
+            </a>
+        </div>
+        <div class="login">
+            <!--                <li><a href="blogIndex.html">登录</a></li>-->
+            <!--                <li><a href="blogIndex.html">注册</a></li>-->
+            <a href="userInfoIndex.html">
+                <div class="loginheadpic">
+                    <img src="images/headpic.jpg">
                 </div>
-                <input type="submit" class="searchbutton" value="搜索">
-            </form>
-            <div class="write">
-                <a href="blogManage.html">
-                    管理博客
-                </a>
-            </div>
-            <div class="login">
-                <!--                <li><a href="blogIndex.html">登录</a></li>-->
-                <!--                <li><a href="blogIndex.html">注册</a></li>-->
-                <a href="userInfoIndex.html">
-                    <div class="loginheadpic">
-                        <img src="images/headpic.jpg">
-                    </div>
-                </a>
-                <li><a id="logout">退出登录</a></li>
-            </div>
+            </a>
+            <li><a id="logout">退出登录</a></li>
         </div>
     </div>
-    <div class="main">
-        <div class="w">
-            <div class="leftlabel">
-<!--                <div class="labeltitle">编辑器</div>-->
-<!--                <a href="blogIndex.html"><li>富文本编辑器</li></a>-->
-<!--                <div class="labeltitle">内容</div>-->
-<!--                <a href="blogIndex.html"><li>查看主页</li></a>-->
-<!--                <a href="blogIndex.html"><li>文章管理</li></a>-->
-                <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-                    <li class="layui-nav-item layui-nav-itemed">
-                        <a>编辑器</a>
-                        <dl class="layui-nav-child">
-                            <dd><a>MarkDown编辑器</a></dd>
-                            <dd ><a class="fwb">富文本编辑器</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item layui-nav-itemed">
-                        <a>内容</a>
-                        <dl class="layui-nav-child">
-                            <dd><a class="back">文章管理</a></dd>
-                            <dd><a>评论管理</a></dd>
-                            <dd><a>分类专栏</a></dd>
-                        </dl>
-                    </li>
-                </ul>
-                <script>
-                    //注意：导航 依赖 element 模块，否则无法进行功能性操作
-                    layui.use('element', function(){
-                        var element = layui.element;
+</div>
+<div class="main">
+    <div class="w">
+        <div class="leftlabel">
+            <!--                <div class="labeltitle">编辑器</div>-->
+            <!--                <a href="blogIndex.html"><li>富文本编辑器</li></a>-->
+            <!--                <div class="labeltitle">内容</div>-->
+            <!--                <a href="blogIndex.html"><li>查看主页</li></a>-->
+            <!--                <a href="blogIndex.html"><li>文章管理</li></a>-->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a>编辑器</a>
+                    <dl class="layui-nav-child">
+                        <dd><a>MarkDown编辑器</a></dd>
+                        <dd><a class="fwb">富文本编辑器</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a>内容</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="back">文章管理</a></dd>
+                        <dd><a>评论管理</a></dd>
+                        <dd><a>分类专栏</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <script>
+                //注意：导航 依赖 element 模块，否则无法进行功能性操作
+                layui.use('element', function () {
+                    var element = layui.element;
 
-                        //…
-                    });
+                    //…
+                });
 
-                </script>
-            </div>
-            <div class="manyinfo" v-cloak>
-                <div class="title">全部（<span>{{blogCount}}</span>)</div>
-                <div class="showblog" v-for="(b , index) in blogs">
-                    <div class="blogtitle">
-                        <span>{{b.blogTitle}}</span>
+            </script>
+        </div>
+        <div class="manyinfo" v-cloak>
+            <div class="title">全部（<span>{{blogCount}}</span>)</div>
+            <div class="showblog" v-for="(b , index) in blogs">
+                <div class="blogtitle">
+                    <span>{{b.blogTitle}}</span>
+                </div>
+                <div class="bloginfo">
+                    <div class="blogtype"><span>原创</span></div>
+                    <div class="blogcreatetime">
+                        博客发布时间：&nbsp;{{b.blogCreateTime}}
                     </div>
-                    <div class="bloginfo">
-                            <div class="blogtype"><span>原创</span></div>
-                            <div class="blogcreatetime">
-                                博客发布时间：&nbsp;{{b.blogCreateTime}}
-                            </div>
-                            <div class="blogoperation">
-                                博客阅读量:{{b.blogReadNum}} 丨 <span class="clickblog">查看<span class="ajax_blogId" style="display: none">{{b.blogId}}</span></span>
-                                丨 <span id="delete"><a :href="'/deleteBlog?blogId=' + b.blogId" >删除</a></span>
-                            </div>
+                    <div class="blogoperation">
+                        博客阅读量:{{b.blogReadNum}} 丨 <span class="clickblog">查看<span class="ajax_blogId"
+                                                                                  style="display: none">{{b.blogId}}</span></span>
+                        丨 <span id="delete"><a :href="'/deleteBlog?blogId=' + b.blogId">删除</a></span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="writeblog">
-                <div class="layui-form">
+        <div class="writeblog">
+            <div class="layui-form">
                 <div class="layui-form-item">
                     <label class="layui-form-label">文章标题：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                               autocomplete="off" class="layui-input">
                     </div>
                 </div>
-<!--                <textarea class="blogcontent" id="demo" style="display: none;"></textarea>-->
-                    <div id="editor"></div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">文章标签：</label>
-                        <div id="checkbox" class="layui-input-block">
-                            <input  type="checkbox" name="like[write]" title="Java" value="1">
-                            <input  type="checkbox" name="like[read]" title="Python" checked value="2">
-                            <input  type="checkbox" name="like[dai]" title="C++" value="3">
+                <!--                <textarea class="blogcontent" id="demo" style="display: none;"></textarea>-->
+                <div id="editor"></div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">文章标签：</label>
+                    <div id="checkbox" class="layui-input-block">
+                        <input type="checkbox" name="like[write]" title="Java" value="1">
+                        <input type="checkbox" name="like[read]" title="Python" checked value="2">
+                        <input type="checkbox" name="like[dai]" title="C++" value="3">
+                    </div>
+                    <div class="layui-form-item choosetype">
+                        <label class="layui-form-label">文章类型：</label>
+                        <div class="layui-input-block">
+                            <select name="city" lay-verify="required">
+                                <option value=""></option>
+                                <option value="0">原创</option>
+                                <option value="1">转载</option>
+                                <option value="2">翻译</option>
+                            </select>
                         </div>
-                        <div class="layui-form-item choosetype">
-                            <label class="layui-form-label">文章类型：</label>
-                            <div class="layui-input-block">
-                                <select name="city" lay-verify="required">
-                                    <option value=""></option>
-                                    <option value="0">原创</option>
-                                    <option value="1">转载</option>
-                                    <option value="2">翻译</option>
-                                </select>
-                            </div>
+                    </div>
+                    <div class="layui-form-item ">
+                        <label class="layui-form-label">发布形式：</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="formtype" value="1" title="公开" checked>
+                            <input type="radio" name="formtype" value="0" title="私密">
                         </div>
-                        <div class="layui-form-item ">
-                            <label class="layui-form-label">发布形式：</label>
-                            <div class="layui-input-block">
-                                <input type="radio" name="formtype" value="1" title="公开" checked>
-                                <input type="radio" name="formtype" value="0" title="私密">
-                            </div>
-                            <button id="pulishblog" class="layui-btn layui-btn-radius publishblog">发布文章</button>
-                        </div>
+                        <button id="pulishblog" class="layui-btn layui-btn-radius publishblog">发布文章</button>
                     </div>
                 </div>
             </div>
-            <script type="text/javascript" src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
-            <script type="text/javascript">
-                var E = window.wangEditor
-                var editor = new E('#editor')
-                // editor.customConfig.uploadImgServer = '/uploadimage';  // 上传图片到服务器
-                // // 或者 var editor = new E( document.getElementById('editor') )
-                // editor.customConfig.uploadFileName = 'file';
-                editor.customConfig.uploadImgShowBase64 = true;
-                editor.create()
-            </script>
-
         </div>
+        <script type="text/javascript" src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+        <script type="text/javascript">
+            var E = window.wangEditor
+            var editor = new E('#editor')
+            // editor.customConfig.uploadImgServer = '/uploadimage';  // 上传图片到服务器
+            // // 或者 var editor = new E( document.getElementById('editor') )
+            // editor.customConfig.uploadFileName = 'file';
+            editor.customConfig.uploadImgShowBase64 = true;
+            editor.create()
+        </script>
+
     </div>
+</div>
 </body>
 <script>
     var vuemanyinfo = new Vue({
-        el:".manyinfo",
-        data:{
-            blogs:[],
-            blogCount:0,
+        el: ".manyinfo",
+        data: {
+            blogs: [],
+            blogCount: 0,
         }
     })
     var userId;
+
     function init_blogManage() {
-        if(1 == 1) {
+        if (1 == 1) {
             $.ajax({
                 url: "/getUserId",
                 dataType: "json",
@@ -254,7 +257,7 @@
                         data: {"userId": data},
                         dataType: "json",
                         success: function (data) {
-                            vuemanyinfo.blogCount = data.blogList.length
+                            vuemanyinfo.blogCount = data.blogList.length;
                             for (var i = 0; i < data.blogList.length; i++) {
                                 vuemanyinfo.blogs.push({
                                     blogId: data.blogList[i].blogId,
@@ -274,11 +277,12 @@
             });
         }
     }
+
     $(function () {
         init_blogManage();
-        $(".manyinfo").on("click",".clickblog",function () {
+        $(".manyinfo").on("click", ".clickblog", function () {
             var blogId = $(this).children(".ajax_blogId").text();
-            var url1 = "/blogDetail.html?blogId="+blogId;
+            var url1 = "/blogDetail.html?blogId=" + blogId;
             window.location.replace(url1);
         });
     })
