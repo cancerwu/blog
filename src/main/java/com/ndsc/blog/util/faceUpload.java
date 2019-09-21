@@ -19,7 +19,7 @@ public class faceUpload {
         if (!file.isEmpty()) {
             //上传文件路径
 //            String serverPath = request.getSession().getServletContext().getRealPath("/") + "face";
-            String serverPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\face";
+            String serverPath = System.getProperty("user.dir") + "/src/mainresourcesstatic/face";
             //上传文件名
             String filename = file.getOriginalFilename();
 //            filename = new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()) + filename;
